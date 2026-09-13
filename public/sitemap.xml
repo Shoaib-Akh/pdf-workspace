@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://pdfworkspace.app/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://pdfworkspace.app/tools</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Core converters (priority 0.9) -->
+  <url><loc>https://pdfworkspace.app/pdf-to-word</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-excel</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-jpg</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-png</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-webp</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-txt</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-csv</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-json</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-markdown</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-data</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/pdf-to-powerpoint</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Image to PDF -->
+  <url><loc>https://pdfworkspace.app/jpg-to-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/png-to-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/images-to-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Organize tools (priority 0.7) -->
+  <url><loc>https://pdfworkspace.app/merge-pdf</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/split-pdf</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/compress-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/rotate-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/delete-pdf-pages</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/extract-pdf-pages</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/reorder-pdf-pages</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/watermark-pdf</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/add-page-numbers</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/password-protect-pdf</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/unlock-pdf</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- OCR -->
+  <url><loc>https://pdfworkspace.app/ocr-pdf</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/scanned-pdf-to-text</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/scanned-pdf-to-word</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/scanned-pdf-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Business tools (priority 0.8) -->
+  <url><loc>https://pdfworkspace.app/business-pdf-tools</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/boq-pdf-to-excel</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/invoice-to-excel</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/quotation-to-excel</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/receipt-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/bank-statement-to-excel</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/tender-pdf-to-excel</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/purchase-order-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/expense-report-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/price-list-pdf-to-excel</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Construction SEO pages (priority 0.8) -->
+  <url><loc>https://pdfworkspace.app/construction-pdf-to-excel</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/quantity-survey-pdf-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/estimate-pdf-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/bill-of-quantities-to-excel</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/boq-extractor</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Learn hub (priority 0.7) -->
+  <url><loc>https://pdfworkspace.app/learn</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-to-convert-pdf-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-to-extract-tables-from-pdf</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-to-convert-boq-pdf-to-excel</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/pdf-vs-scanned-pdf</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-ocr-works</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-to-extract-invoice-data</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/learn/how-to-convert-bank-statement</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Legal -->
+  <url><loc>https://pdfworkspace.app/privacy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://pdfworkspace.app/terms</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+
+  <!-- NOTE: /workspace is noindex — NOT included in sitemap -->
+
+</urlset>

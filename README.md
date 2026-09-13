@@ -183,3 +183,4 @@ VITE_BACKEND_URL     — Optional: backend API URL
 ## License
 
 Private / Commercial
+# pdf-workspace

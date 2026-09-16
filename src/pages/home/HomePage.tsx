@@ -5,7 +5,7 @@ import {
   HardHat, Smartphone, ChevronRight, Star, Upload,
 } from 'lucide-react'
 import MetaTags from '@/components/seo/MetaTags'
-import { JsonLd, buildWebSiteSchema, buildOrganizationSchema } from '@/components/seo/JsonLd'
+import { JsonLd, buildWebSiteSchema, buildOrganizationSchema, buildFAQSchema, buildWebApplicationSchema } from '@/components/seo/JsonLd'
 import { APP_CONFIG } from '@/lib/config'
 import { Button } from '@/components/ui/button'
 import { useDropzone } from 'react-dropzone'
@@ -14,6 +14,7 @@ import { useAppStore } from '@/store/appStore'
 import { track } from '@/services/analytics/analytics'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import MergePdfSeoSection, { MERGE_PDF_FAQS } from '@/components/home/MergePdfSeoSection'
 
 const POPULAR_TOOLS = [
   {
@@ -254,16 +255,30 @@ function BadgePill({ text }: { text: string }) {
 }
 
 export default function HomePage() {
+  const combinedFaqs = [
+    ...MERGE_PDF_FAQS.map((f) => ({ question: f.q, answer: f.a })),
+    ...FAQS.map((f) => ({ question: f.q, answer: f.a })),
+  ]
+
   return (
     <>
       <MetaTags
-        title="PDF Converter & Data Extractor — Convert, Extract, Transform PDFs"
-        description="Convert PDF to Word, Excel, JPG, CSV and more — or extract tables, invoices, BOQ data, and structured information from complex PDF documents. Fast, browser-based, private."
+        title="PDF Converter, Data Extractor & Free PDF Merger — Merge, Convert, Extract PDFs"
+        description="Merge PDF online free, combine multiple PDF documents into one, or convert PDF to Word, Excel, JPG, and CSV. 100% private in-browser processing with zero server uploads."
         canonical={APP_CONFIG.url}
         ogImage={`${APP_CONFIG.url}/og/home.jpg`}
       />
       <JsonLd data={buildWebSiteSchema(APP_CONFIG)} />
       <JsonLd data={buildOrganizationSchema(APP_CONFIG)} />
+      <JsonLd
+        data={buildWebApplicationSchema({
+          name: 'Free PDF Merger & Combiner Online',
+          description:
+            'Merge multiple PDF documents and combine photos or images into one clean PDF file directly in your browser. 100% free with no file limits.',
+          url: `${APP_CONFIG.url}/merge-pdf`,
+        })}
+      />
+      <JsonLd data={buildFAQSchema(combinedFaqs)} />
 
       <Header />
 
@@ -350,6 +365,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ─── MERGE & COMBINE PDF HUB (SEO SERP ENGINE) ────────── */}
+        <MergePdfSeoSection />
 
         {/* ─── HOW IT WORKS ─────────────────────────────────────── */}
         <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">

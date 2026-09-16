@@ -1,8 +1,3 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-# Workspace session pages are private and should not be indexed
-Disallow: /workspace/session/
-Disallow: /api/
-
-Sitemap: https://pdfworkspace.app/sitemap.xml

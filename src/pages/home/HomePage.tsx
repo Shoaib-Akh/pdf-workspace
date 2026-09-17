@@ -22,7 +22,7 @@ const POPULAR_TOOLS = [
     description: 'Convert PDF text and layout to editable Word documents',
     href: '/pdf-to-word',
     icon: '📝',
-    badge: 'Popular',
+    badge: 'Coming Soon',
   },
   {
     name: 'PDF to Excel',
@@ -33,10 +33,10 @@ const POPULAR_TOOLS = [
   },
   {
     name: 'PDF to JPG',
-    description: 'Convert each PDF page to a high-quality JPG image in your browser',
+    description: 'Convert each PDF page to a high-quality JPG image instantly in your browser',
     href: '/pdf-to-jpg',
     icon: '🖼️',
-    badge: 'Browser',
+    badge: 'Instant',
   },
   {
     name: 'BOQ to Excel',
@@ -50,14 +50,14 @@ const POPULAR_TOOLS = [
     description: 'Detect and extract all tables from a PDF to CSV or Excel',
     href: '/pdf-to-data',
     icon: '🗂️',
-    badge: 'Browser',
+    badge: 'Instant',
   },
   {
     name: 'Merge PDF',
-    description: 'Combine multiple PDFs into one file — entirely in your browser',
+    description: 'Combine multiple PDFs into one file — 100% private and instant',
     href: '/merge-pdf',
     icon: '🔗',
-    badge: 'Browser',
+    badge: 'Instant',
   },
   {
     name: 'Invoice to Excel',
@@ -71,7 +71,7 @@ const POPULAR_TOOLS = [
     description: 'Extract all readable text from a PDF document instantly',
     href: '/pdf-to-txt',
     icon: '📄',
-    badge: 'Browser',
+    badge: 'Instant',
   },
 ]
 
@@ -243,9 +243,10 @@ function HeroDropZone() {
 
 function BadgePill({ text }: { text: string }) {
   const colors: Record<string, string> = {
-    Popular: 'bg-amber-100 text-amber-700',
-    Browser: 'bg-emerald-100 text-emerald-700',
-    Featured: 'bg-brand-100 text-brand-700',
+    Popular: 'bg-amber-100 text-amber-700 font-semibold',
+    Instant: 'bg-emerald-100 text-emerald-700 font-semibold',
+    'Coming Soon': 'bg-amber-100 text-amber-700 font-semibold',
+    Featured: 'bg-brand-100 text-brand-700 font-semibold',
   }
   return (
     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${colors[text] ?? 'bg-zinc-100 text-zinc-600'}`}>

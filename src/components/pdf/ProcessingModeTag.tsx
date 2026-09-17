@@ -1,33 +1,33 @@
-import { Globe, Cloud, Zap } from 'lucide-react'
+import { Globe, Cloud, Zap, Clock } from 'lucide-react'
 
 interface ProcessingModeTagProps {
   mode: 'browser' | 'server' | 'external-api'
 }
 
 export function ProcessingModeTag({ mode }: ProcessingModeTagProps) {
-  if (mode === 'browser') {
+  if (mode === 'server') {
     return (
       <div className="flex flex-col items-center">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 text-xs font-medium border border-green-200 dark:border-green-800/50">
-          <div className="w-2 h-2 rounded-full bg-green-500"></div>
-          🌐 Browser
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-semibold border border-amber-200 dark:border-amber-800/50">
+          <Clock className="w-3.5 h-3.5" />
+          ⏳ Coming Soon (Cloud Server)
         </div>
         <p className="text-xs text-gray-500 mt-2 text-center">
-          Files are processed entirely on your device. No data is sent to our servers.
+          Cloud server processing for this tool is under development and coming soon.
         </p>
       </div>
     )
   }
 
-  if (mode === 'server') {
+  if (mode === 'browser') {
     return (
       <div className="flex flex-col items-center">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-xs font-medium border border-blue-200 dark:border-blue-800/50">
-          <Cloud className="w-3.5 h-3.5" />
-          ☁️ Server
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 text-xs font-semibold border border-emerald-200 dark:border-emerald-800/50">
+          <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+          ⚡ Instant & 100% Private
         </div>
         <p className="text-xs text-gray-500 mt-2 text-center">
-          Files are securely uploaded and automatically deleted after processing.
+          Processed instantly on your device. Zero data uploaded to any server.
         </p>
       </div>
     )

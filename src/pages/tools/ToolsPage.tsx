@@ -4,6 +4,7 @@ import {
   Search,
   Globe,
   Cloud,
+  Clock,
   ArrowRight,
   FileText,
   Image as ImageIcon,
@@ -377,15 +378,15 @@ export function ToolsPage({ initialCategory }: ToolsPageProps) {
                                 Featured
                               </span>
                             )}
-                            {tool.processingMode === 'browser' ? (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                                <Globe className="w-2.5 h-2.5 mr-1" />
-                                Browser
+                            {!tool.available || tool.processingMode === 'server' ? (
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                                <Clock className="w-2.5 h-2.5 mr-1" />
+                                Coming Soon
                               </span>
-                            ) : tool.processingMode === 'server' ? (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
-                                <Cloud className="w-2.5 h-2.5 mr-1" />
-                                Server
+                            ) : tool.processingMode === 'browser' ? (
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                <Zap className="w-2.5 h-2.5 mr-1" />
+                                Instant
                               </span>
                             ) : null}
                           </div>
@@ -402,7 +403,7 @@ export function ToolsPage({ initialCategory }: ToolsPageProps) {
                       </div>
 
                       <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold text-brand-600 dark:text-brand-400">
-                        <span>Open Tool</span>
+                        <span>{!tool.available || tool.processingMode === 'server' ? 'Coming Soon' : 'Open Tool'}</span>
                         <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                       </div>
                     </Link>

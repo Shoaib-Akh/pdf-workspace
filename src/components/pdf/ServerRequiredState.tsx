@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AlertTriangle, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
+import { Rocket, ArrowRight, CheckCircle2, Mail, Clock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { analytics } from '@/services/analytics/analytics'
@@ -45,16 +45,20 @@ export function ServerRequiredState({
 
   return (
     <div className="w-full max-w-lg mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 flex flex-col items-center text-center">
-      <div className="w-14 h-14 bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-500 rounded-2xl flex items-center justify-center mb-5 ring-1 ring-amber-200 dark:ring-amber-800">
-        <AlertTriangle className="w-7 h-7" />
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 text-xs font-bold border border-amber-200 dark:border-amber-800 mb-4">
+        <Clock className="w-3.5 h-3.5" /> Coming Soon
+      </div>
+
+      <div className="w-14 h-14 bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center mb-4 ring-1 ring-brand-200 dark:ring-brand-800">
+        <Rocket className="w-7 h-7" />
       </div>
 
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-        Advanced conversion requires processing service
+        {toolName} — Coming Soon
       </h3>
 
       <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-        <strong>{toolName}</strong> requires server-side layout reconstruction and font rasterization for high-fidelity output. Server-side processing will be available in the upcoming cloud tier.
+        Server-side processing for <strong>{toolName}</strong> is currently under development. Join our early access list to be notified as soon as it launches!
       </p>
 
       {/* Interactive Waitlist Form */}

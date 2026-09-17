@@ -26,21 +26,29 @@ export function ServerRequiredState({
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email || !email.includes('@')) return
 
     setIsSubmitting(true)
-    setTimeout(() => {
-      try {
-        localStorage.setItem(`waitlist_${toolName}`, email)
-      } catch {
-        // storage fallback
-      }
-      analytics.waitlistJoined(toolName)
-      setIsSubscribed(true)
-      setIsSubmitting(false)
-    }, 400)
+    try {
+      await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, toolName }),
+      })
+    } catch {
+      // network/offline fallback
+    }
+
+    try {
+      localStorage.setItem(`waitlist_${toolName}`, email)
+    } catch {
+      // storage fallback
+    }
+    analytics.waitlistJoined(toolName)
+    setIsSubscribed(true)
+    setIsSubmitting(false)
   }
 
   return (

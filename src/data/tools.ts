@@ -19,6 +19,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { slug: 'pdf-to-epub', name: 'PDF to EPUB', description: 'Convert PDF to EPUB ebook.', category: 'convert', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['epub'], icon: 'book' },
 
   // Organize
+  { slug: 'edit-pdf', name: 'Edit PDF', description: 'Edit, annotate, and sign PDF documents.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'edit', featured: true },
   { slug: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'combine', featured: true },
   { slug: 'split-pdf', name: 'Split PDF', description: 'Split a PDF into multiple files.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'split' },
   { slug: 'compress-pdf', name: 'Compress PDF', description: 'Reduce PDF file size.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'minimize', featured: true },
@@ -31,9 +32,16 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { slug: 'password-protect-pdf', name: 'Protect PDF', description: 'Add a password to PDF.', category: 'security', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'lock' },
   { slug: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password from PDF.', category: 'security', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'unlock' },
 
+  // Documents to PDF
+  { slug: 'word-to-pdf', name: 'Word to PDF', description: 'Convert Word DOCX and DOC to PDF.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['docx', 'doc'], outputFormats: ['pdf'], icon: 'file-text', featured: true },
+  { slug: 'excel-to-pdf', name: 'Excel to PDF', description: 'Convert Excel XLSX, XLS, and CSV to PDF.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['xlsx', 'xls', 'csv'], outputFormats: ['pdf'], icon: 'file-spreadsheet', featured: true },
+  { slug: 'powerpoint-to-pdf', name: 'PowerPoint to PDF', description: 'Convert PowerPoint PPTX and PPT to PDF.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['pptx', 'ppt'], outputFormats: ['pdf'], icon: 'presentation', featured: true },
+
   // Images
   { slug: 'jpg-to-pdf', name: 'JPG to PDF', description: 'Convert JPG to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['jpg', 'jpeg'], outputFormats: ['pdf'], icon: 'file-image' },
   { slug: 'png-to-pdf', name: 'PNG to PDF', description: 'Convert PNG to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['png'], outputFormats: ['pdf'], icon: 'file-image' },
+  { slug: 'gif-to-pdf', name: 'GIF to PDF', description: 'Convert GIF to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['gif'], outputFormats: ['pdf'], icon: 'file-image' },
+  { slug: 'bmp-to-pdf', name: 'BMP to PDF', description: 'Convert BMP to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['bmp'], outputFormats: ['pdf'], icon: 'file-image' },
   { slug: 'webp-to-pdf', name: 'WebP to PDF', description: 'Convert WebP to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['webp'], outputFormats: ['pdf'], icon: 'file-image' },
   { slug: 'images-to-pdf', name: 'Images to PDF', description: 'Convert multiple images to PDF.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['jpg', 'png', 'webp', 'bmp', 'gif'], outputFormats: ['pdf'], icon: 'images' },
   { slug: 'pdf-to-image', name: 'PDF to Image', description: 'Convert PDF to Images.', category: 'images', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['jpg'], icon: 'image' }, // alias

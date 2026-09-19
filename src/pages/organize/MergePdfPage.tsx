@@ -20,6 +20,7 @@ import { JsonLd, buildWebApplicationSchema, buildFAQSchema } from '@/components/
 import { APP_CONFIG } from '@/lib/config'
 import { mergePDFs } from '@/services/pdf/pdfOrganizer'
 import { MERGE_PDF_FAQS } from '@/components/home/MergePdfSeoSection'
+import { MERGE_PDF_KEYWORDS, MERGE_PDF_POPULAR_SEARCHES } from '@/data/seoKeywords'
 
 const SEARCH_SHORTCUTS = [
   { label: 'Merge Images to PDF', to: '/images-to-pdf' },
@@ -114,6 +115,7 @@ export default function MergePdfPage() {
       <MetaTags
         title="Merge PDF Online Free — Combine Multiple PDF Files Into One"
         description="Merge PDF files online for free. Combine multiple PDF documents, arrange page sequence, or merge photos into one unified document with 100% private in-browser processing."
+        keywords={MERGE_PDF_KEYWORDS}
         canonical={`${APP_CONFIG.url}/merge-pdf`}
       />
       <JsonLd
@@ -353,6 +355,28 @@ export default function MergePdfPage() {
                   <h4 className="font-semibold text-zinc-900 text-sm">{faq.q}</h4>
                   <p className="text-zinc-600 text-sm mt-1.5 leading-relaxed">{faq.a}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Popular Searches & Related Tags */}
+          <div className="rounded-2xl border border-zinc-200 bg-zinc-50/70 p-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-800 mb-2">
+              Related Searches & Tools
+            </h4>
+            <p className="text-xs text-zinc-500 mb-4">
+              Explore quick access tools for combining, merging, and converting PDF documents.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {MERGE_PDF_POPULAR_SEARCHES.map((tag) => (
+                <Link
+                  key={tag.label}
+                  to={tag.to}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 transition-all"
+                >
+                  <span>{tag.label}</span>
+                  <ArrowRight className="h-3 w-3 text-zinc-400" />
+                </Link>
               ))}
             </div>
           </div>

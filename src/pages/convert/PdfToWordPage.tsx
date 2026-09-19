@@ -1,12 +1,38 @@
 import React, { useState } from 'react'
 import MetaTags from '@/components/seo/MetaTags'
 import PageLayout from '@/components/layout/PageLayout'
+import { APP_CONFIG } from '@/lib/config'
 import DropZone from '@/components/upload/DropZone'
 import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
-import { FileText, Download, CheckCircle, HelpCircle, Shield, Sparkles, AlertCircle, RefreshCw } from 'lucide-react'
+import { Download, CheckCircle, HelpCircle, Shield, Sparkles, AlertCircle, RefreshCw, ArrowRight } from 'lucide-react'
 import { loadPDF, extractAllText, detectContentType } from '@/services/pdf/pdfEngine'
+import { PDF_TO_WORD_KEYWORDS, PDF_TO_WORD_POPULAR_SEARCHES } from '@/data/seoKeywords'
+import JsonLd, { buildWebApplicationSchema, buildFAQSchema } from '@/components/seo/JsonLd'
+
+const PDF_TO_WORD_FAQS = [
+  {
+    q: 'How do I convert a PDF to an editable Word document online for free?',
+    a: 'Upload your PDF document into our converter box. The tool extracts headings, paragraphs, and sections directly in your browser and packages them into an editable Word document ready for immediate download.',
+  },
+  {
+    q: 'Can I convert a scanned PDF or photo into Word?',
+    a: 'Scanned PDFs contain picture data instead of text characters. If our tool detects a scanned PDF, you can use our built-in OCR PDF / Scanned PDF to Word tool to recognize the characters into editable Microsoft Word text.',
+  },
+  {
+    q: 'What is the difference between Option 1 (Browser) and Option 2 (Server)?',
+    a: 'Option 1 extracts all text, paragraphs, and sections directly on your device CPU for 100% privacy and instant speed. Option 2 is designed for complex multi-column reports, recreating exact visual fonts, tables, and embedded graphics through deep layout analysis.',
+  },
+  {
+    q: 'Are my confidential PDF documents safe and private?',
+    a: 'Yes, your privacy is fully protected. In Option 1, all text extraction occurs locally in your browser memory via WebAssembly and JavaScript. No document content is ever uploaded to any cloud server.',
+  },
+  {
+    q: 'Is there a file limit or fee to convert PDF to Word?',
+    a: 'No, our browser PDF to Word converter is completely free without page limits, hidden subscriptions, or watermarks.',
+  },
+]
 
 export default function PdfToWordPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -68,11 +94,35 @@ export default function PdfToWordPage() {
     URL.revokeObjectURL(url)
   }
 
+  const pageTitle = 'PDF to Word Converter — Convert PDF to Editable Word Document Online Free'
+  const pageDescription =
+    'Convert PDF to editable Word document (.docx / .doc) online for free. Fast, accurate text extraction directly in your browser with 100% private security.'
+
   return (
-    <PageLayout>
+    <PageLayout
+      breadcrumbs={[
+        { label: 'Convert', href: '/convert' },
+        { label: 'PDF to Word' },
+      ]}
+    >
       <MetaTags
-        title="PDF to Word Converter — Convert PDF to Editable Word Document"
-        description="Convert PDF to editable Word document (.docx). Fast text extraction directly in your browser, or advanced layout preservation with server processing."
+        title={pageTitle}
+        description={pageDescription}
+        keywords={PDF_TO_WORD_KEYWORDS}
+        canonical={`${APP_CONFIG.url}/pdf-to-word`}
+      />
+
+      <JsonLd
+        data={buildWebApplicationSchema({
+          name: 'Free Online PDF to Word Converter',
+          description: pageDescription,
+          url: `${APP_CONFIG.url}/pdf-to-word`,
+        })}
+      />
+      <JsonLd
+        data={buildFAQSchema(
+          PDF_TO_WORD_FAQS.map((f) => ({ question: f.q, answer: f.a }))
+        )}
       />
 
       <div className="max-w-5xl mx-auto space-y-12">
@@ -85,8 +135,22 @@ export default function PdfToWordPage() {
             PDF to Word — Convert PDF to Editable Word Document
           </h1>
           <p className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Converting a PDF into an editable Microsoft Word document (.docx) involves two distinct approaches. Fast text extraction extracts all paragraphs and headers client-side into a plain Word wrapper. Reconstructing exact pixel-perfect fonts, tables, margins, and embedded vector graphics requires advanced layout-preserving server processing.
+            Convert your PDF into an editable Microsoft Word document (.docx / .doc). Extract text, paragraphs, and headings instantly on your device with complete privacy.
           </p>
+        </div>
+
+        {/* Quick Search Tags */}
+        <div className="flex flex-wrap justify-center gap-2 pt-1 pb-2">
+          {PDF_TO_WORD_POPULAR_SEARCHES.slice(0, 6).map((sc) => (
+            <Link
+              key={sc.label}
+              to={sc.to}
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-zinc-100 hover:bg-brand-50 hover:text-brand-700 text-zinc-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 text-xs font-medium transition-colors"
+            >
+              <span>{sc.label}</span>
+              <ArrowRight className="w-3 h-3 text-zinc-400" />
+            </Link>
+          ))}
         </div>
 
         {/* Two conversion paths */}
@@ -204,27 +268,46 @@ export default function PdfToWordPage() {
           </div>
         </div>
 
-        {/* Informational Guidance */}
-        <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-gray-300">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
-                <HelpCircle className="w-4 h-4 text-blue-600" /> What is the difference between Option 1 and Option 2?
-              </h3>
-              <p className="leading-relaxed">
-                Option 1 extracts the text content and structures it cleanly inside a Word document directly in your browser. Option 2 uses a server pipeline to reconstruct visual elements like tables, multi-column articles, and graphics.
-              </p>
+        {/* Informational Guidance & FAQs */}
+        <div className="border-t border-gray-200 dark:border-gray-800 pt-10 space-y-8">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              Frequently Asked Questions About PDF to Word Conversion
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {PDF_TO_WORD_FAQS.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-zinc-200 dark:border-gray-800 p-4 bg-white dark:bg-gray-900 space-y-2">
+                  <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 text-sm">
+                    <HelpCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    {faq.q}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
-                <HelpCircle className="w-4 h-4 text-blue-600" /> Can I convert scanned PDFs to Word?
-              </h3>
-              <p className="leading-relaxed">
-                Yes, but scanned PDFs do not contain selectable text characters. Use our dedicated <strong>Scanned PDF to Word</strong> or <strong>OCR PDF</strong> tool to extract text from images.
-              </p>
+          </div>
+
+          {/* Popular Searches & Related Tags */}
+          <div className="rounded-2xl border border-zinc-200 dark:border-gray-800 bg-zinc-50/70 dark:bg-gray-800/40 p-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-800 dark:text-zinc-200 mb-2">
+              Related Searches & Tools
+            </h4>
+            <p className="text-xs text-zinc-500 dark:text-gray-400 mb-4">
+              Explore quick access tools for PDF to Word, DOCX conversion, and document editing.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {PDF_TO_WORD_POPULAR_SEARCHES.map((tag) => (
+                <Link
+                  key={tag.label}
+                  to={tag.to}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-gray-300 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 transition-all"
+                >
+                  <span>{tag.label}</span>
+                  <ArrowRight className="h-3 w-3 text-zinc-400" />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -232,3 +315,4 @@ export default function PdfToWordPage() {
     </PageLayout>
   )
 }
+

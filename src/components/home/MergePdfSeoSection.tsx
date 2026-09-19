@@ -13,29 +13,9 @@ import {
   HelpCircle,
 } from 'lucide-react'
 
-// All high-intent search keys mapped to corresponding routes
-const POPULAR_SEARCH_TAGS = [
-  { label: 'Merge PDF Online', to: '/merge-pdf' },
-  { label: 'Combine PDFs', to: '/merge-pdf' },
-  { label: 'Free PDF Combiner', to: '/merge-pdf' },
-  { label: 'PDF Merger Free', to: '/merge-pdf' },
-  { label: 'Merge Multiple PDF into One', to: '/merge-pdf' },
-  { label: 'Merge PDF Documents Free', to: '/merge-pdf' },
-  { label: 'Combine PDF Files Free', to: '/merge-pdf' },
-  { label: 'Merge Two PDF', to: '/merge-pdf' },
-  { label: 'PDF Merge to PDF Online', to: '/merge-pdf' },
-  { label: 'Combine PDF to PDF Online', to: '/merge-pdf' },
-  { label: 'Merge PDF Files Online', to: '/merge-pdf' },
-  { label: 'Combined PDF Documents', to: '/merge-pdf' },
-  { label: 'Merge Images to PDF', to: '/images-to-pdf' },
-  { label: 'Merge Photos to PDF', to: '/images-to-pdf' },
-  { label: 'Merge PNG to PDF', to: '/png-to-pdf' },
-  { label: 'PDF Combine Software Free', to: '/merge-pdf' },
-  { label: 'Merge PDF Freeware', to: '/merge-pdf' },
-  { label: 'PDF Combine Files', to: '/merge-pdf' },
-  { label: 'Merge Multiple PDF Online Free', to: '/merge-pdf' },
-  { label: 'Free PDF Merger', to: '/merge-pdf' },
-]
+import { MERGE_PDF_POPULAR_SEARCHES } from '@/data/seoKeywords'
+
+const POPULAR_SEARCH_TAGS = MERGE_PDF_POPULAR_SEARCHES
 
 export const MERGE_PDF_FAQS = [
   {

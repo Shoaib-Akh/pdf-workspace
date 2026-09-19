@@ -4,38 +4,34 @@ import PageLayout from '@/components/layout/PageLayout'
 import { APP_CONFIG } from '@/lib/config'
 import DropZone from '@/components/upload/DropZone'
 import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
-import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
-import { Image as ImageIcon, Download, Trash2, ArrowUp, ArrowDown, FilePlus, Shield, ArrowRight } from 'lucide-react'
-import { JsonLd, buildWebApplicationSchema, buildFAQSchema } from '@/components/seo/JsonLd'
+import { Image as ImageIcon, Download, Trash2, ArrowUp, ArrowDown, Shield, ArrowRight } from 'lucide-react'
 import { imagesToPdf } from '@/services/pdf/pdfOrganizer'
 import { downloadBlob } from '@/lib/utils'
-import { JPG_TO_PDF_KEYWORDS, JPG_TO_PDF_POPULAR_SEARCHES } from '@/data/seoKeywords'
+import { BMP_TO_PDF_KEYWORDS, BMP_TO_PDF_POPULAR_SEARCHES } from '@/data/seoKeywords'
+import JsonLd, { buildWebApplicationSchema, buildFAQSchema } from '@/components/seo/JsonLd'
 
-export const JPG_TO_PDF_FAQS = [
+const BMP_TO_PDF_FAQS = [
   {
-    q: 'How to convert JPG to PDF online for free?',
-    a: 'Drag and drop your JPG or JPEG images into the upload box, arrange the photos in your desired sequence, select margins and page orientation, and click "Convert to PDF". Download your combined PDF document instantly.',
+    q: 'How do I convert BMP bitmap images to PDF?',
+    a: 'Simply select or drop your BMP files into the upload box. You can arrange their page order using the arrow buttons, then click "Convert BMPs to PDF" to generate a crisp, standardized PDF file instantly.',
   },
   {
-    q: 'Can I combine multiple pictures and photos into a single PDF?',
-    a: 'Yes. You can add dozens of JPG photos, reorder them with the up/down controls, and merge them all into a single unified multi-page PDF.',
+    q: 'Can I convert multiple BMP images into a single PDF?',
+    a: 'Yes, our tool supports batch conversion. Upload as many BMP images as you need, reorder them, and merge them all into one combined PDF document.',
   },
   {
-    q: 'Is it safe to convert personal or sensitive photos here?',
-    a: 'Yes, 100%. Conversion runs entirely inside your browser using WebAssembly. Your photos and images are never uploaded to any remote server.',
+    q: 'Will the image quality of bitmap files be preserved?',
+    a: 'Yes, BMP images are converted losslessly into the PDF container without unwanted compression artifacts or degradation, ensuring high-definition print-ready quality.',
   },
   {
-    q: 'How do I make the PDF file size 200 KB or 100 KB?',
-    a: 'After converting your images to PDF, you can use our built-in Compress PDF tool with "Extreme" or "Recommended" compression to reduce file size down to 100 KB or 200 KB for job applications or government portals.',
+    q: 'Is it free and are my files kept private?',
+    a: 'Yes, 100% free with no file limitations or watermarks. All file processing is performed client-side inside your browser via WebAssembly. Your photos and bitmap documents never leave your computer.',
   },
 ]
 
-export default function JpgToPdfPage() {
+export default function BmpToPdfPage() {
   const [files, setFiles] = useState<File[]>([])
-  const [pageSize, setPageSize] = useState<'a4' | 'letter' | 'fit'>('a4')
-  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
-  const [margin, setMargin] = useState<'none' | 'small' | 'large'>('small')
   const [isConverting, setIsConverting] = useState(false)
   const [converted, setConverted] = useState(false)
   const [resultBlob, setResultBlob] = useState<Blob | null>(null)
@@ -86,7 +82,7 @@ export default function JpgToPdfPage() {
       setConverted(true)
     } catch (err: any) {
       console.error(err)
-      setErrorMsg('Failed to convert JPG to PDF. Please try again.')
+      setErrorMsg('Failed to convert BMP to PDF. Please try again.')
     } finally {
       setIsConverting(false)
     }
@@ -96,82 +92,70 @@ export default function JpgToPdfPage() {
     if (!resultBlob) return
     const name = files.length === 1
       ? files[0].name.replace(/\.[^/.]+$/, '') + '.pdf'
-      : 'converted-images.pdf'
+      : 'converted-bitmap.pdf'
     downloadBlob(resultBlob, name)
   }
+
+  const pageTitle = 'BMP to PDF — Convert BMP Bitmap Images to PDF Online Free'
+  const pageDescription =
+    'Convert BMP bitmap images to PDF online for free. Combine multiple BMP files into a single high-quality PDF document with 100% private in-browser processing.'
 
   return (
     <PageLayout
       breadcrumbs={[
         { label: 'Convert', href: '/convert' },
-        { label: 'JPG to PDF' },
+        { label: 'BMP to PDF' },
       ]}
     >
       <MetaTags
-        title="JPG to PDF Converter Online Free — Convert JPG Images to PDF"
-        description="Convert JPG and JPEG images to PDF online for free. Combine multiple photos into a single PDF document with 100% private in-browser processing."
-        keywords={JPG_TO_PDF_KEYWORDS}
-        canonical={`${APP_CONFIG.url}/jpg-to-pdf`}
+        title={pageTitle}
+        description={pageDescription}
+        keywords={BMP_TO_PDF_KEYWORDS}
+        canonical={`${APP_CONFIG.url}/bmp-to-pdf`}
       />
+
       <JsonLd
         data={buildWebApplicationSchema({
-          name: 'Free Online JPG to PDF Converter',
-          description:
-            'Convert JPG and JPEG images into clean, multi-page PDF documents for free in your browser.',
-          url: `${APP_CONFIG.url}/jpg-to-pdf`,
+          name: 'Free Online BMP to PDF Converter',
+          description: pageDescription,
+          url: `${APP_CONFIG.url}/bmp-to-pdf`,
         })}
       />
       <JsonLd
         data={buildFAQSchema(
-          JPG_TO_PDF_FAQS.map((f) => ({ question: f.q, answer: f.a }))
+          BMP_TO_PDF_FAQS.map((f) => ({ question: f.q, answer: f.a }))
         )}
       />
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-4xl mx-auto space-y-10">
         {/* Header */}
-        <div className="space-y-4">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
-            <Shield className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
-            100% Private Client-Side Browser Processing
+        <div className="text-center space-y-4">
+          <div className="flex justify-center mb-2">
+            <ProcessingModeTag mode="browser" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight">
-            JPG to PDF Converter — Convert Images & Photos to PDF Online Free
+          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl dark:text-white">
+            BMP to PDF — Convert BMP Images to PDF
           </h1>
-          <p className="text-base text-zinc-600 leading-relaxed">
-            Combine multiple JPG and JPEG pictures into a single, high-quality PDF document.
-            Adjust page orientation, margin spacing, and reorder images before converting directly on your device.
+          <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            Convert uncompressed BMP bitmap images and graphics into compact, universally compatible PDF documents in your browser.
           </p>
-        </div>
-
-        {/* Quick shortcut tags */}
-        <div className="flex flex-wrap gap-2 pt-1 pb-2">
-          {JPG_TO_PDF_POPULAR_SEARCHES.slice(0, 7).map((sc) => (
-            <Link
-              key={sc.label}
-              to={sc.to}
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-zinc-100 hover:bg-brand-50 hover:text-brand-700 text-zinc-600 text-xs font-medium transition-colors"
-            >
-              <span>{sc.label}</span>
-              <ArrowRight className="w-3 h-3 text-zinc-400" />
-            </Link>
-          ))}
         </div>
 
         {/* Action Area */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 md:p-8 space-y-6">
           <DropZone
             onFileSelect={handleFileSelect}
-            accept={{ 'image/jpeg': ['.jpg', '.jpeg'] }}
+            accept={{ 'image/bmp': ['.bmp'] }}
             multiple={true}
-            label="Drop your JPG images here"
-            sublabel="Select single or multiple JPG / JPEG files to combine into a PDF"
+            label="Drop your BMP bitmap images here"
+            sublabel="Lossless in-browser conversion — supports multiple BMP files"
           />
 
           {files.length > 0 && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-                  Selected Images ({files.length}) — Drag or use arrows to reorder
+                  Selected BMPs ({files.length})
                 </h3>
                 <button
                   onClick={() => setFiles([])}
@@ -191,7 +175,7 @@ export default function JpgToPdfPage() {
                       <span className="w-6 text-center text-xs font-semibold text-gray-400">
                         {idx + 1}
                       </span>
-                      <ImageIcon className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                      <ImageIcon className="w-5 h-5 text-amber-500 flex-shrink-0" />
                       <div className="truncate">
                         <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{f.name}</p>
                         <p className="text-xs text-gray-500">{(f.size / 1024).toFixed(1)} KB</p>
@@ -227,60 +211,13 @@ export default function JpgToPdfPage() {
                 ))}
               </div>
 
-              {/* Layout Options */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-gray-100 dark:border-gray-800">
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
-                    Page Size
-                  </label>
-                  <select
-                    value={pageSize}
-                    onChange={(e) => setPageSize(e.target.value as any)}
-                    className="w-full text-xs p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-                  >
-                    <option value="a4">A4 (Standard)</option>
-                    <option value="letter">US Letter</option>
-                    <option value="fit">Fit to Image Size</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
-                    Orientation
-                  </label>
-                  <select
-                    value={orientation}
-                    onChange={(e) => setOrientation(e.target.value as any)}
-                    className="w-full text-xs p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-                  >
-                    <option value="portrait">Portrait</option>
-                    <option value="landscape">Landscape</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
-                    Margin
-                  </label>
-                  <select
-                    value={margin}
-                    onChange={(e) => setMargin(e.target.value as any)}
-                    className="w-full text-xs p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-                  >
-                    <option value="none">No Margin (Full Bleed)</option>
-                    <option value="small">Small Margin (10mm)</option>
-                    <option value="large">Large Margin (25mm)</option>
-                  </select>
-                </div>
-              </div>
-
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <button
                   onClick={handleConvert}
                   disabled={isConverting}
-                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-sm transition disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm rounded-xl shadow-sm transition disabled:opacity-50 flex items-center justify-center gap-2"
                 >
-                  {isConverting ? 'Assembling PDF...' : `Convert ${files.length} Image${files.length > 1 ? 's' : ''} to PDF`}
+                  {isConverting ? 'Generating PDF...' : `Convert ${files.length} BMP${files.length > 1 ? 's' : ''} to PDF`}
                 </button>
 
                 {converted && (
@@ -307,24 +244,23 @@ export default function JpgToPdfPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-zinc-50 dark:bg-gray-800/60 rounded-2xl p-6 border border-zinc-200 dark:border-gray-700">
               <h3 className="text-base font-bold text-zinc-900 dark:text-white mb-3">
-                How to Convert JPG Images to PDF Online
+                How to Convert BMP Images to PDF Online
               </h3>
               <ol className="space-y-2.5 list-decimal list-inside text-zinc-600 dark:text-gray-300 text-sm">
-                <li>Select or drag and drop single or multiple JPG / JPEG pictures.</li>
-                <li>Reorder images and customize page size, orientation, and margins.</li>
-                <li>Click <strong>Convert Images to PDF</strong> to assemble the document locally.</li>
-                <li>Download your high-resolution, watermark-free PDF file instantly.</li>
+                <li>Select or drag and drop single or multiple BMP bitmap files.</li>
+                <li>Reorder your images into the preferred sequence.</li>
+                <li>Click <strong>Convert BMPs to PDF</strong> to assemble the document locally.</li>
+                <li>Download your high-resolution, watermark-free PDF instantly.</li>
               </ol>
             </div>
 
             <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-6">
               <h3 className="text-base font-bold text-emerald-900 dark:text-emerald-300 mb-2 flex items-center">
                 <Shield className="w-4 h-4 mr-2 text-emerald-700 dark:text-emerald-400" />
-                100% Private & In-Browser Secure
+                100% Client-Side In-Browser Security
               </h3>
               <p className="text-emerald-800 dark:text-emerald-300/90 text-sm leading-relaxed">
-                Images are converted directly on your device CPU using WebAssembly and client-side JavaScript.
-                Personal photos, identity scans, and sensitive documents are never uploaded to remote servers.
+                Your bitmap graphics are processed locally in your browser memory using HTML5 Canvas and WebAssembly. Your images are never transferred or stored on remote servers.
               </p>
             </div>
           </div>
@@ -332,10 +268,10 @@ export default function JpgToPdfPage() {
           {/* FAQ section */}
           <div>
             <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">
-              Frequently Asked Questions About JPG to PDF Conversion
+              Frequently Asked Questions About BMP to PDF Conversion
             </h3>
             <div className="space-y-4">
-              {JPG_TO_PDF_FAQS.map((faq, i) => (
+              {BMP_TO_PDF_FAQS.map((faq, i) => (
                 <div key={i} className="rounded-xl border border-zinc-200 dark:border-gray-800 p-4 bg-white dark:bg-gray-900">
                   <h4 className="font-semibold text-zinc-900 dark:text-white text-sm">{faq.q}</h4>
                   <p className="text-zinc-600 dark:text-gray-400 text-sm mt-1.5 leading-relaxed">{faq.a}</p>
@@ -350,10 +286,10 @@ export default function JpgToPdfPage() {
               Related Searches & Tools
             </h4>
             <p className="text-xs text-zinc-500 dark:text-gray-400 mb-4">
-              Explore quick access tools for JPG, PNG, and photo PDF conversions.
+              Explore quick access tools for BMP, GIF, PNG, JPG, and photo conversions.
             </p>
             <div className="flex flex-wrap gap-2">
-              {JPG_TO_PDF_POPULAR_SEARCHES.map((tag) => (
+              {BMP_TO_PDF_POPULAR_SEARCHES.map((tag) => (
                 <Link
                   key={tag.label}
                   to={tag.to}

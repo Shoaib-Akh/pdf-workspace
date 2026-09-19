@@ -4,6 +4,7 @@ import { APP_CONFIG } from '@/lib/config'
 interface MetaTagsProps {
   title: string
   description: string
+  keywords?: string | string[]
   canonical?: string
   noindex?: boolean
   ogImage?: string
@@ -15,6 +16,7 @@ interface MetaTagsProps {
 export function MetaTags({
   title,
   description,
+  keywords,
   canonical,
   noindex,
   ogImage = APP_CONFIG?.defaultOgImage,
@@ -24,11 +26,13 @@ export function MetaTags({
 }: MetaTagsProps) {
   const fullTitle = `${title} | ${APP_CONFIG?.siteName || 'PDF Workspace'}`
   const url = canonical || APP_CONFIG?.siteUrl
+  const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : keywords
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywordsString && <meta name="keywords" content={keywordsString} />}
       {canonical && <link rel="canonical" href={canonical} />}
       
       {noindex && <meta name="robots" content="noindex,nofollow" />}

@@ -22,12 +22,16 @@ const PdfToHtmlPage = lazy(() => import('@/pages/convert/PdfToHtmlPage'))
 const PdfToMarkdownPage = lazy(() => import('@/pages/convert/PdfToMarkdownPage'))
 const PdfToDataPage = lazy(() => import('@/pages/extract/PdfToDataPage'))
 const PdfToWordPage = lazy(() => import('@/pages/convert/PdfToWordPage'))
+const WordToPdfPage = lazy(() => import('@/pages/convert/WordToPdfPage'))
 const PdfToExcelPage = lazy(() => import('@/pages/convert/PdfToExcelPage'))
+const ExcelToPdfPage = lazy(() => import('@/pages/convert/ExcelToPdfPage'))
 const PdfToPowerPointPage = lazy(() => import('@/pages/convert/PdfToPowerPointPage'))
+const PowerPointToPdfPage = lazy(() => import('@/pages/convert/PowerPointToPdfPage'))
 
 const MergePdfPage = lazy(() => import('@/pages/organize/MergePdfPage'))
 const SplitPdfPage = lazy(() => import('@/pages/organize/SplitPdfPage'))
 const CompressPdfPage = lazy(() => import('@/pages/organize/CompressPdfPage'))
+const EditPdfPage = lazy(() => import('@/pages/organize/EditPdfPage'))
 const RotatePdfPage = lazy(() => import('@/pages/organize/RotatePdfPage'))
 const DeletePdfPagesPage = lazy(() => import('@/pages/organize/DeletePdfPagesPage'))
 const ExtractPdfPagesPage = lazy(() => import('@/pages/organize/ExtractPdfPagesPage'))
@@ -39,6 +43,8 @@ const UnlockPdfPage = lazy(() => import('@/pages/organize/UnlockPdfPage'))
 
 const JpgToPdfPage = lazy(() => import('@/pages/convert/JpgToPdfPage'))
 const PngToPdfPage = lazy(() => import('@/pages/convert/PngToPdfPage'))
+const GifToPdfPage = lazy(() => import('@/pages/convert/GifToPdfPage'))
+const BmpToPdfPage = lazy(() => import('@/pages/convert/BmpToPdfPage'))
 const ImagesToPdfPage = lazy(() => import('@/pages/convert/ImagesToPdfPage'))
 
 const OcrPdfPage = lazy(() => import('@/pages/ocr/OcrPdfPage'))
@@ -116,12 +122,25 @@ export default function App() {
         <Route path="/pdf-to-markdown" element={<PdfToMarkdownPage />} />
         <Route path="/pdf-to-data" element={<PdfToDataPage />} />
         <Route path="/pdf-to-word" element={<PdfToWordPage />} />
+        <Route path="/pdf-to-doc" element={<PdfToWordPage />} />
+        <Route path="/pdf-to-docx" element={<PdfToWordPage />} />
         <Route path="/pdf-to-excel" element={<PdfToExcelPage />} />
         <Route path="/pdf-to-powerpoint" element={<PdfToPowerPointPage />} />
 
         {/* Reverse convert */}
+        <Route path="/word-to-pdf" element={<WordToPdfPage />} />
+        <Route path="/doc-to-pdf" element={<WordToPdfPage />} />
+        <Route path="/docx-to-pdf" element={<WordToPdfPage />} />
+        <Route path="/excel-to-pdf" element={<ExcelToPdfPage />} />
+        <Route path="/xlsx-to-pdf" element={<ExcelToPdfPage />} />
+        <Route path="/xls-to-pdf" element={<ExcelToPdfPage />} />
+        <Route path="/powerpoint-to-pdf" element={<PowerPointToPdfPage />} />
+        <Route path="/ppt-to-pdf" element={<PowerPointToPdfPage />} />
+        <Route path="/pptx-to-pdf" element={<PowerPointToPdfPage />} />
         <Route path="/jpg-to-pdf" element={<JpgToPdfPage />} />
         <Route path="/png-to-pdf" element={<PngToPdfPage />} />
+        <Route path="/gif-to-pdf" element={<GifToPdfPage />} />
+        <Route path="/bmp-to-pdf" element={<BmpToPdfPage />} />
         <Route path="/webp-to-pdf" element={<JpgToPdfPage />} />
         <Route path="/images-to-pdf" element={<ImagesToPdfPage />} />
 
@@ -129,6 +148,8 @@ export default function App() {
         <Route path="/merge-pdf" element={<MergePdfPage />} />
         <Route path="/split-pdf" element={<SplitPdfPage />} />
         <Route path="/compress-pdf" element={<CompressPdfPage />} />
+        <Route path="/edit-pdf" element={<EditPdfPage />} />
+        <Route path="/pdf-editor" element={<EditPdfPage />} />
         <Route path="/rotate-pdf" element={<RotatePdfPage />} />
         <Route path="/delete-pdf-pages" element={<DeletePdfPagesPage />} />
         <Route path="/extract-pdf-pages" element={<ExtractPdfPagesPage />} />

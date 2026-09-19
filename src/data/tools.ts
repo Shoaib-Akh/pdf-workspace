@@ -13,9 +13,9 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { slug: 'pdf-to-data', name: 'Extract Data', description: 'Extract data from PDF.', category: 'extract', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['json', 'csv'], icon: 'database', featured: true },
 
   // Convert - Server
-  { slug: 'pdf-to-word', name: 'PDF to Word', description: 'Convert PDF to Word document.', category: 'convert', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['docx'], icon: 'file-word', featured: true },
-  { slug: 'pdf-to-excel', name: 'PDF to Excel', description: 'Convert PDF to Excel spreadsheet.', category: 'convert', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['xlsx'], icon: 'file-spreadsheet', featured: true },
-  { slug: 'pdf-to-powerpoint', name: 'PDF to PowerPoint', description: 'Convert PDF to PowerPoint presentation.', category: 'convert', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['pptx'], icon: 'presentation' },
+  { slug: 'pdf-to-word', name: 'PDF to Word', description: 'Convert PDF to Word document.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['docx'], icon: 'file-word', featured: true },
+  { slug: 'pdf-to-excel', name: 'PDF to Excel', description: 'Convert PDF to Excel spreadsheet.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx'], icon: 'file-spreadsheet', featured: true },
+  { slug: 'pdf-to-powerpoint', name: 'PDF to PowerPoint', description: 'Convert PDF to PowerPoint presentation.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pptx'], icon: 'presentation' },
   { slug: 'pdf-to-epub', name: 'PDF to EPUB', description: 'Convert PDF to EPUB ebook.', category: 'convert', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['epub'], icon: 'book' },
 
   // Organize
@@ -49,8 +49,8 @@ export const ALL_TOOLS: ToolDefinition[] = [
   // OCR
   { slug: 'ocr-pdf', name: 'OCR PDF', description: 'Make scanned PDF searchable.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['pdf'], icon: 'scan-text', featured: true },
   { slug: 'scanned-pdf-to-text', name: 'Scanned to Text', description: 'Extract text from scanned PDF.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['txt'], icon: 'file-text' },
-  { slug: 'scanned-pdf-to-word', name: 'Scanned to Word', description: 'Convert scanned PDF to Word.', category: 'ocr', processingMode: 'server', available: false, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['docx'], icon: 'file-word' },
-  { slug: 'scanned-pdf-to-excel', name: 'Scanned to Excel', description: 'Convert scanned PDF to Excel.', category: 'ocr', processingMode: 'server', available: false, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['xlsx'], icon: 'file-spreadsheet' },
+  { slug: 'scanned-pdf-to-word', name: 'Scanned to Word', description: 'Convert scanned PDF to Word.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['docx'], icon: 'file-word' },
+  { slug: 'scanned-pdf-to-excel', name: 'Scanned to Excel', description: 'Convert scanned PDF to Excel.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['xlsx'], icon: 'file-spreadsheet' },
 
   // Business
   { slug: 'invoice-to-excel', name: 'Invoice to Excel', description: 'Extract invoice data to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'receipt', featured: true },

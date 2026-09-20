@@ -13,10 +13,10 @@ export interface AppConfig {
   defaultOgImage: string
 }
 
-const url = import.meta.env.VITE_APP_URL || 'https://pdfworkspace.app'
-const name = import.meta.env.VITE_APP_NAME || 'PDF Workspace'
-const description = import.meta.env.VITE_APP_DESCRIPTION || 'Convert, extract, and transform PDF documents into usable data.'
-const tagline = import.meta.env.VITE_APP_TAGLINE || 'Turn PDFs into usable data.'
+const url = import.meta.env.VITE_APP_URL || 'https://pdfguru.site'
+const name = import.meta.env.VITE_APP_NAME || 'PDF Guru'
+const description = import.meta.env.VITE_APP_DESCRIPTION || 'Convert, extract, and transform PDF documents into usable data — your expert PDF toolkit.'
+const tagline = import.meta.env.VITE_APP_TAGLINE || 'Your Expert PDF Toolkit.'
 
 export const APP_CONFIG: AppConfig = {
   appName: name,

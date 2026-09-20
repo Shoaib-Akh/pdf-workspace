@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, ChevronDown, FileText } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/shared/Logo"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -25,14 +26,7 @@ export function Header() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-2" aria-label="PDF Workspace Home">
-              <div className="bg-red-600 text-white p-1.5 rounded text-xs font-bold flex items-center justify-center">
-                <FileText size={16} className="mr-1" /> PDF
-              </div>
-              <span className="font-semibold text-xl tracking-tight text-zinc-900">
-                PDF Workspace
-              </span>
-            </Link>
+            <Logo size="md" />
           </div>
 
           {/* Desktop Nav */}

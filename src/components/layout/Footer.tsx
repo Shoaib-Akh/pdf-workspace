@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { FileText, ShieldCheck, Cpu, Zap, ArrowRight, Lock } from "lucide-react"
+import { ShieldCheck, Cpu, ArrowRight, Lock } from "lucide-react"
+import { Logo } from "@/components/shared/Logo"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,14 +12,7 @@ export function Footer() {
         {/* Top Branding & Architecture Highlights */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-zinc-800/80 items-start">
           <div className="lg:col-span-4 space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2.5" aria-label="PDF Workspace Home">
-              <div className="bg-red-600 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center shadow-sm shadow-red-500/20">
-                <FileText size={18} className="mr-1" /> PDF
-              </div>
-              <span className="font-extrabold text-2xl tracking-tight text-white">
-                PDF Workspace
-              </span>
-            </Link>
+            <Logo size="lg" className="[&_span]:text-white [&_.text-zinc-900]:text-white [&_.text-indigo-600]:text-indigo-400" />
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm">
               The high-performance, privacy-first PDF intelligence platform. Convert, organize, and extract structured data from PDF documents directly in your browser.
             </p>
@@ -230,7 +224,7 @@ export function Footer() {
 
         {/* Bottom Copyright & Status */}
         <div className="mt-8 pt-6 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center text-xs text-zinc-500 gap-4">
-          <p>&copy; {currentYear} PDF Workspace. All rights reserved.</p>
+          <p>&copy; {currentYear} PDF Guru. All rights reserved.</p>
           <div className="flex items-center space-x-6">
             <Link to="/privacy" className="hover:text-zinc-300 transition-colors">Privacy</Link>
             <Link to="/terms" className="hover:text-zinc-300 transition-colors">Terms</Link>

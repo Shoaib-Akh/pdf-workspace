@@ -40,6 +40,7 @@ export default function PdfToWordPage() {
   const [progress, setProgress] = useState<PdfToDocxProgress | null>(null)
   const [resultBlob, setResultBlob] = useState<Blob | null>(null)
   const [paragraphCount, setParagraphCount] = useState(0)
+  const [tableCount, setTableCount] = useState(0)
   const [isScanned, setIsScanned] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -61,11 +62,12 @@ export default function PdfToWordPage() {
 
     try {
       const result = await convertPdfToDocx(file, (p) => setProgress(p))
-      if (result.paragraphCount === 0) {
+      if (result.paragraphCount === 0 && result.tableCount === 0) {
         setIsScanned(true)
       } else {
         setResultBlob(result.blob)
         setParagraphCount(result.paragraphCount)
+        setTableCount(result.tableCount)
       }
     } catch (err: any) {
       setError(err.message || 'Failed to convert PDF to Word document.')
@@ -91,6 +93,7 @@ export default function PdfToWordPage() {
     setFile(null)
     setResultBlob(null)
     setParagraphCount(0)
+    setTableCount(0)
     setIsScanned(false)
     setError(null)
   }
@@ -231,7 +234,11 @@ export default function PdfToWordPage() {
               <div className="p-3 bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-900 rounded-lg flex items-center justify-center gap-2 text-sm text-green-800 dark:text-green-300">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <span className="font-semibold">Word document ready!</span>
-                <span className="text-xs text-green-600">({paragraphCount} paragraphs extracted)</span>
+                <span className="text-xs text-green-600">
+                  {tableCount > 0
+                    ? `(${tableCount} table${tableCount > 1 ? 's' : ''} + ${paragraphCount - tableCount} paragraphs extracted)`
+                    : `(${paragraphCount} paragraphs extracted)`}
+                </span>
               </div>
               <div className="flex flex-wrap justify-center gap-3">
                 <button

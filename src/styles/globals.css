@@ -5,47 +5,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222 47% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222 47% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 243 75% 59%; /* Indigo 600 #4f46e5 */
+    --popover-foreground: 222 47% 8%;
+    --primary: 263 87% 65%;        /* Violet AI #8b5cf6 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 222 47% 15%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 263 70% 96%;         /* Soft violet tint */
+    --accent-foreground: 263 87% 40%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 243 75% 59%;
-    --radius: 0.5rem;
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 263 87% 65%;
+    --radius: 0.625rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 243 75% 59%;
+    --background: 222 47% 4%;      /* Deep Space Navy #060914 */
+    --foreground: 213 31% 95%;
+    --card: 222 47% 7%;            /* Dark card #0d1424 */
+    --card-foreground: 213 31% 95%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 213 31% 95%;
+    --primary: 263 87% 70%;        /* Bright Violet AI for dark mode */
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --secondary: 263 35% 12%;
+    --secondary-foreground: 213 31% 90%;
+    --muted: 263 35% 12%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 263 60% 14%;         /* Deep violet tint */
+    --accent-foreground: 263 87% 75%;
+    --destructive: 0 62.8% 42%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 243 75% 59%;
+    --border: 263 30% 14%;
+    --input: 263 30% 14%;
+    --ring: 263 87% 70%;
   }
 
   body {

@@ -199,10 +199,10 @@ function HeroDropZone() {
       {...getRootProps()}
       className={`
         group relative mt-8 cursor-pointer rounded-2xl border-2 border-dashed p-8 text-center
-        transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+        transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
         ${isDragActive
-          ? 'border-brand-500 bg-brand-50 scale-[1.01]'
-          : 'border-zinc-300 bg-zinc-50 hover:border-brand-400 hover:bg-brand-50/50'
+          ? 'border-violet-400 bg-violet-950/60 scale-[1.01] shadow-glow'
+          : 'border-slate-600 bg-slate-900/50 hover:border-violet-500 hover:bg-violet-950/40 hover:shadow-glow'
         }
       `}
       role="button"
@@ -214,19 +214,19 @@ function HeroDropZone() {
         <div
           className={`
             flex h-14 w-14 items-center justify-center rounded-xl transition-colors
-            ${isDragActive ? 'bg-brand-100 text-brand-600' : 'bg-zinc-200 text-zinc-500 group-hover:bg-brand-100 group-hover:text-brand-600'}
+            ${isDragActive ? 'bg-violet-700/60 text-violet-300' : 'bg-slate-800 text-slate-400 group-hover:bg-violet-900/70 group-hover:text-violet-400'}
           `}
         >
           <Upload className="h-7 w-7" />
         </div>
         <div>
-          <p className={`text-base font-semibold ${isDragActive ? 'text-brand-700' : 'text-zinc-700'}`}>
+          <p className={`text-base font-semibold ${isDragActive ? 'text-violet-300' : 'text-slate-200'}`}>
             {isDragActive ? 'Drop your PDF here' : 'Drop your PDF here — or click to browse'}
           </p>
-          <p className="mt-1 text-sm text-zinc-500">Supports PDF files up to 500MB</p>
+          <p className="mt-1 text-sm text-slate-500">Supports PDF files up to 500MB</p>
         </div>
         <Button
-          className="mt-2 bg-brand-600 text-white hover:bg-brand-700"
+          className="mt-2 bg-violet-600 text-white hover:bg-violet-500 shadow-glow"
           size="lg"
           onClick={(e) => e.stopPropagation()}
           onClickCapture={() => {
@@ -285,19 +285,23 @@ export default function HomePage() {
 
       <main>
         {/* ─── HERO ─────────────────────────────────────────────── */}
-        <section className="bg-white px-4 pb-16 pt-14 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm text-brand-700">
+        <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-violet-950 to-slate-900 px-4 pb-16 pt-14 sm:px-6 lg:px-8">
+          {/* subtle violet glow overlay */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.18),transparent_60%)]" />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-violet-700/60 bg-violet-900/40 px-3 py-1 text-sm text-violet-300 backdrop-blur-sm">
               <Star className="h-3.5 w-3.5 fill-brand-500 text-brand-500" />
               PDF → usable data
             </div>
 
-            <h1 className="mt-5 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Turn PDFs into{' '}
-              <span className="text-brand-600">usable data.</span>
+              <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                usable data.
+              </span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-zinc-600">
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">
               Stop copying and pasting from PDFs. Upload your document and convert it to
               Word, Excel, CSV, or extract structured tables, invoice data, BOQ rows, and
               more — all in your browser, no account required.
@@ -306,17 +310,17 @@ export default function HomePage() {
             <HeroDropZone />
 
             {/* Trust signals */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400">
               <span className="flex items-center gap-1.5">
-                <Shield className="h-3.5 w-3.5 text-emerald-500" />
+                <Shield className="h-3.5 w-3.5 text-emerald-400" />
                 100% browser processing for supported tools
               </span>
               <span className="flex items-center gap-1.5">
-                <Zap className="h-3.5 w-3.5 text-amber-500" />
+                <Zap className="h-3.5 w-3.5 text-amber-400" />
                 No unnecessary uploads
               </span>
               <span className="flex items-center gap-1.5">
-                <FileText className="h-3.5 w-3.5 text-brand-500" />
+                <FileText className="h-3.5 w-3.5 text-indigo-400" />
                 No account required
               </span>
             </div>
@@ -464,8 +468,9 @@ export default function HomePage() {
         </section>
 
         {/* ─── BUSINESS TOOLS SPOTLIGHT ─────────────────────────── */}
-        <section className="border-t border-zinc-100 bg-brand-600 px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl text-center">
+        <section className="relative overflow-hidden border-t border-indigo-800/30 bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 px-4 py-16 sm:px-6 lg:px-8">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(168,85,247,0.3),transparent_60%)]" />
+          <div className="relative mx-auto max-w-5xl text-center">
             <h2 className="text-2xl font-bold text-white">
               The strongest PDF → data tools for business documents
             </h2>

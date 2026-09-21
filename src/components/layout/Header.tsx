@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, Sun, Moon, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/shared/Logo"
+import { useTheme } from "@/providers/ThemeProvider"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  // Cycle: light → dark → system → light
+  const cycleTheme = () => {
+    if (theme === 'light') setTheme('dark')
+    else if (theme === 'dark') setTheme('system')
+    else setTheme('light')
+  }
+
+  const ThemeIcon = theme === 'dark' ? Moon : theme === 'light' ? Sun : Monitor
+  const themeLabel = theme === 'dark' ? 'Dark mode' : theme === 'light' ? 'Light mode' : 'System mode'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +68,16 @@ export function Header() {
           </nav>
 
           {/* Desktop Auth */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={cycleTheme}
+              title={themeLabel}
+              aria-label={themeLabel}
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus-visible-ring"
+            >
+              <ThemeIcon size={18} />
+            </button>
             <Link to="/signin" className="text-slate-300 hover:text-white font-medium focus-visible-ring rounded-lg px-3 py-1.5 transition-colors">Sign in</Link>
             <Button asChild className="bg-violet-600 hover:bg-violet-500 text-white shadow-glow focus-visible-ring">
               <Link to="/signup">Get started</Link>

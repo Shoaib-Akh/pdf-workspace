@@ -328,16 +328,16 @@ export default function HomePage() {
         </section>
 
         {/* ─── POPULAR TOOLS ────────────────────────────────────── */}
-        <section className="border-t border-zinc-100 bg-zinc-50 px-4 py-16 sm:px-6 lg:px-8">
+        <section className="border-t border-zinc-100 dark:border-slate-800 bg-zinc-50 dark:bg-slate-900 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 flex items-end justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-zinc-900">Popular tools</h2>
-                <p className="mt-1 text-zinc-500">The most-used PDF tools in one place</p>
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Popular tools</h2>
+                <p className="mt-1 text-zinc-500 dark:text-slate-400">The most-used PDF tools in one place</p>
               </div>
               <Link
                 to="/tools"
-                className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700"
+                className="flex items-center gap-1 text-sm font-medium text-brand-500 hover:text-brand-400"
               >
                 Browse all tools <ArrowRight className="h-4 w-4" />
               </Link>
@@ -348,7 +348,7 @@ export default function HomePage() {
                 <Link
                   key={tool.href}
                   to={tool.href}
-                  className="group flex flex-col gap-3 rounded-xl border border-zinc-200 bg-white p-5 shadow-card transition-all hover:border-brand-200 hover:shadow-hover"
+                  className="group flex flex-col gap-3 rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-card transition-all hover:border-brand-400 dark:hover:border-violet-500 hover:shadow-hover dark:hover:shadow-glow"
                 >
                   <div className="flex items-start justify-between">
                     <span className="text-2xl" role="img" aria-hidden>
@@ -357,12 +357,12 @@ export default function HomePage() {
                     {tool.badge && <BadgePill text={tool.badge} />}
                   </div>
                   <div>
-                    <p className="font-semibold text-zinc-900 group-hover:text-brand-700">
+                    <p className="font-semibold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-violet-400">
                       {tool.name}
                     </p>
-                    <p className="mt-1 text-sm leading-relaxed text-zinc-500">{tool.description}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-zinc-500 dark:text-slate-400">{tool.description}</p>
                   </div>
-                  <span className="mt-auto flex items-center gap-1 text-sm font-medium text-brand-600">
+                  <span className="mt-auto flex items-center gap-1 text-sm font-medium text-brand-500 dark:text-violet-400">
                     Open tool <ChevronRight className="h-4 w-4" />
                   </span>
                 </Link>
@@ -375,10 +375,10 @@ export default function HomePage() {
         <MergePdfSeoSection />
 
         {/* ─── HOW IT WORKS ─────────────────────────────────────── */}
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <section className="bg-white dark:bg-slate-950 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-2xl font-bold text-zinc-900">How it works</h2>
-            <p className="mt-2 text-zinc-500">Three steps from PDF to usable data</p>
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">How it works</h2>
+            <p className="mt-2 text-zinc-500 dark:text-slate-400">Three steps from PDF to usable data</p>
 
             <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
               {[
@@ -399,11 +399,11 @@ export default function HomePage() {
                 },
               ].map((item) => (
                 <div key={item.step} className="flex flex-col items-center text-center">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white shadow-glow">
                     {item.step}
                   </div>
-                  <h3 className="mt-4 font-semibold text-zinc-900">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-500">{item.body}</p>
+                  <h3 className="mt-4 font-semibold text-zinc-900 dark:text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-slate-400">{item.body}</p>
                 </div>
               ))}
             </div>
@@ -411,13 +411,13 @@ export default function HomePage() {
         </section>
 
         {/* ─── FEATURES ─────────────────────────────────────────── */}
-        <section className="border-t border-zinc-100 bg-zinc-50 px-4 py-16 sm:px-6 lg:px-8">
+        <section className="border-t border-zinc-100 dark:border-slate-800 bg-zinc-50 dark:bg-slate-900 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
                 Why use this platform?
               </h2>
-              <p className="mt-2 text-zinc-500">
+              <p className="mt-2 text-zinc-500 dark:text-slate-400">
                 Built around one goal: turning difficult PDFs into usable information.
               </p>
             </div>
@@ -426,14 +426,14 @@ export default function HomePage() {
               {FEATURES.map((f) => (
                 <div
                   key={f.title}
-                  className="flex gap-4 rounded-xl border border-zinc-200 bg-white p-5 shadow-card"
+                  className="flex gap-4 rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-card"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-900/40 text-violet-600 dark:text-violet-400">
                     <f.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-zinc-900">{f.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-zinc-500">{f.description}</p>
+                    <h3 className="font-semibold text-zinc-900 dark:text-white">{f.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-zinc-500 dark:text-slate-400">{f.description}</p>
                   </div>
                 </div>
               ))}
@@ -442,21 +442,21 @@ export default function HomePage() {
         </section>
 
         {/* ─── USE CASES ────────────────────────────────────────── */}
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <section className="bg-white dark:bg-slate-950 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900">Who uses PDF Workspace?</h2>
-              <p className="mt-2 text-zinc-500">Real use cases across industries and roles</p>
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Who uses PDF Workspace?</h2>
+              <p className="mt-2 text-zinc-500 dark:text-slate-400">Real use cases across industries and roles</p>
             </div>
 
             <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {USE_CASES.map((uc) => (
-                <div key={uc.audience} className="rounded-xl border border-zinc-200 bg-zinc-50 p-5">
-                  <h3 className="font-semibold text-zinc-900">{uc.audience}</h3>
+                <div key={uc.audience} className="rounded-xl border border-zinc-200 dark:border-slate-700 bg-zinc-50 dark:bg-slate-800 p-5">
+                  <h3 className="font-semibold text-zinc-900 dark:text-white">{uc.audience}</h3>
                   <ul className="mt-3 space-y-2">
                     {uc.cases.map((c) => (
-                      <li key={c} className="flex items-start gap-2 text-sm text-zinc-600">
-                        <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" />
+                      <li key={c} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-slate-400">
+                        <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-500 dark:text-violet-400" />
                         {c}
                       </li>
                     ))}
@@ -513,17 +513,17 @@ export default function HomePage() {
         </section>
 
         {/* ─── FAQ ──────────────────────────────────────────────── */}
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <section className="bg-white dark:bg-slate-950 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-center text-2xl font-bold text-zinc-900">
+            <h2 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">
               Frequently asked questions
             </h2>
 
-            <dl className="mt-10 space-y-6 divide-y divide-zinc-200">
+            <dl className="mt-10 space-y-6 divide-y divide-zinc-200 dark:divide-slate-800">
               {FAQS.map((faq) => (
                 <div key={faq.q} className="pt-6">
-                  <dt className="font-semibold text-zinc-900">{faq.q}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-zinc-600">{faq.a}</dd>
+                  <dt className="font-semibold text-zinc-900 dark:text-white">{faq.q}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-slate-400">{faq.a}</dd>
                 </div>
               ))}
             </dl>
@@ -531,22 +531,22 @@ export default function HomePage() {
         </section>
 
         {/* ─── CTA BANNER ───────────────────────────────────────── */}
-        <section className="border-t border-zinc-100 bg-zinc-50 px-4 py-14 sm:px-6 lg:px-8">
+        <section className="border-t border-zinc-100 dark:border-slate-800 bg-zinc-50 dark:bg-slate-900 px-4 py-14 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-zinc-900">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
               Ready to get started?
             </h2>
-            <p className="mt-2 text-zinc-500">
+            <p className="mt-2 text-zinc-500 dark:text-slate-400">
               No account required. Drop a PDF and start working immediately.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link to="/tools">
-                <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white">
+                <Button size="lg" className="bg-violet-600 hover:bg-violet-500 text-white shadow-glow">
                   Browse all tools
                 </Button>
               </Link>
               <Link to="/learn">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800">
                   Read PDF guides
                 </Button>
               </Link>

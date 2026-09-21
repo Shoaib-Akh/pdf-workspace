@@ -46,21 +46,21 @@ export const MERGE_PDF_FAQS = [
 
 export default function MergePdfSeoSection() {
   return (
-    <section className="border-t border-zinc-200/80 bg-gradient-to-b from-white via-zinc-50/50 to-white py-20 px-4 sm:px-6 lg:px-8">
+    <section className="border-t border-zinc-200/80 dark:border-slate-800 bg-gradient-to-b from-white via-zinc-50/50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Top Header Badge & Intro */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-700 shadow-sm">
-            <Layers className="h-3.5 w-3.5 text-brand-600" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 dark:border-violet-800/50 bg-brand-50 dark:bg-violet-900/30 px-3.5 py-1 text-xs font-semibold text-brand-700 dark:text-violet-300 shadow-sm">
+            <Layers className="h-3.5 w-3.5 text-brand-600 dark:text-violet-400" />
             <span>Fast In-Browser PDF Merger & Combiner</span>
           </div>
 
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
             Merge PDF Online Free —{' '}
-            <span className="text-brand-600">Combine Multiple PDFs into One</span>
+            <span className="text-brand-600 dark:text-violet-400">Combine Multiple PDFs into One</span>
           </h2>
 
-          <p className="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-slate-400 sm:text-lg">
             Got multiple PDF documents that belong together? Combine PDF files, merge two or
             more documents, or bind photos and PNG images into a single organized PDF.
             Zero file uploads, no software installation, and completely free.
@@ -69,7 +69,7 @@ export default function MergePdfSeoSection() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/merge-pdf"
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 transition-all hover:shadow-md"
+              className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 transition-all hover:shadow-md"
             >
               <Layers className="h-4 w-4" />
               Open PDF Merger Tool
@@ -77,7 +77,7 @@ export default function MergePdfSeoSection() {
             </Link>
             <Link
               to="/images-to-pdf"
-              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-5 py-3 text-sm font-medium text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-slate-300 hover:border-zinc-400 dark:hover:border-slate-500 hover:bg-zinc-50 dark:hover:bg-slate-700 transition-colors"
             >
               <Images className="h-4 w-4 text-zinc-500" />
               Merge Images to PDF
@@ -86,17 +86,17 @@ export default function MergePdfSeoSection() {
         </div>
 
         {/* Quick Search Intent Tags (SERP Keywords) */}
-        <div className="mt-12 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 pb-4">
+        <div className="mt-12 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-slate-700 pb-4">
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-800">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-800 dark:text-slate-200">
                 Popular PDF Merge & Combine Searches
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-500 dark:text-slate-400 mt-0.5">
                 Instant access to free PDF merging, file combining, and photo-to-PDF tools
               </p>
             </div>
-            <span className="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md self-start sm:self-auto">
+            <span className="text-xs font-medium text-brand-600 dark:text-violet-400 bg-brand-50 dark:bg-violet-900/30 px-2.5 py-1 rounded-md self-start sm:self-auto">
               100% Free • No Signup
             </span>
           </div>
@@ -106,11 +106,11 @@ export default function MergePdfSeoSection() {
               <Link
                 key={tag.label}
                 to={tag.to}
-                className="group inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 transition-all"
+                className="group inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-slate-600 bg-zinc-50 dark:bg-slate-700/50 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-slate-300 hover:border-brand-300 dark:hover:border-violet-500 hover:bg-brand-50 dark:hover:bg-violet-900/30 hover:text-brand-700 dark:hover:text-violet-300 transition-all"
                 title={`Use ${tag.label}`}
               >
                 <span>{tag.label}</span>
-                <ArrowRight className="h-3 w-3 text-zinc-400 group-hover:text-brand-600 group-hover:translate-x-0.5 transition-all" />
+                <ArrowRight className="h-3 w-3 text-zinc-400 dark:text-slate-500 group-hover:text-brand-600 dark:group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all" />
               </Link>
             ))}
           </div>
@@ -119,100 +119,100 @@ export default function MergePdfSeoSection() {
         {/* 3 Steps: How to Merge Multiple PDF Files */}
         <div className="mt-16">
           <div className="text-center max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-zinc-900">
+            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
               How to Combine Multiple PDF Files in 3 Easy Steps
             </h3>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-sm text-zinc-500 dark:text-slate-400">
               Simple, reliable document combining directly on your computer or mobile device
             </p>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="relative rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 font-bold text-brand-700 text-base">
+            <div className="relative rounded-2xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-900/40 font-bold text-violet-700 dark:text-violet-300 text-base">
                 1
               </div>
-              <h4 className="mt-4 font-semibold text-zinc-900 flex items-center gap-2">
-                <FileText className="h-4 w-4 text-brand-600" />
+              <h4 className="mt-4 font-semibold text-zinc-900 dark:text-white flex items-center gap-2">
+                <FileText className="h-4 w-4 text-violet-600 dark:text-violet-400" />
                 Select PDF Documents
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-slate-400">
                 Click upload or drag and drop two or more PDF files. You can combine multiple
                 invoices, reports, bank statements, or contracts into one unified document.
               </p>
             </div>
 
-            <div className="relative rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 font-bold text-brand-700 text-base">
+            <div className="relative rounded-2xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-900/40 font-bold text-violet-700 dark:text-violet-300 text-base">
                 2
               </div>
-              <h4 className="mt-4 font-semibold text-zinc-900 flex items-center gap-2">
-                <ArrowUpDown className="h-4 w-4 text-brand-600" />
+              <h4 className="mt-4 font-semibold text-zinc-900 dark:text-white flex items-center gap-2">
+                <ArrowUpDown className="h-4 w-4 text-violet-600 dark:text-violet-400" />
                 Arrange Document Order
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-slate-400">
                 Easily move files up or down in the list to match your exact reading order. Remove
                 unwanted pages or files before merging with a single click.
               </p>
             </div>
 
-            <div className="relative rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 font-bold text-brand-700 text-base">
+            <div className="relative rounded-2xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-900/40 font-bold text-violet-700 dark:text-violet-300 text-base">
                 3
               </div>
-              <h4 className="mt-4 font-semibold text-zinc-900 flex items-center gap-2">
-                <Download className="h-4 w-4 text-brand-600" />
+              <h4 className="mt-4 font-semibold text-zinc-900 dark:text-white flex items-center gap-2">
+                <Download className="h-4 w-4 text-violet-600 dark:text-violet-400" />
                 Combine & Download
               </h4>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-                Click <strong>Merge PDFs</strong>. The client-side engine stitches all pages
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-slate-400">
+                Click <strong className="text-zinc-800 dark:text-slate-200">Merge PDFs</strong>. The client-side engine stitches all pages
                 together in seconds. Download your clean, unwatermarked PDF immediately.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Feature Comparison / Highlights (Authentic, Practical Content) */}
+        {/* Feature Comparison / Highlights */}
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
+          <div className="rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <h4 className="mt-3 font-semibold text-zinc-900 text-sm">100% Client-Side Privacy</h4>
-            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
+            <h4 className="mt-3 font-semibold text-zinc-900 dark:text-white text-sm">100% Client-Side Privacy</h4>
+            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500 dark:text-slate-400">
               No server uploads. Your PDF files never leave your device memory, keeping confidential
               financial, legal, and personal documents secure.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 text-amber-600">
+          <div className="rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400">
               <Zap className="h-5 w-5" />
             </div>
-            <h4 className="mt-3 font-semibold text-zinc-900 text-sm">Instant Local Merging</h4>
-            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
+            <h4 className="mt-3 font-semibold text-zinc-900 dark:text-white text-sm">Instant Local Merging</h4>
+            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500 dark:text-slate-400">
               No upload wait times or server rendering queues. Merging happens directly on your CPU
               using WebAssembly for high-speed page assembly.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+          <div className="rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
               <Images className="h-5 w-5" />
             </div>
-            <h4 className="mt-3 font-semibold text-zinc-900 text-sm">Merge Photos & PNG Files</h4>
-            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
+            <h4 className="mt-3 font-semibold text-zinc-900 dark:text-white text-sm">Merge Photos & PNG Files</h4>
+            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500 dark:text-slate-400">
               Easily convert and stitch PNG, JPG, and mobile photos into a single PDF alongside your
               existing documents and scans.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50 text-rose-600">
+          <div className="rounded-xl border border-zinc-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
               <CheckCircle2 className="h-5 w-5" />
             </div>
-            <h4 className="mt-3 font-semibold text-zinc-900 text-sm">No Watermarks or Subscriptions</h4>
-            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
+            <h4 className="mt-3 font-semibold text-zinc-900 dark:text-white text-sm">No Watermarks or Subscriptions</h4>
+            <p className="mt-1.5 text-xs leading-relaxed text-zinc-500 dark:text-slate-400">
               Unlike trial software and freeware with hidden limits, our tools are 100% free with no
               watermarks, account requirements, or daily quotas.
             </p>
@@ -220,43 +220,43 @@ export default function MergePdfSeoSection() {
         </div>
 
         {/* Merge PDF SERP FAQ Block */}
-        <div className="mt-16 rounded-2xl border border-zinc-200 bg-zinc-50/70 p-6 sm:p-8">
+        <div className="mt-16 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-50/70 dark:bg-slate-800/60 p-6 sm:p-8">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-2 mb-2">
-              <HelpCircle className="h-5 w-5 text-brand-600" />
-              <h3 className="text-xl font-bold text-zinc-900">
+              <HelpCircle className="h-5 w-5 text-violet-600 dark:text-violet-400" />
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
                 PDF Merge & Combiner — Frequently Asked Questions
               </h3>
             </div>
-            <p className="text-sm text-zinc-500 mb-8">
+            <p className="text-sm text-zinc-500 dark:text-slate-400 mb-8">
               Everything you need to know about combining and merging PDF files online.
             </p>
 
-            <div className="space-y-6 divide-y divide-zinc-200/80">
+            <div className="space-y-6 divide-y divide-zinc-200/80 dark:divide-slate-700">
               {MERGE_PDF_FAQS.map((faq, idx) => (
                 <div key={idx} className={idx === 0 ? '' : 'pt-6'}>
-                  <h4 className="text-sm font-semibold text-zinc-900 flex items-start gap-2">
-                    <span className="text-brand-600 font-bold shrink-0">Q:</span>
+                  <h4 className="text-sm font-semibold text-zinc-900 dark:text-white flex items-start gap-2">
+                    <span className="text-violet-600 dark:text-violet-400 font-bold shrink-0">Q:</span>
                     {faq.q}
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-600 pl-5">{faq.a}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-slate-400 pl-5">{faq.a}</p>
                 </div>
               ))}
             </div>
 
             {/* Direct Tool CTA */}
-            <div className="mt-8 pt-6 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold text-zinc-900 text-sm">
+                <p className="font-semibold text-zinc-900 dark:text-white text-sm">
                   Ready to combine your PDF documents?
                 </p>
-                <p className="text-xs text-zinc-500 mt-0.5">
+                <p className="text-xs text-zinc-500 dark:text-slate-400 mt-0.5">
                   Start merging now — fast, free, and private.
                 </p>
               </div>
               <Link
                 to="/merge-pdf"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-xs font-semibold text-white shadow hover:bg-brand-700 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-violet-600 px-5 py-2.5 text-xs font-semibold text-white shadow hover:bg-violet-500 transition-colors"
               >
                 Merge PDFs Now
                 <ArrowRight className="h-3.5 w-3.5" />

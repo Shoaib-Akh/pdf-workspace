@@ -59,6 +59,128 @@
   }
 }
 
+/* ─── GLOBAL DARK MODE OVERRIDES ───────────────────────────────────────────
+   Fixes ALL components across the entire app without touching every file.
+   These rules kick in whenever .dark is on <html>.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* Smooth transition when switching themes */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Base body */
+.dark body {
+  background-color: #070b14;
+  color: #e2e8f0;
+}
+
+/* ── Backgrounds ── */
+.dark .bg-white           { background-color: #0d1424 !important; }
+.dark .bg-zinc-50         { background-color: #0a0f1e !important; }
+.dark .bg-zinc-100        { background-color: #111827 !important; }
+.dark .bg-zinc-200        { background-color: #1e293b !important; }
+.dark .bg-gray-50         { background-color: #0a0f1e !important; }
+.dark .bg-gray-100        { background-color: #111827 !important; }
+.dark .bg-gray-200        { background-color: #1e293b !important; }
+.dark .bg-slate-50        { background-color: #0a0f1e !important; }
+
+/* Gradients that use white */
+.dark .from-white         { --tw-gradient-from: #0d1424 !important; }
+.dark .via-zinc-50\/50    { --tw-gradient-via: rgba(10,15,30,0.5) !important; }
+.dark .to-white           { --tw-gradient-to: #0d1424 !important; }
+.dark .bg-gradient-to-b.from-white { background: linear-gradient(to bottom, #0d1424, #0a0f1e, #0d1424) !important; }
+
+/* ── Text Colors ── */
+.dark .text-zinc-900      { color: #f1f5f9 !important; }
+.dark .text-zinc-800      { color: #e2e8f0 !important; }
+.dark .text-zinc-700      { color: #cbd5e1 !important; }
+.dark .text-zinc-600      { color: #94a3b8 !important; }
+.dark .text-zinc-500      { color: #64748b !important; }
+.dark .text-zinc-400      { color: #94a3b8 !important; }
+.dark .text-gray-900      { color: #f1f5f9 !important; }
+.dark .text-gray-800      { color: #e2e8f0 !important; }
+.dark .text-gray-700      { color: #cbd5e1 !important; }
+.dark .text-gray-600      { color: #94a3b8 !important; }
+.dark .text-gray-500      { color: #64748b !important; }
+
+/* ── Borders ── */
+.dark .border-zinc-100    { border-color: #1e293b !important; }
+.dark .border-zinc-200    { border-color: #1e293b !important; }
+.dark .border-zinc-300    { border-color: #334155 !important; }
+.dark .border-gray-200    { border-color: #1e293b !important; }
+.dark .border-gray-300    { border-color: #334155 !important; }
+
+/* Divide lines */
+.dark .divide-zinc-200 > * + * { border-color: #1e293b !important; }
+.dark .divide-gray-200 > * + * { border-color: #1e293b !important; }
+
+/* ── Cards & Panels ── */
+.dark .shadow-card        { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+.dark .shadow-hover       { box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important; }
+
+/* ── Inputs & Forms ── */
+.dark input:not([type="range"]),
+.dark textarea,
+.dark select {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f1f5f9 !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* ── Buttons (outline variant) ── */
+.dark .border-zinc-300.bg-white {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+  color: #e2e8f0 !important;
+}
+
+/* ── Badges & Pills ── */
+.dark .bg-amber-100       { background-color: rgba(120,60,0,0.4) !important; }
+.dark .bg-emerald-100     { background-color: rgba(0,80,50,0.4) !important; }
+.dark .bg-brand-100       { background-color: rgba(91,33,182,0.3) !important; }
+.dark .text-amber-700     { color: #fcd34d !important; }
+.dark .text-emerald-700   { color: #34d399 !important; }
+.dark .text-brand-700     { color: #a78bfa !important; }
+
+/* ── SEO/Keyword tag pills ── */
+.dark .border-zinc-200.bg-white,
+.dark .hover\:bg-zinc-50:hover {
+  background-color: #1a2236 !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+/* ── Prose / article content ── */
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4           { color: #f1f5f9 !important; }
+.dark .prose p,
+.dark .prose li           { color: #94a3b8 !important; }
+.dark .prose strong       { color: #e2e8f0 !important; }
+.dark .prose a            { color: #a78bfa !important; }
+.dark .prose blockquote   { border-color: #334155 !important; color: #94a3b8 !important; }
+.dark .prose code         { background-color: #1e293b !important; color: #e2e8f0 !important; }
+.dark .prose hr           { border-color: #1e293b !important; }
+
+/* ── Table styles ── */
+.dark table               { color: #e2e8f0; }
+.dark thead               { background-color: #1e293b !important; }
+.dark th                  { color: #cbd5e1 !important; border-color: #334155 !important; }
+.dark td                  { color: #94a3b8 !important; border-color: #1e293b !important; }
+.dark tr:nth-child(even)  { background-color: #0d1424 !important; }
+.dark tr:hover            { background-color: #1a2236 !important; }
+
+/* ── Scrollbar ── */
+.dark ::-webkit-scrollbar              { background: #0d1424; }
+.dark ::-webkit-scrollbar-thumb        { background: #334155; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb:hover  { background: #475569; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

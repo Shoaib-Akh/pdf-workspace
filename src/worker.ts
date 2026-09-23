@@ -96,11 +96,19 @@ export default {
     }
 
     // Static Assets & SPA Routing
-    const response = await env.ASSETS.fetch(request);
-    if (response.status === 404) {
-      url.pathname = '/index.html';
-      return env.ASSETS.fetch(new Request(url.toString(), request));
+    try {
+      const response = await env.ASSETS.fetch(request);
+      if (response.status === 404 && request.method === 'GET') {
+        const rootUrl = new URL('/', request.url);
+        return await env.ASSETS.fetch(new Request(rootUrl.toString(), {
+          method: 'GET',
+          headers: request.headers,
+        }));
+      }
+      return response;
+    } catch {
+      const rootUrl = new URL('/', request.url);
+      return env.ASSETS.fetch(new Request(rootUrl.toString(), { method: 'GET' }));
     }
-    return response;
   },
 };

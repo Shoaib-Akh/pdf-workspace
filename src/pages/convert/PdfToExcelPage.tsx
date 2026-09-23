@@ -1,15 +1,41 @@
 import React, { useState } from 'react'
 import MetaTags from '@/components/seo/MetaTags'
+import JsonLd, { buildWebApplicationSchema, buildFAQSchema } from '@/components/seo/JsonLd'
 import PageLayout from '@/components/layout/PageLayout'
 import DropZone from '@/components/upload/DropZone'
 import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
-import { FileSpreadsheet, Download, Table, ArrowRight, CheckCircle2, Sparkles, Shield, AlertCircle, RefreshCw } from 'lucide-react'
+import { FileSpreadsheet, Download, Table, ArrowRight, CheckCircle2, Sparkles, Shield, AlertCircle, RefreshCw, Layers, Check } from 'lucide-react'
 import { loadPDF } from '@/services/pdf/pdfEngine'
 import { extractFullData, type ExtractionResult } from '@/services/extraction/textExtractor'
 import { exportFullExtractionToExcel } from '@/services/extraction/excelExporter'
 import { Progress } from '@/components/ui/progress'
+import { APP_CONFIG } from '@/lib/config'
+import { PDF_TO_EXCEL_KEYWORDS, PDF_TO_EXCEL_POPULAR_SEARCHES } from '@/data/seoKeywords'
+
+const PDF_TO_EXCEL_FAQS = [
+  {
+    q: 'How do I convert a PDF to Excel for free?',
+    a: 'Upload or drop your PDF into the converter above. Our browser engine detects tables, columns, and rows, and allows you to download a clean .xlsx spreadsheet immediately with zero sign-up or fee.'
+  },
+  {
+    q: 'Are my financial documents and sensitive PDFs private?',
+    a: 'Yes, 100%. Extraction runs entirely inside your browser using client-side WebAssembly and JavaScript. Your documents are never uploaded to any remote server or cloud storage.'
+  },
+  {
+    q: 'Can I extract tables from scanned PDF documents?',
+    a: 'For scanned PDFs or photo documents, visit our Scanned PDF to Excel (OCR) tool which uses optical character recognition to read and extract text from images into spreadsheet columns.'
+  },
+  {
+    q: 'Will the formatting and column structure of my tables be preserved?',
+    a: 'Yes, our extraction algorithm analyzes bounding boxes and horizontal alignments to reconstruct columns, headers, and numerical values accurately into Microsoft Excel sheets.'
+  },
+  {
+    q: 'Is there a limit on how many files I can convert?',
+    a: 'No. Because all computation runs locally on your computer, there are no hourly or daily conversion limits.'
+  }
+]
 
 export default function PdfToExcelPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -56,10 +82,30 @@ export default function PdfToExcelPage() {
   }
 
   return (
-    <PageLayout>
+    <PageLayout
+      breadcrumbs={[
+        { label: 'Convert', href: '/convert' },
+        { label: 'PDF to Excel' },
+      ]}
+    >
       <MetaTags
-        title="PDF to Excel — Extract PDF Tables to Spreadsheet"
-        description="Convert PDF tables directly into Microsoft Excel (.xlsx) spreadsheets. Fast client-side tabular extraction with layout preservation."
+        title="PDF to Excel Converter — Extract Tables to XLSX Free & Private"
+        description="Convert PDF tables and tabular figures into Microsoft Excel (.xlsx) spreadsheets online. 100% private in-browser extraction with zero file uploads."
+        keywords={PDF_TO_EXCEL_KEYWORDS}
+        canonical={`${APP_CONFIG.url}/pdf-to-excel`}
+      />
+      <JsonLd
+        data={buildWebApplicationSchema({
+          name: 'Free Online PDF to Excel Converter',
+          description:
+            'Convert PDF tables and documents to Microsoft Excel (.xlsx) workbooks online. 100% private in-browser processing.',
+          url: `${APP_CONFIG.url}/pdf-to-excel`,
+        })}
+      />
+      <JsonLd
+        data={buildFAQSchema(
+          PDF_TO_EXCEL_FAQS.map((f) => ({ question: f.q, answer: f.a }))
+        )}
       />
 
       <div className="max-w-5xl mx-auto space-y-12">
@@ -208,6 +254,103 @@ export default function PdfToExcelPage() {
             alternateToolSlug="pdf-to-data"
             alternateToolName="Client-Side PDF Data Extractor"
           />
+        </div>
+
+        {/* How it works & security info */}
+        <div className="mt-12 space-y-8 border-t border-zinc-200 dark:border-zinc-800 pt-10">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-700">
+              <h3 className="text-base font-bold text-zinc-900 dark:text-white mb-3">
+                How to Convert PDF to Excel Online Free
+              </h3>
+              <ol className="space-y-2.5 list-decimal list-inside text-zinc-600 dark:text-zinc-300 text-sm">
+                <li>Upload your PDF file by dragging it into the box or selecting it from your device.</li>
+                <li>Our browser engine analyzes the layout, rows, and column boundaries automatically.</li>
+                <li>Click <strong>Extract to Excel</strong> to process the table structures locally.</li>
+                <li>Download your formatted <strong>.xlsx spreadsheet</strong> ready to open in Microsoft Excel or Google Sheets.</li>
+              </ol>
+            </div>
+
+            <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-6">
+              <h3 className="text-base font-bold text-emerald-900 dark:text-emerald-300 mb-2 flex items-center">
+                <Shield className="w-4 h-4 mr-2 text-emerald-600 dark:text-emerald-400" />
+                100% Private Client-Side Processing
+              </h3>
+              <p className="text-emerald-800 dark:text-emerald-300/90 text-sm leading-relaxed mb-3">
+                Your financial ledgers, vendor invoices, BOQs, and sensitive client documents never touch a third-party server.
+              </p>
+              <ul className="text-xs text-emerald-700 dark:text-emerald-400 space-y-1.5">
+                <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5" /> Zero cloud uploads — 100% in-browser memory</li>
+                <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5" /> Compliant with strict corporate data protection standards</li>
+                <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5" /> No registration, credit card, or email address required</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Key Advantages */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 md:p-8">
+            <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-amber-500" />
+              Why Convert PDF to Excel with PDF Guru?
+            </h3>
+            <div className="grid sm:grid-cols-3 gap-6 text-sm">
+              <div>
+                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">Accurate Column Detection</h4>
+                <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed">
+                  Advanced heuristics align multi-column grids and numbers without corrupting decimal formats or headers.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">Native .XLSX Output</h4>
+                <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed">
+                  Generated workbooks are fully compatible with Microsoft Excel 2016+, Office 365, Google Sheets, and LibreOffice.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">No File Size Limits</h4>
+                <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed">
+                  Process large, multi-page business reports without being blocked by arbitrary upload file caps.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ section */}
+          <div>
+            <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">
+              Frequently Asked Questions About PDF to Excel
+            </h3>
+            <div className="space-y-4">
+              {PDF_TO_EXCEL_FAQS.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 bg-white dark:bg-zinc-900">
+                  <h4 className="font-semibold text-zinc-900 dark:text-white text-sm">{faq.q}</h4>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-2 leading-relaxed">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Popular Searches & Related Tags */}
+          <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-800/40 p-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-800 dark:text-zinc-200 mb-2">
+              Related Searches & PDF Extraction Tools
+            </h4>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
+              Explore specialized tools for extracting tabular data, financial sheets, and organizing PDFs.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {PDF_TO_EXCEL_POPULAR_SEARCHES.map((tag) => (
+                <Link
+                  key={tag.label}
+                  to={tag.to}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:text-blue-700 dark:hover:text-blue-400 transition-all"
+                >
+                  <span>{tag.label}</span>
+                  <ArrowRight className="h-3 w-3 text-zinc-400" />
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </PageLayout>

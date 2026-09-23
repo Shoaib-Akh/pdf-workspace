@@ -637,7 +637,41 @@ export const SEO_KEYWORDS_BY_SLUG: Record<string, PageSeoData> = {
       { label: 'Compress PDF', to: '/compress-pdf' },
     ],
   },
+  'pdf-to-excel': {
+    keywords: [
+      'pdf to excel',
+      'convert pdf to excel',
+      'pdf to excel converter',
+      'extract table from pdf to excel',
+      'pdf to xlsx',
+      'pdf to excel online free',
+      'convert pdf to spreadsheet',
+      'pdf to excel no upload',
+      'client side pdf to excel',
+      'free pdf to excel converter',
+      'extract pdf data to excel',
+      'convert pdf table to excel',
+      'turn pdf into excel',
+      'export pdf to excel',
+      'online pdf to excel converter',
+    ],
+    popularSearches: [
+      { label: 'PDF to Excel Converter', to: '/pdf-to-excel' },
+      { label: 'PDF to Data Extractor', to: '/pdf-to-data' },
+      { label: 'PDF to CSV', to: '/pdf-to-csv' },
+      { label: 'Excel to PDF', to: '/excel-to-pdf' },
+      { label: 'Scanned PDF to Excel (OCR)', to: '/scanned-pdf-to-excel' },
+      { label: 'BOQ PDF to Excel', to: '/boq-pdf-to-excel' },
+      { label: 'Invoice to Excel', to: '/invoice-to-excel' },
+      { label: 'Bank Statement to Excel', to: '/bank-statement-to-excel' },
+      { label: 'PDF to Word', to: '/pdf-to-word' },
+      { label: 'Merge PDF', to: '/merge-pdf' },
+    ],
+  },
 };
+
+export const PDF_TO_EXCEL_KEYWORDS = SEO_KEYWORDS_BY_SLUG['pdf-to-excel'].keywords;
+export const PDF_TO_EXCEL_POPULAR_SEARCHES = SEO_KEYWORDS_BY_SLUG['pdf-to-excel'].popularSearches!;
 
 export const MERGE_PDF_KEYWORDS = SEO_KEYWORDS_BY_SLUG['merge-pdf'].keywords;
 export const MERGE_PDF_POPULAR_SEARCHES = SEO_KEYWORDS_BY_SLUG['merge-pdf'].popularSearches!;

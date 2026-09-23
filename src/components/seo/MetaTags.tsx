@@ -24,8 +24,8 @@ export function MetaTags({
   articlePublishedTime,
   articleModifiedTime
 }: MetaTagsProps) {
-  const fullTitle = `${title} | ${APP_CONFIG?.siteName || 'PDF Workspace'}`
-  const url = canonical || APP_CONFIG?.siteUrl
+  const fullTitle = `${title} | ${APP_CONFIG?.siteName || 'PDF Guru'}`
+  const canonicalUrl = canonical || (typeof window !== 'undefined' ? `${APP_CONFIG?.siteUrl}${window.location.pathname}` : APP_CONFIG?.siteUrl)
   const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : keywords
 
   return (
@@ -33,14 +33,14 @@ export function MetaTags({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywordsString && <meta name="keywords" content={keywordsString} />}
-      {canonical && <link rel="canonical" href={canonical} />}
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
-      {url && <meta property="og:url" content={url} />}
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
       {ogImage && <meta property="og:image" content={ogImage} />}
       
       {ogType === 'article' && articlePublishedTime && (

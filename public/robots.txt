@@ -1,3 +1,7 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /workspace/
+Disallow: /api/
+
+Sitemap: https://pdfguru.site/sitemap.xml
 

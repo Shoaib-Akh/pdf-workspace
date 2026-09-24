@@ -25,39 +25,44 @@ export function TermsOfServicePage() {
             We provide a suite of tools for processing, converting, extracting data from, and organizing PDF documents. The services are provided "as is" and "as available" without any warranties of any kind.
           </p>
 
-          <h2>3. Free vs premium use</h2>
+          <h2>3. Free vs premium use & subscriptions</h2>
           <p>
-            Many of our tools are available for free. However, we may impose limits on file size, processing volume, or access to certain advanced features for free users. Premium features or higher limits may be subject to subscription fees or one-time payments.
+            Many of our tools are available for free. We also offer premium tiers (such as Cloud Pro) through subscription plans or one-time payments. Subscriptions are billed automatically on a recurring monthly or annual basis until canceled. You can cancel your subscription at any time via your customer billing portal.
           </p>
 
-          <h2>4. Acceptable use</h2>
+          <h2>4. Refund and Cancellation Policy</h2>
+          <p>
+            We want you to be completely satisfied with our service. We offer a <strong>14-day money-back guarantee</strong> on all subscription plans and digital purchases. If you are not satisfied with your purchase, you may request a full refund within 14 days of your initial transaction by contacting our support team at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>. Upon cancellation, your subscription will remain active until the end of the current billing cycle and will not renew.
+          </p>
+
+          <h2>5. Acceptable use</h2>
           <p>
             You agree not to use our services for any illegal or unauthorized purpose. You must not abuse, harass, threaten, impersonate, or intimidate other users. You must not use our platform to process illegal, harmful, or explicitly offensive content. Automated scraping or abusive API requests are strictly prohibited and may result in a permanent ban.
           </p>
 
-          <h2>5. File handling and privacy</h2>
+          <h2>6. File handling and privacy</h2>
           <p>
             Your privacy is important to us. Please refer to our <a href="/privacy">Privacy Policy</a> for detailed information on how we handle your files. In short: we do not claim ownership of your documents, and we automatically delete any files sent to our servers for processing.
           </p>
 
-          <h2>6. Intellectual property</h2>
+          <h2>7. Intellectual property</h2>
           <p>
             You retain all rights and ownership of the documents you upload. The platform itself, including its original code, designs, and branding, is the intellectual property of our company. You may not copy, modify, or distribute our intellectual property without explicit permission.
           </p>
 
-          <h2>7. Limitation of liability</h2>
+          <h2>8. Limitation of liability</h2>
           <p>
             In no event shall we be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of, or inability to access or use the service.
           </p>
 
-          <h2>8. Changes to terms</h2>
+          <h2>9. Changes to terms</h2>
           <p>
             We reserve the right to modify these terms at any time. We will provide notice of significant changes by updating the date at the top of this page. Your continued use of the service after such modifications constitutes your acceptance of the new terms.
           </p>
 
-          <h2>9. Contact</h2>
+          <h2>10. Contact Us</h2>
           <p>
-            If you have any questions regarding these Terms of Service, please contact us at <a href="mailto:legal@example.com">legal@example.com</a>.
+            If you have any questions regarding these Terms of Service or refund requests, please contact us at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>.
           </p>
         </div>
       </div>

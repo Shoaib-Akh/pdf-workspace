@@ -29,6 +29,6 @@ export const APP_CONFIG: AppConfig = {
   description,
   appTagline: tagline,
   tagline,
-  supportEmail: import.meta.env.VITE_SUPPORT_EMAIL || '',
+  supportEmail: import.meta.env.VITE_SUPPORT_EMAIL || 'developershoaibakhtar@gmail.com',
   defaultOgImage: `${url}/og/home.jpg`,
 }

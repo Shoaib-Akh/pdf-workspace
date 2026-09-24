@@ -48,7 +48,7 @@ export function PrivacyPolicyPage() {
 
           <h2>6. Contact</h2>
           <p>
-            If you have any questions or concerns about this privacy policy or our data practices, please contact us at <a href="mailto:privacy@example.com">privacy@example.com</a>.
+            If you have any questions or concerns about this privacy policy or our data practices, please contact us at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>.
           </p>
         </div>
       </div>

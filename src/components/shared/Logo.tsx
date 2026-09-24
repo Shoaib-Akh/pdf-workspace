@@ -50,14 +50,14 @@ export function Logo({ showText = true, size = "md", asLink = true, className = 
         <path d="M34 7 L34.6 9.4 L37 10 L34.6 10.6 L34 13 L33.4 10.6 L31 10 L33.4 9.4 Z" fill="white" />
       </svg>
 
-      {/* Wordmark — always white on dark header */}
+      {/* Wordmark — adapts to light and dark theme */}
       {showText && (
         <span
           className={`font-bold tracking-tight leading-none ${text}`}
           style={{ fontFamily: "Inter, system-ui, sans-serif" }}
         >
-          <span className="text-white">PDF</span>
-          <span className="text-violet-400"> Guru</span>
+          <span className="text-slate-900 dark:text-white transition-colors">PDF</span>
+          <span className="text-violet-600 dark:text-violet-400 transition-colors"> Guru</span>
         </span>
       )}
     </span>

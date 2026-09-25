@@ -160,15 +160,24 @@ export default function AdminDashboard() {
                         <p className="text-sm text-blue-900 mt-1">Marked as replied.</p>
                       </div>
                     ) : (
-                      <div className="mt-4 flex items-center space-x-3">
+                      <div className="mt-4 flex flex-wrap gap-3 items-center">
                         <Button asChild>
                           <a 
-                            href={`mailto:${msg.email}?subject=Re: Your Message on PDF Workspace&body=\n\n\n---\nOn ${new Date(msg.created_at).toLocaleDateString()}, you wrote:\n${encodeURIComponent(msg.message)}`}
+                            href={`mailto:${msg.email}?subject=${encodeURIComponent("Re: Your Message on PDF Workspace")}&body=${encodeURIComponent(`\n\n\n---\nOn ${new Date(msg.created_at).toLocaleDateString()}, you wrote:\n${msg.message}`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Reply via Email
+                            Reply via Email App
                           </a>
+                        </Button>
+                        <Button 
+                          variant="secondary"
+                          onClick={() => {
+                            navigator.clipboard.writeText(msg.email);
+                            alert('User email copied to clipboard! You can now paste it in Gmail.');
+                          }}
+                        >
+                          Copy Email Address
                         </Button>
                         <Button 
                           variant="outline" 

@@ -19,5 +19,19 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   name TEXT,
   email TEXT NOT NULL,
   message TEXT NOT NULL,
+  tracking_id TEXT UNIQUE,
+  admin_reply TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS blogs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  content TEXT NOT NULL,
+  excerpt TEXT,
+  author TEXT DEFAULT 'Admin',
+  status TEXT DEFAULT 'published',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

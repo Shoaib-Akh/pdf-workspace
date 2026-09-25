@@ -83,6 +83,9 @@ const LearnBankStatementPage = lazy(() => import('@/pages/learn/articles/HowToCo
 const PrivacyPolicyPage = lazy(() => import('@/pages/legal/PrivacyPolicyPage'))
 const TermsOfServicePage = lazy(() => import('@/pages/legal/TermsOfServicePage'))
 
+const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'))
+const TicketStatusPage = lazy(() => import('@/pages/contact/TicketStatusPage'))
+
 import PageLoadingSpinner from '@/components/shared/PageLoadingSpinner'
 
 export default function App() {
@@ -103,11 +106,13 @@ export default function App() {
         <Route path="/images" element={<ToolsPage initialCategory="Images" />} />
         <Route path="/security" element={<ToolsPage initialCategory="Security" />} />
 
-        {/* Pricing, Contact, Auth */}
+        {/* Pricing, Contact, Auth, Admin & Status */}
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/status" element={<TicketStatusPage />} />
         <Route path="/signin" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />
+        <Route path="/admin/*" element={<AdminDashboard />} />
 
         {/* Convert */}
         <Route path="/pdf-to-jpg" element={<PdfToJpgPage />} />

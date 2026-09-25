@@ -109,7 +109,6 @@ export default function App() {
         {/* Pricing, Contact, Auth, Admin & Status */}
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/status" element={<TicketStatusPage />} />
         <Route path="/signin" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />
         <Route path="/admin/*" element={<AdminDashboard />} />

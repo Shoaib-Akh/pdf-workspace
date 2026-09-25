@@ -64,18 +64,11 @@ export default function ContactPage() {
               <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto" />
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Message Received!</h2>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
-                Thank you for reaching out. We have created a tracking ticket for your message.
-              </p>
-              <div className="mt-6 bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 inline-block text-left">
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider mb-1">Your Tracking ID</p>
-                <p className="text-2xl font-mono font-bold text-zinc-900 dark:text-white select-all">{trackingId}</p>
-              </div>
-              <p className="text-sm text-zinc-500 mt-4">
-                Please save this ID. You can check the admin's reply on the <a href="/status" className="text-brand-600 hover:underline font-medium">Ticket Status page</a>.
+                Thank you for reaching out. Our engineering team reviews all feedback and will reply to your email address shortly.
               </p>
               <div className="pt-4">
-                <Button variant="outline" onClick={() => window.location.href = '/status'}>
-                  Check Status Now
+                <Button variant="outline" onClick={() => setSubmitted(false)}>
+                  Send Another Message
                 </Button>
               </div>
             </div>

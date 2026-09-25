@@ -146,7 +146,7 @@ export default function AdminDashboard() {
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h4 className="font-bold text-gray-900">{msg.name || 'Anonymous'} <span className="text-sm font-normal text-gray-500">({msg.email})</span></h4>
-                        <span className="text-xs text-gray-500">Tracking ID: {msg.tracking_id} | Date: {new Date(msg.created_at).toLocaleString()}</span>
+                        <span className="text-xs text-gray-500">Date: {new Date(msg.created_at).toLocaleString()}</span>
                       </div>
                       <span className={`px-2 py-1 text-xs rounded-full font-medium ${msg.status === 'replied' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
                         {msg.status.toUpperCase()}
@@ -156,28 +156,29 @@ export default function AdminDashboard() {
                     
                     {msg.status === 'replied' ? (
                       <div className="mt-4 bg-blue-50 p-3 rounded border border-blue-100">
-                        <p className="text-sm font-semibold text-blue-800">Your Reply:</p>
-                        <p className="text-sm text-blue-900 mt-1">{msg.admin_reply}</p>
+                        <p className="text-sm font-semibold text-blue-800">Status</p>
+                        <p className="text-sm text-blue-900 mt-1">Marked as replied.</p>
                       </div>
                     ) : (
-                      <div className="mt-4">
-                        {replyingTo === msg.id ? (
-                          <div className="space-y-3">
-                            <textarea 
-                              className="w-full w-full rounded-md border border-gray-300 p-3 text-sm focus:ring-blue-500 focus:border-blue-500" 
-                              rows={4}
-                              placeholder="Write your reply here..."
-                              value={replyText}
-                              onChange={e => setReplyText(e.target.value)}
-                            />
-                            <div className="flex space-x-2">
-                              <Button onClick={() => submitReply(msg.id)}>Send Reply</Button>
-                              <Button variant="outline" onClick={() => { setReplyingTo(null); setReplyText(''); }}>Cancel</Button>
-                            </div>
-                          </div>
-                        ) : (
-                          <Button onClick={() => setReplyingTo(msg.id)}>Reply to Message</Button>
-                        )}
+                      <div className="mt-4 flex items-center space-x-3">
+                        <Button asChild>
+                          <a 
+                            href={`mailto:${msg.email}?subject=Re: Your Message on PDF Workspace&body=\n\n\n---\nOn ${new Date(msg.created_at).toLocaleDateString()}, you wrote:\n${encodeURIComponent(msg.message)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Reply via Email
+                          </a>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          onClick={() => {
+                            setReplyText('Replied via email');
+                            submitReply(msg.id);
+                          }}
+                        >
+                          Mark as Replied
+                        </Button>
                       </div>
                     )}
                   </div>

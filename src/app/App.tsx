@@ -84,7 +84,8 @@ const PrivacyPolicyPage = lazy(() => import('@/pages/legal/PrivacyPolicyPage'))
 const TermsOfServicePage = lazy(() => import('@/pages/legal/TermsOfServicePage'))
 
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'))
-const TicketStatusPage = lazy(() => import('@/pages/contact/TicketStatusPage'))
+const BlogListPage = lazy(() => import('@/pages/blog/BlogListPage'))
+const BlogDetailPage = lazy(() => import('@/pages/blog/BlogDetailPage'))
 
 import PageLoadingSpinner from '@/components/shared/PageLoadingSpinner'
 
@@ -112,6 +113,8 @@ export default function App() {
         <Route path="/signin" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />
         <Route path="/admin/*" element={<AdminDashboard />} />
+        <Route path="/blog" element={<BlogListPage />} />
+        <Route path="/blog/:slug" element={<BlogDetailPage />} />
 
         {/* Convert */}
         <Route path="/pdf-to-jpg" element={<PdfToJpgPage />} />

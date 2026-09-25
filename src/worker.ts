@@ -158,28 +158,53 @@ export default {
           return new Response(JSON.stringify({ waitlist: results }), { headers });
         }
 
-        // Admin: Manage Blogs
+        // Admin: Manage Blogs (list & create)
         if (url.pathname === '/api/admin/blogs') {
           if (request.method === 'GET' && env.DB) {
             const { results } = await env.DB.prepare('SELECT * FROM blogs ORDER BY created_at DESC').all();
             return new Response(JSON.stringify({ blogs: results }), { headers });
           }
-          
           if (request.method === 'POST' && env.DB) {
-            const body = await request.json() as { title: string, content: string, slug: string };
+            const body = await request.json() as { title: string; content: string; slug: string; excerpt?: string; meta_description?: string; author?: string; status?: string };
+            const slug = body.slug || body.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             await env.DB.prepare(
-              'INSERT INTO blogs (title, content, slug) VALUES (?, ?, ?)'
-            ).bind(body.title, body.content, body.slug).run();
+              'INSERT INTO blogs (title, content, slug, excerpt, meta_description, author, status) VALUES (?, ?, ?, ?, ?, ?, ?)'
+            ).bind(body.title, body.content, slug, body.excerpt || '', body.meta_description || '', body.author || 'Admin', body.status || 'published').run();
+            return new Response(JSON.stringify({ success: true, slug }), { headers });
+          }
+        }
+
+        // Admin: Update or Delete a single blog
+        if (url.pathname.match(/^\/api\/admin\/blogs\/\d+$/)) {
+          const id = url.pathname.split('/').pop();
+          if (request.method === 'PUT' && env.DB) {
+            const body = await request.json() as { title: string; content: string; slug: string; excerpt?: string; meta_description?: string; author?: string; status?: string };
+            await env.DB.prepare(
+              'UPDATE blogs SET title=?, content=?, slug=?, excerpt=?, meta_description=?, author=?, status=? WHERE id=?'
+            ).bind(body.title, body.content, body.slug, body.excerpt || '', body.meta_description || '', body.author || 'Admin', body.status || 'published', id).run();
+            return new Response(JSON.stringify({ success: true }), { headers });
+          }
+          if (request.method === 'DELETE' && env.DB) {
+            await env.DB.prepare('DELETE FROM blogs WHERE id=?').bind(id).run();
             return new Response(JSON.stringify({ success: true }), { headers });
           }
         }
       }
 
-      // Public API: Get published blogs
+      // Public API: Get all published blogs
       if (url.pathname === '/api/blogs' && request.method === 'GET') {
         if (!env.DB) return new Response(JSON.stringify({ blogs: [] }), { headers });
-        const { results } = await env.DB.prepare("SELECT * FROM blogs WHERE status = 'published' ORDER BY created_at DESC").all();
+        const { results } = await env.DB.prepare("SELECT id, title, slug, excerpt, author, created_at FROM blogs WHERE status = 'published' ORDER BY created_at DESC").all();
         return new Response(JSON.stringify({ blogs: results }), { headers });
+      }
+
+      // Public API: Get single blog by slug
+      if (url.pathname.startsWith('/api/blogs/') && request.method === 'GET') {
+        const slug = url.pathname.split('/').pop();
+        if (!env.DB || !slug) return new Response(JSON.stringify({ error: 'Not found' }), { status: 404, headers });
+        const blog = await env.DB.prepare("SELECT * FROM blogs WHERE slug = ? AND status = 'published'").bind(slug).first();
+        if (!blog) return new Response(JSON.stringify({ error: 'Blog not found' }), { status: 404, headers });
+        return new Response(JSON.stringify({ blog }), { headers });
       }
 
       // Return 404 for unknown APIs

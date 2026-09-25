@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
-import MainLayout from '@/components/layout/MainLayout';
+import PageLayout from '@/components/layout/PageLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -35,7 +35,7 @@ export default function TicketStatusPage() {
   };
 
   return (
-    <MainLayout>
+    <PageLayout>
       <div className="max-w-3xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -102,6 +102,6 @@ export default function TicketStatusPage() {
           </div>
         )}
       </div>
-    </MainLayout>
+    </PageLayout>
   );
 }

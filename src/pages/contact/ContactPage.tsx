@@ -40,9 +40,9 @@ export default function ContactPage() {
   return (
     <PageLayout>
       <MetaTags
-        title="Contact & Support — PDF Workspace"
-        description="Get in touch with the PDF Workspace engineering team. Report issues, request new document extraction tools, or give feedback."
-        canonical="https://pdfworkspace.app/contact"
+        title="Contact & Support — PDF Guru"
+        description="Get in touch with the PDF Guru engineering team. Report issues, request new document extraction tools, or give feedback."
+        canonical="https://pdfguru.site/contact"
       />
 
       <div className="max-w-2xl mx-auto py-8 sm:py-16 space-y-8">

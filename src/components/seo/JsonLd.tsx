@@ -28,7 +28,7 @@ export function buildOrganizationSchema(config: AppConfig): Record<string, unkno
     '@type': 'Organization',
     name: config.siteName,
     url: config.siteUrl,
-    logo: `${config.siteUrl}/logo.png`,
+    logo: config.defaultOgImage,
   }
 }
 

@@ -435,7 +435,7 @@ export async function convertPdfToDocx(
   onProgress?.({ stage: 'Generating .docx file…', percent: 92 })
 
   const doc = new Document({
-    creator: 'PDF Workspace',
+    creator: 'PDF Guru',
     title: file.name.replace(/\.pdf$/i, ''),
     description: `Converted from ${file.name}`,
     sections: [

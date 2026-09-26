@@ -63,7 +63,7 @@ export default function ScannedPdfToWordPage() {
       })
 
       const doc = new Document({
-        creator: 'PDF Workspace',
+        creator: 'PDF Guru',
         title: file.name.replace(/\.pdf$/i, ''),
         sections: [{ properties: {}, children: paragraphs }],
       })

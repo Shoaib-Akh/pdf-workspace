@@ -258,7 +258,7 @@ export default function AdminDashboard() {
                     ) : (
                       <div className="mt-4 flex flex-wrap gap-3">
                         <Button asChild>
-                          <a href={`mailto:${msg.email}?subject=${encodeURIComponent('Re: Your Message on PDF Workspace')}&body=${encodeURIComponent(`\n\n\n---\nOn ${new Date(msg.created_at).toLocaleDateString()}, you wrote:\n${msg.message}`)}`} target="_blank" rel="noopener noreferrer">
+                          <a href={`mailto:${msg.email}?subject=${encodeURIComponent('Re: Your Message on PDF Guru')}&body=${encodeURIComponent(`\n\n\n---\nOn ${new Date(msg.created_at).toLocaleDateString()}, you wrote:\n${msg.message}`)}`} target="_blank" rel="noopener noreferrer">
                             Reply via Email App
                           </a>
                         </Button>

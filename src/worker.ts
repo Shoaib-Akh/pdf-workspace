@@ -15,7 +15,7 @@ export interface Env {
     fetch: (request: Request) => Promise<Response>;
   };
   DB?: D1Database;
-  ADMIN_SECRET?: string; // Add your secret in wrangler.toml or Cloudflare Dashboard
+  ADMIN_SECRET?: string; // Required — set in Cloudflare Dashboard or wrangler.toml secrets
 }
 
 // Generate random tracking ID
@@ -28,31 +28,89 @@ const generateTrackingId = () => {
   return id;
 };
 
+// ─── HMAC-based session token (signs the admin secret so the raw secret is never exposed) ───
+async function generateSessionToken(secret: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const payload = `session:${Date.now()}`;
+  const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(payload));
+  const b64 = btoa(String.fromCharCode(...new Uint8Array(sig)));
+  return `${payload}.${b64}`;
+}
+
+async function verifySessionToken(token: string, secret: string): Promise<boolean> {
+  try {
+    const [payloadPart, sigPart] = token.split('.');
+    if (!payloadPart || !sigPart || !payloadPart.startsWith('session:')) return false;
+
+    const encoder = new TextEncoder();
+    const key = await crypto.subtle.importKey(
+      'raw',
+      encoder.encode(secret),
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['verify']
+    );
+
+    // Decode base64 signature
+    const sigBytes = Uint8Array.from(atob(sigPart), (c) => c.charCodeAt(0));
+    const valid = await crypto.subtle.verify('HMAC', key, sigBytes, encoder.encode(payloadPart));
+    if (!valid) return false;
+
+    // Token expiry: 8 hours
+    const ts = parseInt(payloadPart.split(':')[1], 10);
+    return Date.now() - ts < 8 * 60 * 60 * 1000;
+  } catch {
+    return false;
+  }
+}
+
+// Allowed origins — public read-only routes use '*'; admin/contact uses restricted origin
+const ALLOWED_ORIGIN = 'https://pdfguru.site';
+
+function corsHeaders(origin: string | null, publicRoute = false): Record<string, string> {
+  return {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': publicRoute ? '*' : (origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : ALLOWED_ORIGIN),
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Vary': 'Origin',
+  };
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    const origin = request.headers.get('Origin');
 
     // API Routes for Cloudflare D1
     if (url.pathname.startsWith('/api/')) {
-      const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Update this in production
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      };
+      const publicRoute = (
+        url.pathname === '/api/health' ||
+        url.pathname === '/api/blogs' ||
+        url.pathname.startsWith('/api/blogs/')
+      );
+      const headers = corsHeaders(origin, publicRoute);
 
       if (request.method === 'OPTIONS') {
         return new Response(null, { headers });
       }
 
-      // Check Admin Auth
-      const checkAdminAuth = () => {
+      // ── Admin Auth Guard ────────────────────────────────────────────────────────
+      const checkAdminAuth = async (): Promise<boolean> => {
+        // Fail closed: if ADMIN_SECRET is not configured, deny all admin access
+        if (!env.ADMIN_SECRET) return false;
+
         const authHeader = request.headers.get('Authorization');
-        const expected = env.ADMIN_SECRET || 'secret123'; // fallback for local dev
-        if (authHeader !== `Bearer ${expected}`) {
-          return false;
-        }
-        return true;
+        if (!authHeader?.startsWith('Bearer ')) return false;
+        const token = authHeader.slice(7);
+        return verifySessionToken(token, env.ADMIN_SECRET);
       };
 
       // 1. Health Check
@@ -71,7 +129,7 @@ export default {
                 .bind(body.email, body.toolName || 'general').run();
             }
             return new Response(JSON.stringify({ success: true }), { headers });
-          } catch (err: unknown) {
+          } catch {
             return new Response(JSON.stringify({ error: 'Failed to save waitlist' }), { status: 500, headers });
           }
         }
@@ -82,7 +140,7 @@ export default {
         try {
           const body = await request.json() as { name: string; email: string; message: string };
           if (!body.email || !body.message) return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400, headers });
-          
+
           const trackingId = generateTrackingId();
           if (env.DB) {
             await env.DB.prepare(
@@ -96,39 +154,50 @@ export default {
       }
 
       // 4. User Check Query Status (by Tracking ID)
+      // Returns only status and reply — no personal data exposed
       if (url.pathname.startsWith('/api/status/') && request.method === 'GET') {
         const trackingId = url.pathname.split('/').pop();
         if (!env.DB || !trackingId) return new Response(JSON.stringify({ error: 'Invalid request' }), { status: 400, headers });
-        
-        const result = await env.DB.prepare('SELECT * FROM contact_messages WHERE tracking_id = ?').bind(trackingId).first();
+
+        const result = await env.DB.prepare(
+          'SELECT status, admin_reply FROM contact_messages WHERE tracking_id = ?'
+        ).bind(trackingId).first<{ status: string; admin_reply: string | null }>();
+
         if (!result) return new Response(JSON.stringify({ error: 'Ticket not found' }), { status: 404, headers });
-        
-        return new Response(JSON.stringify({ ticket: result }), { headers });
+
+        return new Response(JSON.stringify({ status: result.status, reply: result.admin_reply ?? null }), { headers });
       }
 
-      // --- ADMIN ROUTES BELOW ---
-      
-      // Admin Login Check
+      // ─── ADMIN ROUTES ────────────────────────────────────────────────────────────
+
+      // Admin Login — returns a signed session token, NOT the raw secret
       if (url.pathname === '/api/admin/login' && request.method === 'POST') {
+        // Fail closed: if secret is not configured, refuse login entirely
+        if (!env.ADMIN_SECRET) {
+          return new Response(
+            JSON.stringify({ error: 'Admin access is not configured on this deployment.' }),
+            { status: 503, headers }
+          );
+        }
         const body = await request.json() as { password?: string };
-        const expected = env.ADMIN_SECRET || 'secret123';
-        if (body.password === expected) {
-          return new Response(JSON.stringify({ success: true, token: expected }), { headers });
+        if (body.password === env.ADMIN_SECRET) {
+          const sessionToken = await generateSessionToken(env.ADMIN_SECRET);
+          return new Response(JSON.stringify({ success: true, token: sessionToken }), { headers });
         }
         return new Response(JSON.stringify({ error: 'Invalid password' }), { status: 401, headers });
       }
 
       if (url.pathname.startsWith('/api/admin/')) {
-        if (!checkAdminAuth()) {
+        if (!(await checkAdminAuth())) {
           return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
         }
 
         // Admin: Get Dashboard Stats
         if (url.pathname === '/api/admin/stats' && request.method === 'GET') {
           if (!env.DB) return new Response(JSON.stringify({}), { headers });
-          const messages = (await env.DB.prepare('SELECT count(*) as count FROM contact_messages').first() as any)?.count || 0;
-          const waitlist = (await env.DB.prepare('SELECT count(*) as count FROM waitlist').first() as any)?.count || 0;
-          const blogs = (await env.DB.prepare('SELECT count(*) as count FROM blogs').first() as any)?.count || 0;
+          const messages = ((await env.DB.prepare('SELECT count(*) as count FROM contact_messages').first()) as any)?.count || 0;
+          const waitlist = ((await env.DB.prepare('SELECT count(*) as count FROM waitlist').first()) as any)?.count || 0;
+          const blogs = ((await env.DB.prepare('SELECT count(*) as count FROM blogs').first()) as any)?.count || 0;
           return new Response(JSON.stringify({ stats: { messages, waitlist, blogs } }), { headers });
         }
 

@@ -15,7 +15,7 @@ export default function PdfVsScannedPdf() {
     url: pageUrl,
     publishedTime: '2026-09-04T08:00:00Z',
     modifiedTime: '2026-09-12T10:00:00Z',
-    authorName: 'PDF Workspace Engineering Team',
+    authorName: 'PDF Guru Engineering Team',
   })
 
   const faqSchema = buildFAQSchema([
@@ -243,7 +243,7 @@ export default function PdfVsScannedPdf() {
             PW
           </div>
           <div>
-            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Workspace Engineering Team</h4>
+            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Guru Engineering Team</h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Focused on document specifications, ISO 32000 PDF standards, and client-side WebAssembly OCR implementations.
             </p>

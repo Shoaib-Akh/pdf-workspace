@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import DOMPurify from 'dompurify'
 import MetaTags from '@/components/seo/MetaTags'
 import PageLayout from '@/components/layout/PageLayout'
+import { APP_CONFIG } from '@/lib/config'
 import { User, Calendar, ArrowLeft, AlertCircle } from 'lucide-react'
+
+// HTML tags and attributes allowed in blog content
+const BLOG_ALLOWED_TAGS = [
+  'h2', 'h3', 'p', 'ul', 'ol', 'li', 'strong', 'em',
+  'a', 'img', 'blockquote', 'code', 'pre', 'br', 'hr',
+]
+const BLOG_ALLOWED_ATTR = ['href', 'src', 'alt', 'class', 'target', 'rel']
+
+function sanitizeBlogContent(html: string): string {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: BLOG_ALLOWED_TAGS,
+    ALLOWED_ATTR: BLOG_ALLOWED_ATTR,
+    FORCE_BODY: true,
+  })
+}
 
 interface Blog {
   id: number
@@ -62,9 +79,8 @@ export default function BlogDetailPage() {
     )
   }
 
-  const siteUrl = 'https://pdfguru.site'
-  const canonicalUrl = `${siteUrl}/blog/${blog.slug}`
-  const metaDesc = blog.meta_description || blog.excerpt || `Read ${blog.title} on PDF Workspace Blog.`
+  const canonicalUrl = `${APP_CONFIG.siteUrl}/blog/${blog.slug}`
+  const metaDesc = blog.meta_description || blog.excerpt || `Read ${blog.title} on ${APP_CONFIG.name} Blog.`
   const datePublished = new Date(blog.created_at).toISOString()
 
   // Schema.org Article markup
@@ -76,18 +92,21 @@ export default function BlogDetailPage() {
     "author": { "@type": "Person", "name": blog.author || 'Admin' },
     "publisher": {
       "@type": "Organization",
-      "name": "PDF Workspace",
-      "url": siteUrl
+      "name": APP_CONFIG.name,
+      "url": APP_CONFIG.siteUrl
     },
     "datePublished": datePublished,
     "dateModified": datePublished,
     "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl }
   }
 
+  // Sanitize blog content before rendering to prevent stored XSS
+  const sanitizedContent = sanitizeBlogContent(blog.content)
+
   return (
     <PageLayout>
       <MetaTags
-        title={`${blog.title} — PDF Workspace Blog`}
+        title={`${blog.title} — ${APP_CONFIG.name} Blog`}
         description={metaDesc}
         canonical={canonicalUrl}
       />
@@ -140,7 +159,7 @@ export default function BlogDetailPage() {
           </div>
         </header>
 
-        {/* Blog Content — Renders HTML from database */}
+        {/* Blog Content — Sanitized HTML from database (DOMPurify allowlist applied) */}
         <div
           className="prose prose-zinc dark:prose-invert max-w-none
             prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4
@@ -153,7 +172,7 @@ export default function BlogDetailPage() {
             prose-code:bg-zinc-100 dark:prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
             prose-blockquote:border-l-4 prose-blockquote:border-brand-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-zinc-500
             prose-img:rounded-xl prose-img:shadow-md"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
 
         {/* Back to Blog */}

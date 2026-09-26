@@ -420,7 +420,7 @@ export function ToolsPage({ initialCategory }: ToolsPageProps) {
             Looking for an automated workflow or batch document processing API?
           </p>
           <a
-            href="mailto:support@pdfworkspace.app?subject=Tool%20Request%20or%20Enterprise"
+            href="mailto:support@pdfguru.site?subject=Tool%20Request%20or%20Enterprise"
             className="mt-2 inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline"
           >
             Contact us for custom integrations <ArrowRight className="ml-1.5 w-4 h-4" />

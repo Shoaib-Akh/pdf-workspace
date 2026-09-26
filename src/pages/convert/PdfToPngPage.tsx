@@ -123,7 +123,7 @@ export default function PdfToPngPage() {
       <MetaTags
         title="Convert PDF to PNG — Lossless, Transparent & Free"
         description="Convert PDF pages into crystal-clear lossless PNG images with alpha transparency support. In-browser processing with zero server uploads."
-        canonical="https://pdfworkspace.app/pdf-to-png"
+        canonical="https://pdfguru.site/pdf-to-png"
       />
 
       <div className="max-w-4xl mx-auto space-y-10 py-6">

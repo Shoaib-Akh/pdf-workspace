@@ -27,7 +27,7 @@ export default function HowToConvertPdfToExcel() {
     url: pageUrl,
     publishedTime: '2026-09-01T08:00:00Z',
     modifiedTime: '2026-09-12T10:00:00Z',
-    authorName: 'PDF Workspace Engineering Team',
+    authorName: 'PDF Guru Engineering Team',
   })
 
   const faqSchema = buildFAQSchema([
@@ -192,7 +192,7 @@ export default function HowToConvertPdfToExcel() {
               For native PDFs, client-side extraction uses WebAssembly and SheetJS to read text tokens without server uploads. Here is the step-by-step process:
             </p>
             <ol className="list-decimal pl-6 space-y-2">
-              <li>Open <Link to="/pdf-to-excel" className="text-brand-600 font-semibold hover:underline">PDF to Excel</Link> in PDF Workspace.</li>
+              <li>Open <Link to="/pdf-to-excel" className="text-brand-600 font-semibold hover:underline">PDF to Excel</Link> in PDF Guru.</li>
               <li>Drop your document into the drag-and-drop zone.</li>
               <li>The engine detects column boundaries based on whitespace gutters across sequential lines.</li>
               <li>Click <strong>Download .XLSX Workbook</strong> to open your structured sheet.</li>
@@ -256,7 +256,7 @@ export default function HowToConvertPdfToExcel() {
                 </thead>
                 <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                   <tr>
-                    <td className="p-3 font-semibold text-brand-600">PDF Workspace (Browser)</td>
+                    <td className="p-3 font-semibold text-brand-600">PDF Guru (Browser)</td>
                     <td className="p-3 text-emerald-600 font-medium">Instant (&lt; 2s)</td>
                     <td className="p-3 text-emerald-600 font-medium">100% Local (0 upload)</td>
                     <td className="p-3">Confidential financials, statements, BOQs</td>
@@ -320,7 +320,7 @@ export default function HowToConvertPdfToExcel() {
             PW
           </div>
           <div>
-            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Workspace Engineering Team</h4>
+            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Guru Engineering Team</h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Specialists in document geometry reconstruction, client-side WebAssembly rendering, and financial data parsing.
             </p>

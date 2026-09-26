@@ -27,8 +27,8 @@ export default function BlogListPage() {
   return (
     <PageLayout>
       <MetaTags
-        title="Blog — PDF Workspace Tips, Guides & Updates"
-        description="Read expert guides on PDF conversion, data extraction, OCR, and business document workflows. Tips and tutorials from the PDF Workspace team."
+        title="Blog — PDF Guru Tips, Guides & Updates"
+        description="Read expert guides on PDF conversion, data extraction, OCR, and business document workflows. Tips and tutorials from the PDF Guru team."
         canonical="https://pdfguru.site/blog"
       />
 
@@ -36,7 +36,7 @@ export default function BlogListPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Blog",
-        "name": "PDF Workspace Blog",
+        "name": "PDF Guru Blog",
         "url": "https://pdfguru.site/blog",
         "description": "Expert guides on PDF conversion, data extraction, OCR, and business document workflows."
       })}} />
@@ -50,7 +50,7 @@ export default function BlogListPage() {
             Blog & Guides
           </h1>
           <p className="text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
-            Tips, tutorials, and updates to help you get the most out of PDF Workspace.
+            Tips, tutorials, and updates to help you get the most out of PDF Guru.
           </p>
         </div>
 

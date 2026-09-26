@@ -22,7 +22,7 @@ const POPULAR_TOOLS = [
     description: 'Convert PDF text and layout to editable Word documents',
     href: '/pdf-to-word',
     icon: '📝',
-    badge: 'Coming Soon',
+    badge: 'Beta',
   },
   {
     name: 'PDF to Excel',
@@ -445,7 +445,7 @@ export default function HomePage() {
         <section className="bg-white dark:bg-slate-950 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Who uses PDF Workspace?</h2>
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Who uses PDF Guru?</h2>
               <p className="mt-2 text-zinc-500 dark:text-slate-400">Real use cases across industries and roles</p>
             </div>
 

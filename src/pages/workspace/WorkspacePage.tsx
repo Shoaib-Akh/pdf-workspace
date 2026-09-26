@@ -4,23 +4,22 @@ import PageLayout from '@/components/layout/PageLayout'
 import { APP_CONFIG } from '@/lib/config'
 import DropZone from '@/components/upload/DropZone'
 import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
-import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { useAppStore } from '@/store/appStore'
 import { Link } from 'react-router-dom'
-import { 
-  FileText, 
-  Table, 
-  RefreshCw, 
-  Download, 
-  Copy, 
-  Trash2, 
-  FileSpreadsheet, 
-  Code, 
-  Check, 
+import {
+  FileText,
+  Table,
+  RefreshCw,
+  Download,
+  Copy,
+  Trash2,
+  FileSpreadsheet,
+  Code,
+  Check,
   Sparkles,
-  Info,
   ShieldCheck,
-  FileCheck2
+  FileCheck2,
+  Info,
 } from 'lucide-react'
 
 type WorkspaceTab = 'overview' | 'text' | 'tables' | 'convert'
@@ -36,11 +35,20 @@ export default function WorkspacePage() {
     }
   }
 
-  const handleCopyText = (text: string) => {
-    navigator.clipboard.writeText(text)
+  const handleCopyFilename = () => {
+    if (!currentFile) return
+    navigator.clipboard.writeText(currentFile.name)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
+
+  const fileSizeMB = currentFile ? (currentFile.size / (1024 * 1024)).toFixed(2) : '0'
+  const fileSizeKB = currentFile ? Math.round(currentFile.size / 1024) : 0
+  const lastModified = currentFile
+    ? new Date(currentFile.lastModified).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric',
+      })
+    : ''
 
   return (
     <PageLayout>
@@ -61,7 +69,7 @@ export default function WorkspacePage() {
                 PDF Intelligence Workspace
               </h1>
               <p className="max-w-xl mx-auto text-sm text-gray-600 dark:text-gray-400">
-                Load any PDF document into your private browser workspace to extract text, inspect tables, examine metadata, and convert to multiple formats.
+                Load any PDF document into your private browser workspace to inspect file metadata and access all conversion tools — 100% in your browser.
               </p>
             </div>
 
@@ -86,7 +94,7 @@ export default function WorkspacePage() {
                     {currentFile.name}
                   </h2>
                   <div className="flex items-center gap-3 text-xs text-gray-500 mt-0.5">
-                    <span>{(currentFile.size / (1024 * 1024)).toFixed(2)} MB</span>
+                    <span>{fileSizeMB} MB</span>
                     <span>•</span>
                     <span className="flex items-center gap-1 text-green-600 font-medium">
                       <ShieldCheck className="w-3.5 h-3.5" /> Client-Side Session
@@ -125,7 +133,7 @@ export default function WorkspacePage() {
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400'
                 }`}
               >
-                <FileText className="w-4 h-4" /> Text Content
+                <FileText className="w-4 h-4" /> Text Extraction
               </button>
               <button
                 onClick={() => setActiveTab('tables')}
@@ -135,7 +143,7 @@ export default function WorkspacePage() {
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400'
                 }`}
               >
-                <Table className="w-4 h-4" /> Extracted Tables
+                <Table className="w-4 h-4" /> Table Extraction
               </button>
               <button
                 onClick={() => setActiveTab('convert')}
@@ -149,182 +157,207 @@ export default function WorkspacePage() {
               </button>
             </div>
 
-            {/* Tab 1: Overview */}
+            {/* Tab 1: Overview — actual file metadata */}
             {activeTab === 'overview' && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white">Document Structure Summary</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white">File Information</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                      <span className="text-xs text-gray-500">Page Count</span>
-                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">4 Pages</p>
+                      <span className="text-xs text-gray-500">File Size</span>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">{fileSizeMB} MB</p>
                     </div>
                     <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                      <span className="text-xs text-gray-500">Embedded Tables</span>
-                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">2 Tables</p>
+                      <span className="text-xs text-gray-500">Size (KB)</span>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">{fileSizeKB} KB</p>
                     </div>
                     <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                      <span className="text-xs text-gray-500">Selectable Words</span>
-                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">1,480 Words</p>
-                    </div>
-                    <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                      <span className="text-xs text-gray-500">PDF Version</span>
-                      <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">PDF 1.7</p>
+                      <span className="text-xs text-gray-500">Last Modified</span>
+                      <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">{lastModified}</p>
                     </div>
                   </div>
 
                   <div className="space-y-2 pt-2">
-                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Metadata Properties</h4>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">File Properties</h4>
                     <div className="text-xs space-y-1.5 text-gray-700 dark:text-gray-300 font-mono bg-gray-50 dark:bg-gray-800/60 p-4 rounded-xl">
-                      <p>Title: Document Specification Analysis</p>
-                      <p>Producer: PDF Engine v2.4 (Canvas/WASM)</p>
-                      <p>Creation Date: {new Date().toLocaleDateString()}</p>
-                      <p>Security: Unencrypted / Full Permissions</p>
+                      <p>Name: {currentFile.name}</p>
+                      <p>Type: {currentFile.type || 'application/pdf'}</p>
+                      <p>Size: {currentFile.size.toLocaleString()} bytes</p>
+                      <p>Last Modified: {new Date(currentFile.lastModified).toISOString()}</p>
                     </div>
+                  </div>
+
+                  {/* Note about deeper analysis */}
+                  <div className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900 rounded-xl text-xs text-blue-700 dark:text-blue-300">
+                    <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <p>
+                      For deep page-count, table detection, and text extraction, use the dedicated tool pages below.
+                      Full in-browser PDF analysis runs via WebAssembly on each specific tool.
+                    </p>
                   </div>
                 </div>
 
                 <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">Quick Actions</h3>
                   <div className="space-y-2">
-                    <button
-                      onClick={() => setActiveTab('tables')}
+                    <Link
+                      to="/pdf-to-data"
                       className="w-full py-2.5 px-4 bg-green-600 hover:bg-green-700 text-white rounded-xl text-xs font-semibold flex items-center justify-between transition"
                     >
-                      <span>Export Tables to Excel</span>
+                      <span>Extract Tables to Excel</span>
                       <Table className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('text')}
+                    </Link>
+                    <Link
+                      to="/pdf-to-txt"
                       className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold flex items-center justify-between transition"
                     >
-                      <span>Copy All Extracted Text</span>
-                      <Copy className="w-4 h-4" />
-                    </button>
+                      <span>Extract All Text</span>
+                      <FileText className="w-4 h-4" />
+                    </Link>
                     <button
-                      onClick={() => setActiveTab('convert')}
+                      onClick={handleCopyFilename}
                       className="w-full py-2.5 px-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 text-gray-800 dark:text-gray-200 rounded-xl text-xs font-semibold flex items-center justify-between transition"
                     >
-                      <span>Convert Format (JSON / CSV / MD)</span>
-                      <RefreshCw className="w-4 h-4" />
+                      <span>{copied ? 'Filename Copied!' : 'Copy Filename'}</span>
+                      {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Tab 2: Text Content */}
+            {/* Tab 2: Text Extraction — link to real tool */}
             {activeTab === 'text' && (
-              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Full Document Text Stream
-                  </span>
-                  <button
-                    onClick={() => handleCopyText(`Extracted stream for: ${currentFile.name}`)}
-                    className="px-3 py-1.5 text-xs font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 rounded-lg flex items-center gap-1.5 transition"
-                  >
-                    {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    {copied ? 'Copied' : 'Copy All Text'}
-                  </button>
+              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 text-center space-y-5">
+                <FileText className="w-12 h-12 text-blue-500 mx-auto" />
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Extract Text from PDF</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto">
+                    Full in-browser text extraction is available on the dedicated PDF to Text tool.
+                    It uses WebAssembly to parse every character from your document without uploading anything.
+                  </p>
                 </div>
-                <textarea
-                  rows={14}
-                  readOnly
-                  value={`DOCUMENT ANALYSIS REPORT\nSource: ${currentFile.name}\n\n1. SCOPE AND DELIVERABLES\nThe contractor shall furnish all labor, materials, equipment, and services required to perform all operations in connection with the site development work. All tasks must adhere to engineering codes and client requirements.\n\n2. PROGRESS SCHEDULE & MILESTONES\nAll works must commence within 10 calendar days of Notice to Proceed and reach substantial completion within 120 working days.`}
-                  className="w-full p-4 font-mono text-xs bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl leading-relaxed text-gray-800 dark:text-gray-200 focus:outline-none"
-                />
+                <Link
+                  to="/pdf-to-txt"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition"
+                >
+                  Open PDF to Text Tool <Download className="w-4 h-4" />
+                </Link>
+                <p className="text-xs text-gray-400">
+                  Your file stays in your browser — nothing is uploaded.
+                </p>
               </div>
             )}
 
-            {/* Tab 3: Tables */}
+            {/* Tab 3: Table Extraction — link to real tool */}
             {activeTab === 'tables' && (
-              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-gray-900 dark:text-white">Detected Table (Page 1)</h3>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => alert('Exporting table to Excel...')}
-                      className="px-3 py-1.5 text-xs font-medium bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-1.5 shadow-sm"
-                    >
-                      <FileSpreadsheet className="w-3.5 h-3.5" /> Export .xlsx
-                    </button>
-                  </div>
+              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 text-center space-y-5">
+                <Table className="w-12 h-12 text-green-500 mx-auto" />
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Extract Tables from PDF</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto">
+                    Detect and extract all tables from your PDF and download them as Excel or CSV.
+                    The full extraction engine runs on the dedicated tool page.
+                  </p>
                 </div>
-
-                <div className="overflow-x-auto border border-gray-200 dark:border-gray-800 rounded-xl">
-                  <table className="w-full text-xs text-left text-gray-600 dark:text-gray-300">
-                    <thead className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold">
-                      <tr>
-                        <th className="p-3">Ref ID</th>
-                        <th className="p-3">Line Description</th>
-                        <th className="p-3">Unit</th>
-                        <th className="p-3">Quantity</th>
-                        <th className="p-3">Unit Rate ($)</th>
-                        <th className="p-3">Total ($)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                      <tr>
-                        <td className="p-3 font-mono">001</td>
-                        <td className="p-3 font-medium text-gray-900 dark:text-white">Foundation Excavation</td>
-                        <td className="p-3">m³</td>
-                        <td className="p-3">420.0</td>
-                        <td className="p-3">18.50</td>
-                        <td className="p-3 font-semibold">7,770.00</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 font-mono">002</td>
-                        <td className="p-3 font-medium text-gray-900 dark:text-white">Reinforced Concrete Footings</td>
-                        <td className="p-3">m³</td>
-                        <td className="p-3">85.0</td>
-                        <td className="p-3">240.00</td>
-                        <td className="p-3 font-semibold">20,400.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <Link
+                  to="/pdf-to-data"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-semibold transition"
+                >
+                  Open Table Extractor <FileSpreadsheet className="w-4 h-4" />
+                </Link>
+                <p className="text-xs text-gray-400">
+                  Processes entirely in your browser — no server uploads.
+                </p>
               </div>
             )}
 
-            {/* Tab 4: Convert */}
+            {/* Tab 4: Convert — links to real tool pages */}
             {activeTab === 'convert' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3">
+                <Link
+                  to="/pdf-to-excel"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
                   <FileSpreadsheet className="w-6 h-6 text-green-600" />
-                  <h4 className="font-bold text-gray-900 dark:text-white text-sm">Microsoft Excel (.xlsx)</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-green-600 transition-colors">
+                    Microsoft Excel (.xlsx)
+                  </h4>
                   <p className="text-xs text-gray-500">Export detected tabular structures into spreadsheet workbooks.</p>
-                  <button
-                    onClick={() => alert('Excel download started')}
-                    className="w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-semibold"
-                  >
-                    Download Excel
-                  </button>
-                </div>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-600">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
 
-                <div className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3">
+                <Link
+                  to="/pdf-to-json"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
                   <Code className="w-6 h-6 text-indigo-600" />
-                  <h4 className="font-bold text-gray-900 dark:text-white text-sm">JSON Data Tree (.json)</h4>
-                  <p className="text-xs text-gray-500">Structured AST representations for developer APIs and pipelines.</p>
-                  <button
-                    onClick={() => alert('JSON download started')}
-                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold"
-                  >
-                    Download JSON
-                  </button>
-                </div>
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-indigo-600 transition-colors">
+                    JSON Data (.json)
+                  </h4>
+                  <p className="text-xs text-gray-500">Structured data representations for developer APIs and pipelines.</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
 
-                <div className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3">
+                <Link
+                  to="/pdf-to-txt"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
                   <FileText className="w-6 h-6 text-blue-600" />
-                  <h4 className="font-bold text-gray-900 dark:text-white text-sm">Plain Text (.txt)</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 transition-colors">
+                    Plain Text (.txt)
+                  </h4>
                   <p className="text-xs text-gray-500">Clean unicode text stream without styling or formatting.</p>
-                  <button
-                    onClick={() => alert('TXT download started')}
-                    className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold"
-                  >
-                    Download TXT
-                  </button>
-                </div>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+
+                <Link
+                  to="/pdf-to-word"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
+                  <FileText className="w-6 h-6 text-blue-700" />
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-700 transition-colors">
+                    Word Document (.docx)
+                  </h4>
+                  <p className="text-xs text-gray-500">Convert PDF text and layout to an editable Word document.</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+
+                <Link
+                  to="/pdf-to-csv"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
+                  <FileSpreadsheet className="w-6 h-6 text-amber-600" />
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-amber-600 transition-colors">
+                    CSV Spreadsheet (.csv)
+                  </h4>
+                  <p className="text-xs text-gray-500">Extract tabular data to a universal comma-separated format.</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+
+                <Link
+                  to="/pdf-to-jpg"
+                  className="p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-3 hover:shadow-md transition-shadow group"
+                >
+                  <Sparkles className="w-6 h-6 text-rose-500" />
+                  <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-rose-500 transition-colors">
+                    JPG Images (.jpg)
+                  </h4>
+                  <p className="text-xs text-gray-500">Convert every PDF page to a high-resolution JPEG image.</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-rose-500">
+                    Open Tool <Download className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
               </div>
             )}
           </div>

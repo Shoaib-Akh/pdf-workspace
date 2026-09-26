@@ -15,7 +15,7 @@ export default function HowToExtractTablesFromPdf() {
     url: pageUrl,
     publishedTime: '2026-09-02T08:00:00Z',
     modifiedTime: '2026-09-12T10:00:00Z',
-    authorName: 'PDF Workspace Engineering Team',
+    authorName: 'PDF Guru Engineering Team',
   })
 
   const faqSchema = buildFAQSchema([
@@ -241,7 +241,7 @@ export default function HowToExtractTablesFromPdf() {
                     <td className="p-3">Excellent for bordered tables; requires OpenCV/Ghostscript</td>
                   </tr>
                   <tr>
-                    <td className="p-3 font-semibold">PDF Workspace (Web)</td>
+                    <td className="p-3 font-semibold">PDF Guru (Web)</td>
                     <td className="p-3">Client-Side WASM Heuristics</td>
                     <td className="p-3">Zero installation, 100% private, instant GUI review</td>
                   </tr>
@@ -292,7 +292,7 @@ export default function HowToExtractTablesFromPdf() {
             PW
           </div>
           <div>
-            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Workspace Engineering Team</h4>
+            <h4 className="font-bold text-zinc-900 dark:text-white text-sm">Written by the PDF Guru Engineering Team</h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Specialists in document geometry reconstruction, client-side WebAssembly rendering, and financial data parsing.
             </p>

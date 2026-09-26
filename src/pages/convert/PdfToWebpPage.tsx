@@ -124,7 +124,7 @@ export default function PdfToWebpPage() {
       <MetaTags
         title="Convert PDF to WebP — Modern, Lightweight & Private"
         description="Convert PDF documents into lightweight, modern WebP images directly in your browser. 30% smaller than JPG with pristine clarity. Zero upload required."
-        canonical="https://pdfworkspace.app/pdf-to-webp"
+        canonical="https://pdfguru.site/pdf-to-webp"
       />
 
       <div className="max-w-4xl mx-auto space-y-10 py-6">

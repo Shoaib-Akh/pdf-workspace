@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { loadPDF, detectContentType, PdfEngineError } from '@/services/pdf/pdfEngine'
 import { exportPdfToImages, ImageExportResult } from '@/services/pdf/imageExport'
 import { downloadBlob, formatFileSize } from '@/lib/utils'
+import { APP_CONFIG } from '@/lib/config'
 import { 
   FileText, 
   Download, 
@@ -128,7 +129,7 @@ export default function PdfToJpgPage() {
       <MetaTags
         title="Convert PDF to JPG — Free, Private & In-Browser"
         description="Convert every PDF page into high-quality JPG images instantly in your browser. Choose DPI, quality, and download individually or as a ZIP. Zero server uploads."
-        canonical="https://pdfworkspace.app/pdf-to-jpg"
+        canonical={`${APP_CONFIG.url}/pdf-to-jpg`}
       />
 
       <div className="max-w-4xl mx-auto space-y-10 py-6">

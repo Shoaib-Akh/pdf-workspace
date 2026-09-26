@@ -29,7 +29,7 @@ export default function HowToExtractInvoiceData() {
     url: pageUrl,
     publishedTime: '2026-09-03T08:00:00Z',
     modifiedTime: '2026-09-12T10:00:00Z',
-    authorName: 'PDF Workspace Engineering Team',
+    authorName: 'PDF Guru Engineering Team',
   })
 
   const faqSchema = buildFAQSchema([
@@ -384,7 +384,7 @@ export default function HowToExtractInvoiceData() {
               PW
             </div>
             <div>
-              <h3 className="text-sm font-bold text-zinc-900 dark:text-white">PDF Workspace Engineering Team</h3>
+              <h3 className="text-sm font-bold text-zinc-900 dark:text-white">PDF Guru Engineering Team</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Specialists in document financial extraction, accounts payable automation, and browser data privacy.
               </p>

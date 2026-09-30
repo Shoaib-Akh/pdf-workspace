@@ -27,7 +27,7 @@ const PRICING_FAQS = [
 export default function PricingPage() {
   const checkoutUrl =
     import.meta.env.VITE_LEMON_SQUEEZY_CHECKOUT_URL ||
-    'https://nexaforce1.lemonsqueezy.com/buy/0f845d4a-67b1-4f11-965a-8b8357eb456f'
+    'https://nexaforce1.lemonsqueezy.com/checkout/buy/29cd3d29-e2a3-451e-9023-9b984da237fd'
 
   return (
     <PageLayout>

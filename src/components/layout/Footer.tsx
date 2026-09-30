@@ -187,6 +187,7 @@ export function Footer() {
               <li><Link to="/tools" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tools Directory (49)</Link></li>
               <li><Link to="/workspace" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Live Workspace</Link></li>
               <li><Link to="/pricing" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Pricing & Plans</Link></li>
+              <li><a href="https://nexaforce1.lemonsqueezy.com/checkout/buy/29cd3d29-e2a3-451e-9023-9b984da237fd" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-indigo-400 font-semibold hover:underline transition-colors flex items-center gap-1">Support PDF Guru ☕</a></li>
               <li><Link to="/contact" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Contact Support</Link></li>
               <li><Link to="/signin" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Sign In</Link></li>
               <li><Link to="/signup" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Create Account</Link></li>

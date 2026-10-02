@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import MetaTags from '@/components/seo/MetaTags'
 import PageLayout from '@/components/layout/PageLayout'
 import { BookOpen, User, Calendar, ArrowRight } from 'lucide-react'
+import AdSlot from '@/components/ads/AdSlot'
+import { APP_CONFIG } from '@/lib/config'
 
 interface Blog {
   id: number
@@ -29,7 +31,7 @@ export default function BlogListPage() {
       <MetaTags
         title="Blog — PDF Guru Tips, Guides & Updates"
         description="Read expert guides on PDF conversion, data extraction, OCR, and business document workflows. Tips and tutorials from the PDF Guru team."
-        canonical="https://pdfguru.site/blog"
+        canonical={`${APP_CONFIG.url}/blog`}
       />
 
       {/* Schema.org for Blog Listing */}
@@ -37,7 +39,7 @@ export default function BlogListPage() {
         "@context": "https://schema.org",
         "@type": "Blog",
         "name": "PDF Guru Blog",
-        "url": "https://pdfguru.site/blog",
+        "url": `${APP_CONFIG.url}/blog`,
         "description": "Expert guides on PDF conversion, data extraction, OCR, and business document workflows."
       })}} />
 
@@ -99,6 +101,9 @@ export default function BlogListPage() {
             ))}
           </div>
         )}
+
+        {/* Ad Unit */}
+        <AdSlot format="leaderboard" slotId="blog-list-leaderboard" className="mt-12" />
       </div>
     </PageLayout>
   )

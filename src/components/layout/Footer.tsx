@@ -36,7 +36,7 @@ export function Footer() {
                 Explore Tool Categories
               </h4>
               <Link to="/tools" className="text-xs font-semibold text-violet-600 hover:text-violet-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center gap-1">
-                Browse All 49 Tools <ArrowRight className="w-3.5 h-3.5" />
+                Browse All Tools <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -171,7 +171,7 @@ export function Footer() {
               Platform
             </h3>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/tools" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tools Directory (49)</Link></li>
+              <li><Link to="/tools" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tools Directory (41)</Link></li>
               <li><Link to="/workspace" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Live Workspace</Link></li>
               <li><Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Support PDF Guru</Link></li>
               {DONATE_URL && (

@@ -5,6 +5,7 @@ import JsonLd, { buildBreadcrumbSchema } from '@/components/seo/JsonLd'
 import { APP_CONFIG } from '@/lib/config'
 import { Link } from 'react-router-dom'
 import { BookOpen, Clock, ArrowRight, Search, Sparkles, FileSpreadsheet, Layers, ShieldCheck, Tag, X } from 'lucide-react'
+import AdSlot from '@/components/ads/AdSlot'
 
 export interface ArticleMetadata {
   title: string
@@ -304,6 +305,9 @@ export default function LearnIndexPage() {
               ))}
             </div>
           )}
+
+          {/* Ad Slot */}
+          <AdSlot format="leaderboard" slotId="learn-leaderboard" className="mt-12" />
         </div>
       </div>
     </PageLayout>

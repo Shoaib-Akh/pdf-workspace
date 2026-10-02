@@ -13,6 +13,7 @@ import { exportFullExtractionToExcel } from '@/services/extraction/excelExporter
 import { Progress } from '@/components/ui/progress'
 import { APP_CONFIG } from '@/lib/config'
 import { PDF_TO_EXCEL_KEYWORDS, PDF_TO_EXCEL_POPULAR_SEARCHES } from '@/data/seoKeywords'
+import AdSlot from '@/components/ads/AdSlot'
 
 const PDF_TO_EXCEL_FAQS = [
   {
@@ -329,6 +330,9 @@ export default function PdfToExcelPage() {
               ))}
             </div>
           </div>
+
+          {/* Ad Slot */}
+          <AdSlot format="leaderboard" slotId="pdf-to-excel-bottom" className="my-6" />
 
           {/* Popular Searches & Related Tags */}
           <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-800/40 p-6">

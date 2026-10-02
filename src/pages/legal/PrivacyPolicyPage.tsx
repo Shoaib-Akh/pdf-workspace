@@ -36,24 +36,38 @@ export function PrivacyPolicyPage() {
             Some complex tools (such as advanced OCR or AI-based extraction) require server-side processing. When you use these tools, your files are securely uploaded via encrypted connections. Once the processing is complete, the original files and any generated outputs are immediately and permanently deleted from our servers. We do not keep backups or temporary copies.
           </p>
 
-          <h2>4. Cookies</h2>
+          <h2>4. Cookies & Third-Party Advertising</h2>
           <p>
-            We use strictly necessary cookies to maintain session state and basic functionality. We do not use third-party tracking cookies or sell your browsing data to advertisers.
+            We use strictly necessary cookies to keep our application running reliably. Additionally, third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites:
           </p>
+          <ul>
+            <li>Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our sites and/or other sites on the Internet.</li>
+            <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
+          </ul>
 
           <h2>5. Optional donations & payment data</h2>
           <p>
             Donations to support PDF Guru are entirely optional. All payment transactions are handled exclusively by secure third-party payment processors. We do not collect, process, or store credit card numbers, bank account details, or payment credentials on our servers.
           </p>
 
-          <h2>6. Third-party services</h2>
+          <h2>6. Third-party services & analytics</h2>
           <p>
-            By default, we do not share your personal information or documents with third-party services. If a specific tool requires a third-party API (for instance, an external AI model), we will explicitly state this on the tool's page so you can make an informed decision before proceeding.
+            By default, we do not share your personal information or documents with third parties. We collect aggregated, anonymous usage telemetry (such as error rates or tool selection) to maintain infrastructure health. If a specific tool requires a third-party API, we will explicitly notify you beforehand.
           </p>
 
-          <h2>7. Contact</h2>
+          <h2>7. Data Protection Rights (GDPR & CCPA)</h2>
           <p>
-            If you have any questions or concerns about this privacy policy or our data practices, please contact us at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>.
+            Depending on your jurisdiction, you have specific rights regarding your personal data:
+          </p>
+          <ul>
+            <li><strong>Right to Access & Portability:</strong> You may request confirmation of what personal data we hold.</li>
+            <li><strong>Right to Erasure:</strong> You can request that any personal data we hold about you be permanently deleted.</li>
+            <li><strong>Non-Discrimination:</strong> We will never deny services or charge different rates for exercising your privacy rights.</li>
+          </ul>
+
+          <h2>8. Contact Information</h2>
+          <p>
+            If you have any questions or concerns about this privacy policy, cookie practices, or our data handling, please contact our privacy officer at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>.
           </p>
         </div>
       </div>

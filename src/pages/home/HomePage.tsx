@@ -15,6 +15,7 @@ import { track } from '@/services/analytics/analytics'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MergePdfSeoSection, { MERGE_PDF_FAQS } from '@/components/home/MergePdfSeoSection'
+import AdSlot from '@/components/ads/AdSlot'
 
 const POPULAR_TOOLS = [
   {
@@ -528,6 +529,11 @@ export default function HomePage() {
             </dl>
           </div>
         </section>
+
+        {/* ─── AD SLOT ─────────────────────────────────────────── */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <AdSlot format="leaderboard" slotId="home-leaderboard" />
+        </div>
 
         {/* ─── CTA BANNER ───────────────────────────────────────── */}
         <section className="border-t border-zinc-100 dark:border-slate-800 bg-zinc-50 dark:bg-slate-900 px-4 py-14 sm:px-6 lg:px-8">

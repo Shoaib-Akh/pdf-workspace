@@ -328,14 +328,21 @@ function addSecurityHeaders(headers: Headers, isHtml = false): Headers {
 // For persistent rate limiting across workers, add Cloudflare KV.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
-function isRateLimited(ip: string, limitPerMinute = 30): boolean {
+function isRateLimited(key: string, limit = 30, windowMs = 60_000): boolean {
   const now = Date.now();
-  const entry = rateLimitMap.get(ip);
+  // Clean up periodically when map grows to avoid memory leaks
+  if (rateLimitMap.size > 2000) {
+    for (const [k, v] of rateLimitMap.entries()) {
+      if (now > v.resetAt) rateLimitMap.delete(k);
+    }
+  }
+
+  const entry = rateLimitMap.get(key);
   if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + 60_000 });
+    rateLimitMap.set(key, { count: 1, resetAt: now + windowMs });
     return false;
   }
-  if (entry.count >= limitPerMinute) return true;
+  if (entry.count >= limit) return true;
   entry.count++;
   return false;
 }
@@ -389,16 +396,18 @@ async function verifyTurnstileToken(
   secretKey?: string,
   remoteIp?: string
 ): Promise<{ success: boolean; error?: string }> {
-  // If no secret key is set in environment (e.g. local dev without secret), skip check
-  if (!secretKey) return { success: true };
-  if (!token) {
+  // Fail closed if no secret key is configured
+  if (!secretKey) {
+    return { success: false, error: 'Server security configuration error: Turnstile secret key not configured.' };
+  }
+  if (!token || typeof token !== 'string' || token.trim().length === 0) {
     return { success: false, error: 'Security verification (Turnstile) is required.' };
   }
 
   try {
     const formData = new FormData();
     formData.append('secret', secretKey);
-    formData.append('response', token);
+    formData.append('response', token.trim());
     if (remoteIp) {
       formData.append('remoteip', remoteIp);
     }
@@ -524,55 +533,96 @@ export default {
 
       // Waitlist
       if (pathname === '/api/waitlist' && request.method === 'POST') {
+        if (isRateLimited(`${ip}:waitlist`, 10, 600_000)) {
+          return new Response(JSON.stringify({ error: 'Too many requests. Please wait a few minutes.' }), {
+            status: 429,
+            headers: { 'Content-Type': 'application/json', 'Retry-After': '600' },
+          });
+        }
         try {
           const body = await request.json() as { email?: string; toolName?: string };
-          if (!body.email) return new Response(JSON.stringify({ error: 'Email required' }), { status: 400, headers });
-          if (env.DB) await env.DB.prepare('INSERT INTO waitlist (email, tool_name) VALUES (?, ?)').bind(body.email, body.toolName || 'general').run();
+          const email = (body.email || '').trim().toLowerCase();
+          const toolName = (body.toolName || 'general').trim().slice(0, 64);
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email) || email.length > 254) {
+            return new Response(JSON.stringify({ error: 'A valid email address is required.' }), { status: 400, headers });
+          }
+          if (env.DB) await env.DB.prepare('INSERT INTO waitlist (email, tool_name) VALUES (?, ?)').bind(email, toolName).run();
           return new Response(JSON.stringify({ success: true }), { headers });
         } catch { return new Response(JSON.stringify({ error: 'Failed to save' }), { status: 500, headers }); }
       }
 
       // Contact form
       if (pathname === '/api/contact' && request.method === 'POST') {
+        if (isRateLimited(`${ip}:contact_submit`, 5, 600_000)) {
+          return new Response(JSON.stringify({ error: 'Too many submissions. Please wait a few minutes before submitting another message.' }), {
+            status: 429,
+            headers: { 'Content-Type': 'application/json', 'Retry-After': '600' },
+          });
+        }
         try {
           const body = await request.json() as {
-            name: string;
-            email: string;
-            message: string;
+            name?: string;
+            email?: string;
+            message?: string;
             turnstileToken?: string;
             'cf-turnstile-response'?: string;
           };
-          if (!body.email || !body.message) return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400, headers });
 
-          // Turnstile bot protection check
+          const email = (body.email || '').trim().toLowerCase();
+          const name = (body.name || '').trim().slice(0, 100);
+          const message = (body.message || '').trim();
+
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email) || email.length > 254) {
+            return new Response(JSON.stringify({ error: 'A valid email address is required (max 254 characters).' }), { status: 400, headers });
+          }
+          if (!message || message.length < 5 || message.length > 5000) {
+            return new Response(JSON.stringify({ error: 'Message must be between 5 and 5,000 characters.' }), { status: 400, headers });
+          }
+
+          // Turnstile bot protection check - fail closed if key is missing or verification fails
+          const secretKey = env.TURNSTILE_SECRET_KEY;
+          if (!secretKey) {
+            return new Response(JSON.stringify({ error: 'Server security configuration error: Turnstile secret key not configured.' }), { status: 500, headers });
+          }
+
           const token = body.turnstileToken || body['cf-turnstile-response'];
           const clientIp = request.headers.get('CF-Connecting-IP') || undefined;
-          const secretKey = env.TURNSTILE_SECRET_KEY || '0x4AAAAAAFF6Ds-PvDCEfzNCGHySGpUINJQ';
           const verification = await verifyTurnstileToken(token, secretKey, clientIp);
           if (!verification.success) {
-            return new Response(JSON.stringify({ error: verification.error || 'CAPTCHA verification failed' }), { status: 403, headers });
+            return new Response(JSON.stringify({ error: verification.error || 'CAPTCHA verification failed. Please try again.' }), { status: 403, headers });
           }
 
           const trackingId = generateTrackingId();
-          if (env.DB) await env.DB.prepare('INSERT INTO contact_messages (name, email, message, tracking_id) VALUES (?, ?, ?, ?)').bind(body.name || '', body.email, body.message, trackingId).run();
+          if (env.DB) await env.DB.prepare('INSERT INTO contact_messages (name, email, message, tracking_id) VALUES (?, ?, ?, ?)').bind(name, email, message, trackingId).run();
           return new Response(JSON.stringify({ success: true, trackingId }), { headers });
-        } catch { return new Response(JSON.stringify({ error: 'Failed to send' }), { status: 500, headers }); }
+        } catch { return new Response(JSON.stringify({ error: 'Failed to send message.' }), { status: 500, headers }); }
       }
 
       // Ticket status — only returns status + reply (no personal data)
       if (pathname.startsWith('/api/status/') && request.method === 'GET') {
-        const trackingId = pathname.split('/').pop();
-        if (!env.DB || !trackingId) return new Response(JSON.stringify({ error: 'Invalid request' }), { status: 400, headers });
+        const trackingId = pathname.split('/').pop()?.trim().toUpperCase();
+        if (!trackingId || !/^TK-[A-Z0-9]{6}$/.test(trackingId)) {
+          return new Response(JSON.stringify({ error: 'Invalid tracking ID. Expected format TK-XXXXXX.' }), { status: 400, headers });
+        }
+        if (!env.DB) return new Response(JSON.stringify({ error: 'Database unavailable' }), { status: 500, headers });
         const result = await env.DB.prepare('SELECT status, admin_reply FROM contact_messages WHERE tracking_id = ?').bind(trackingId).first<{ status: string; admin_reply: string | null }>();
-        if (!result) return new Response(JSON.stringify({ error: 'Ticket not found' }), { status: 404, headers });
+        if (!result) return new Response(JSON.stringify({ error: 'Ticket not found.' }), { status: 404, headers });
         return new Response(JSON.stringify({ status: result.status, reply: result.admin_reply ?? null }), { headers });
       }
 
-      // Admin login
+      // Admin login - rate limited against brute force (5 attempts per 15 minutes)
       if (pathname === '/api/admin/login' && request.method === 'POST') {
+        if (isRateLimited(`${ip}:admin_login_attempt`, 5, 900_000)) {
+          return new Response(JSON.stringify({ error: 'Too many login attempts. Please wait 15 minutes.' }), {
+            status: 429,
+            headers: { 'Content-Type': 'application/json', 'Retry-After': '900' },
+          });
+        }
         if (!env.ADMIN_SECRET) return new Response(JSON.stringify({ error: 'Admin not configured on this deployment.' }), { status: 503, headers });
         const body = await request.json() as { password?: string };
-        if (body.password === env.ADMIN_SECRET) {
+        if (typeof body.password === 'string' && body.password === env.ADMIN_SECRET) {
           const token = await generateSessionToken(env.ADMIN_SECRET);
           return new Response(JSON.stringify({ success: true, token }), { headers });
         }

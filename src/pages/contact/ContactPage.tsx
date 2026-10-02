@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import MetaTags from '@/components/seo/MetaTags'
 import PageLayout from '@/components/layout/PageLayout'
-import { Mail, MessageSquare, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, MessageSquare, Send, CheckCircle2, ShieldAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import TurnstileWidget from '@/components/shared/TurnstileWidget'
+import { APP_CONFIG } from '@/lib/config'
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [trackingId, setTrackingId] = useState('')
   const [formData, setFormData] = useState({ name: '', email: '', subject: 'Feature Request', message: '' })
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setErrorMessage('')
     setLoading(true)
     try {
       const res = await fetch('/api/contact', {
@@ -20,7 +25,8 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          message: `[${formData.subject}]\n\n${formData.message}`
+          message: `[${formData.subject}]\n\n${formData.message}`,
+          turnstileToken,
         })
       });
       const data = await res.json();
@@ -28,10 +34,10 @@ export default function ContactPage() {
         setTrackingId(data.trackingId);
         setSubmitted(true);
       } else {
-        alert(data.error || 'Failed to send message');
+        setErrorMessage(data.error || 'Failed to send message');
       }
     } catch (err) {
-      alert('Error connecting to the server.');
+      setErrorMessage('Error connecting to the server. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -128,6 +134,28 @@ export default function ContactPage() {
                   className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-brand-500 text-zinc-900 dark:text-white"
                 ></textarea>
               </div>
+
+              {/* Cloudflare Turnstile Verification */}
+              {APP_CONFIG.turnstileSiteKey ? (
+                <div className="py-2">
+                  <TurnstileWidget
+                    action="contact"
+                    onVerify={(token) => {
+                      setTurnstileToken(token)
+                      setErrorMessage('')
+                    }}
+                    onExpire={() => setTurnstileToken('')}
+                    onError={() => setErrorMessage('Security check failed to load. Please disable ad-blockers or refresh.')}
+                  />
+                </div>
+              ) : null}
+
+              {errorMessage && (
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 text-xs">
+                  <ShieldAlert className="w-4 h-4 flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
               <Button type="submit" disabled={loading} className="w-full min-h-[44px] flex items-center justify-center gap-2">
                 {loading ? 'Sending...' : <><Send className="w-4 h-4" /> Send Message</>}

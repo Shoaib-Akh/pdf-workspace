@@ -18,12 +18,16 @@ dist-ssr/
 *.sln
 *.sw?
 
-# Environment files
+# Environment & secret files
 .env
+.env.*
 .env.local
+.env.*.local
 .env.development.local
 .env.test.local
 .env.production.local
+.dev.vars
+.dev.vars.local
 
 # Logs & temp
 npm-debug.log*

@@ -289,7 +289,13 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Learn Hub & In-Depth Guides -->
+  <!-- Blog & Learn Hub -->
+  <url>
+    <loc>https://pdfguru.site/blog</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://pdfguru.site/learn</loc>
     <lastmod>2026-09-23</lastmod>

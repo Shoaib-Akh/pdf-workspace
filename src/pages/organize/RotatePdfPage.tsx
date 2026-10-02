@@ -7,6 +7,8 @@ import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
 import { RotateCw, RotateCcw, Download, CheckCircle2 } from 'lucide-react'
+import { rotatePages } from '@/services/pdf/pdfOrganizer'
+import { downloadBlob } from '@/lib/utils'
 
 export default function RotatePdfPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -14,21 +16,51 @@ export default function RotatePdfPage() {
   const [scope, setScope] = useState<'all' | 'odd' | 'even'>('all')
   const [isApplying, setIsApplying] = useState(false)
   const [applied, setApplied] = useState(false)
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleFileSelect = (files: File[]) => {
     if (files.length > 0) {
       setFile(files[0])
       setApplied(false)
+      setResultBlob(null)
+      setErrorMessage('')
     }
   }
 
-  const handleRotate = () => {
+  const handleRotate = async () => {
     if (!file) return
     setIsApplying(true)
-    setTimeout(() => {
-      setIsApplying(false)
+    setErrorMessage('')
+    try {
+      let pageNumbers: number[] | undefined = undefined
+      if (scope !== 'all') {
+        const { PDFDocument } = await import('pdf-lib')
+        const arrayBuf = await file.arrayBuffer()
+        const pdfDoc = await PDFDocument.load(arrayBuf)
+        const total = pdfDoc.getPageCount()
+        const targetPages: number[] = []
+        for (let i = 1; i <= total; i++) {
+          if (scope === 'odd' && i % 2 !== 0) targetPages.push(i)
+          if (scope === 'even' && i % 2 === 0) targetPages.push(i)
+        }
+        pageNumbers = targetPages
+      }
+      const blob = await rotatePages(file, angle, pageNumbers)
+      setResultBlob(blob)
       setApplied(true)
-    }, 700)
+    } catch (err: any) {
+      console.error(err)
+      setErrorMessage('Failed to rotate PDF. Please try again.')
+    } finally {
+      setIsApplying(false)
+    }
+  }
+
+  const handleDownload = () => {
+    if (!resultBlob || !file) return
+    const name = file.name.replace(/\.[^/.]+$/, '') + '-rotated.pdf'
+    downloadBlob(resultBlob, name)
   }
 
   return (
@@ -148,6 +180,12 @@ export default function RotatePdfPage() {
                 </button>
               </div>
 
+              {errorMessage && (
+                <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-xl text-xs text-red-600 dark:text-red-400">
+                  {errorMessage}
+                </div>
+              )}
+
               {applied && (
                 <div className="p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-xl space-y-4">
                   <div className="flex items-center gap-2 text-green-800 dark:text-green-300 font-semibold text-sm">
@@ -155,7 +193,7 @@ export default function RotatePdfPage() {
                     Pages rotated successfully! Ready to download.
                   </div>
                   <button
-                    onClick={() => alert('Downloading rotated PDF...')}
+                    onClick={handleDownload}
                     className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 shadow-sm transition"
                   >
                     <Download className="w-4 h-4" /> Download Rotated PDF

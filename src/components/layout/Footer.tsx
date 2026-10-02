@@ -49,12 +49,6 @@ export function Footer() {
               <Link to="/organize" className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 dark:text-zinc-200 text-xs font-medium dark:border-zinc-700/60 transition-colors">
                 Organize PDF
               </Link>
-              <Link to="/business" className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 dark:text-zinc-200 text-xs font-medium dark:border-zinc-700/60 transition-colors">
-                Business & Invoices
-              </Link>
-              <Link to="/construction" className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 dark:text-zinc-200 text-xs font-medium dark:border-zinc-700/60 transition-colors">
-                BOQ & Construction
-              </Link>
               <Link to="/ocr" className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 dark:text-zinc-200 text-xs font-medium dark:border-zinc-700/60 transition-colors">
                 WASM OCR
               </Link>
@@ -105,14 +99,12 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-xs">
               <li><Link to="/pdf-to-data" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF Data Extractor</Link></li>
-              <li><Link to="/boq-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">BOQ to Excel</Link></li>
-              <li><Link to="/invoice-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Invoice to Excel</Link></li>
-              <li><Link to="/bank-statement-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Bank Statement</Link></li>
-              <li><Link to="/receipt-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Receipt to Excel</Link></li>
-              <li><Link to="/quotation-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Quotation to Excel</Link></li>
-              <li><Link to="/purchase-order-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Purchase Order</Link></li>
-              <li><Link to="/expense-report-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Expense Report</Link></li>
-              <li><Link to="/price-list-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Price List to Excel</Link></li>
+              <li><Link to="/pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to Excel</Link></li>
+              <li><Link to="/pdf-to-csv" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to CSV</Link></li>
+              <li><Link to="/pdf-to-json" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to JSON</Link></li>
+              <li><Link to="/pdf-to-txt" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to Text</Link></li>
+              <li><Link to="/pdf-to-markdown" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to Markdown</Link></li>
+              <li><Link to="/pdf-to-html" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">PDF to HTML</Link></li>
               <li><Link to="/extract" className="text-violet-600 hover:text-violet-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium">All Extractors →</Link></li>
             </ul>
           </div>
@@ -139,23 +131,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Construction & OCR */}
+          {/* Column 4: OCR Tools */}
           <div className="space-y-3">
             <h3 className="font-semibold text-slate-900 dark:text-white tracking-wide text-xs uppercase flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-              OCR & BOQ
+              Optical Character Recognition
             </h3>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/ocr-pdf" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">OCR PDF (WASM)</Link></li>
+              <li><Link to="/ocr-pdf" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">OCR PDF (Searchable)</Link></li>
               <li><Link to="/scanned-pdf-to-text" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Scanned to Text</Link></li>
               <li><Link to="/scanned-pdf-to-word" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Scanned to Word</Link></li>
               <li><Link to="/scanned-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Scanned to Excel</Link></li>
-              <li><Link to="/construction-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Construction BOQ</Link></li>
-              <li><Link to="/quantity-survey-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Quantity Survey</Link></li>
-              <li><Link to="/estimate-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Estimate to Excel</Link></li>
-              <li><Link to="/tender-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tender to Excel</Link></li>
-              <li><Link to="/bill-of-quantities-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Bill of Quantities</Link></li>
-              <li><Link to="/boq-extractor" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">BOQ Extractor</Link></li>
               <li><Link to="/ocr" className="text-violet-600 hover:text-violet-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium">All OCR Tools →</Link></li>
             </ul>
           </div>

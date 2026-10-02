@@ -52,17 +52,9 @@ const SEO_ROUTES: Record<string, { title: string; description: string }> = {
     title: `PDF Organizer Tools — ${SITE_NAME}`,
     description: 'Merge, split, compress, rotate, reorder, watermark, and edit PDFs. Free browser-based tools with no file size limits.',
   },
-  '/business': {
-    title: `Business PDF Tools — ${SITE_NAME}`,
-    description: 'Extract data from invoices, BOQs, quotations, bank statements, and business PDFs into Excel. Purpose-built for business document workflows.',
-  },
   '/ocr': {
     title: `PDF OCR Tools — ${SITE_NAME}`,
     description: 'Convert scanned PDFs and images to searchable text, Word, and Excel using browser-based OCR. No upload required.',
-  },
-  '/construction': {
-    title: `Construction PDF Tools — ${SITE_NAME}`,
-    description: 'Extract Bill of Quantities, tender data, and cost estimates from construction PDFs directly into Excel. Free and private.',
   },
   '/images': {
     title: `Image to PDF Tools — ${SITE_NAME}`,
@@ -225,70 +217,6 @@ const SEO_ROUTES: Record<string, { title: string; description: string }> = {
     description: 'Extract data from scanned PDFs into Excel using OCR. Free, browser-based tool.',
   },
 
-  // ── Business Tools ──
-  '/business-pdf-tools': {
-    title: 'Business PDF Data Extraction Tools — PDF Guru',
-    description: 'Extract structured data from business PDFs: invoices, BOQs, quotations, bank statements, and more. Free tools for finance and procurement.',
-  },
-  '/boq-pdf-to-excel': {
-    title: 'Convert BOQ PDF to Excel Free — PDF Guru',
-    description: 'Extract Bill of Quantities from PDF into Excel format. Free browser-based BOQ extractor for construction projects.',
-  },
-  '/invoice-to-excel': {
-    title: 'Extract Invoice Data from PDF to Excel — PDF Guru',
-    description: 'Extract line items, totals, and tax data from PDF invoices into Excel. Free, browser-based invoice extractor.',
-  },
-  '/quotation-to-excel': {
-    title: 'Convert Quotation PDF to Excel — PDF Guru',
-    description: 'Extract data from PDF quotations and convert to Excel format. Free, browser-based tool.',
-  },
-  '/receipt-to-excel': {
-    title: 'Convert Receipt PDF to Excel — PDF Guru',
-    description: 'Extract receipt data from PDF to Excel for expense tracking. Free, browser-based.',
-  },
-  '/bank-statement-to-excel': {
-    title: 'Convert Bank Statement PDF to Excel Free — PDF Guru',
-    description: 'Extract transactions from PDF bank statements into Excel. Free, private, browser-based bank statement converter.',
-  },
-  '/tender-pdf-to-excel': {
-    title: 'Convert Tender PDF to Excel — PDF Guru',
-    description: 'Extract tender document data and line items into Excel format. Free, browser-based tool.',
-  },
-  '/purchase-order-to-excel': {
-    title: 'Convert Purchase Order PDF to Excel — PDF Guru',
-    description: 'Extract purchase order data from PDFs to Excel. Free, browser-based procurement tool.',
-  },
-  '/expense-report-to-excel': {
-    title: 'Convert Expense Report PDF to Excel — PDF Guru',
-    description: 'Extract expense report data from PDFs into Excel format. Free, browser-based.',
-  },
-  '/price-list-pdf-to-excel': {
-    title: 'Convert Price List PDF to Excel — PDF Guru',
-    description: 'Extract product prices and descriptions from PDF price lists to Excel. Free, browser-based.',
-  },
-
-  // ── Construction Tools ──
-  '/construction-pdf-to-excel': {
-    title: 'Construction PDF to Excel — Extract BOQ & Costs — PDF Guru',
-    description: 'Extract construction data, BOQ items, and cost schedules from PDFs to Excel. Free browser-based construction tool.',
-  },
-  '/quantity-survey-pdf-to-excel': {
-    title: 'Quantity Survey PDF to Excel — PDF Guru',
-    description: 'Convert quantity survey PDF documents to Excel spreadsheets. Free, browser-based QS tool.',
-  },
-  '/estimate-pdf-to-excel': {
-    title: 'Construction Estimate PDF to Excel — PDF Guru',
-    description: 'Extract cost estimates and line items from construction PDFs to Excel. Free, browser-based.',
-  },
-  '/bill-of-quantities-to-excel': {
-    title: 'Bill of Quantities PDF to Excel — PDF Guru',
-    description: 'Extract Bill of Quantities items, rates, and totals from PDF to Excel. Free BOQ conversion tool.',
-  },
-  '/boq-extractor': {
-    title: 'BOQ Extractor — Extract Bill of Quantities from PDF — PDF Guru',
-    description: 'Advanced BOQ extractor for construction PDFs. Pull out items, quantities, and rates into structured Excel data.',
-  },
-
   // ── Learn Hub ──
   '/learn': {
     title: 'PDF Guides & Tutorials — PDF Guru Learn Hub',
@@ -362,7 +290,7 @@ const CANONICAL_ALIASES: Record<string, string> = {
   '/pdf-editor': '/edit-pdf',
   '/privacy-policy': '/privacy',
   '/terms-of-service': '/terms',
-  '/boq-to-excel': '/boq-pdf-to-excel',
+  '/boq-to-excel': '/pdf-to-excel',
   '/learn/how-to-extract-invoice-data-from-pdf': '/learn/how-to-extract-invoice-data',
   '/learn/how-to-convert-bank-statement-pdf-to-excel': '/learn/how-to-convert-bank-statement',
 };

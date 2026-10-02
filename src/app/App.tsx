@@ -52,23 +52,6 @@ const ScannedPdfToTextPage = lazy(() => import('@/pages/ocr/ScannedPdfToTextPage
 const ScannedPdfToWordPage = lazy(() => import('@/pages/ocr/ScannedPdfToWordPage'))
 const ScannedPdfToExcelPage = lazy(() => import('@/pages/ocr/ScannedPdfToExcelPage'))
 
-const BusinessToolsPage = lazy(() => import('@/pages/business/BusinessToolsPage'))
-const InvoiceToExcelPage = lazy(() => import('@/pages/business/InvoiceToExcelPage'))
-const QuotationToExcelPage = lazy(() => import('@/pages/business/QuotationToExcelPage'))
-const ReceiptToExcelPage = lazy(() => import('@/pages/business/ReceiptToExcelPage'))
-const BankStatementToExcelPage = lazy(() => import('@/pages/business/BankStatementToExcelPage'))
-const BoqPdfToExcelPage = lazy(() => import('@/pages/business/BoqPdfToExcelPage'))
-const TenderPdfToExcelPage = lazy(() => import('@/pages/business/TenderPdfToExcelPage'))
-const PurchaseOrderToExcelPage = lazy(() => import('@/pages/business/PurchaseOrderToExcelPage'))
-const ExpenseReportToExcelPage = lazy(() => import('@/pages/business/ExpenseReportToExcelPage'))
-const PriceListToExcelPage = lazy(() => import('@/pages/business/PriceListToExcelPage'))
-
-const ConstructionPdfPage = lazy(() => import('@/pages/business/ConstructionPdfPage'))
-const QuantitySurveyPage = lazy(() => import('@/pages/business/QuantitySurveyPage'))
-const EstimatePdfPage = lazy(() => import('@/pages/business/EstimatePdfPage'))
-const BillOfQuantitiesPage = lazy(() => import('@/pages/business/BillOfQuantitiesPage'))
-const BoqExtractorPage = lazy(() => import('@/pages/business/BoqExtractorPage'))
-
 const WorkspacePage = lazy(() => import('@/pages/workspace/WorkspacePage'))
 
 const LearnIndexPage = lazy(() => import('@/pages/learn/LearnIndexPage'))
@@ -101,9 +84,7 @@ export default function App() {
         <Route path="/convert" element={<ToolsPage initialCategory="Convert" />} />
         <Route path="/extract" element={<ToolsPage initialCategory="Extract" />} />
         <Route path="/organize" element={<ToolsPage initialCategory="Organize" />} />
-        <Route path="/business" element={<ToolsPage initialCategory="Business" />} />
         <Route path="/ocr" element={<ToolsPage initialCategory="OCR" />} />
-        <Route path="/construction" element={<ToolsPage initialCategory="Construction" />} />
         <Route path="/images" element={<ToolsPage initialCategory="Images" />} />
         <Route path="/security" element={<ToolsPage initialCategory="Security" />} />
 
@@ -172,26 +153,6 @@ export default function App() {
         <Route path="/scanned-pdf-to-text" element={<ScannedPdfToTextPage />} />
         <Route path="/scanned-pdf-to-word" element={<ScannedPdfToWordPage />} />
         <Route path="/scanned-pdf-to-excel" element={<ScannedPdfToExcelPage />} />
-
-        {/* Business */}
-        <Route path="/business-pdf-tools" element={<BusinessToolsPage />} />
-        <Route path="/invoice-to-excel" element={<InvoiceToExcelPage />} />
-        <Route path="/quotation-to-excel" element={<QuotationToExcelPage />} />
-        <Route path="/receipt-to-excel" element={<ReceiptToExcelPage />} />
-        <Route path="/bank-statement-to-excel" element={<BankStatementToExcelPage />} />
-        <Route path="/boq-pdf-to-excel" element={<BoqPdfToExcelPage />} />
-        <Route path="/tender-pdf-to-excel" element={<TenderPdfToExcelPage />} />
-        <Route path="/purchase-order-to-excel" element={<PurchaseOrderToExcelPage />} />
-        <Route path="/expense-report-to-excel" element={<ExpenseReportToExcelPage />} />
-        <Route path="/price-list-pdf-to-excel" element={<PriceListToExcelPage />} />
-
-        {/* Construction */}
-        <Route path="/construction-pdf-to-excel" element={<ConstructionPdfPage />} />
-        <Route path="/quantity-survey-pdf-to-excel" element={<QuantitySurveyPage />} />
-        <Route path="/estimate-pdf-to-excel" element={<EstimatePdfPage />} />
-        <Route path="/bill-of-quantities-to-excel" element={<BillOfQuantitiesPage />} />
-        <Route path="/boq-extractor" element={<BoqExtractorPage />} />
-        <Route path="/boq-to-excel" element={<BoqPdfToExcelPage />} />
 
         {/* Workspace — noindex in MetaTags */}
         <Route path="/workspace" element={<WorkspacePage />} />

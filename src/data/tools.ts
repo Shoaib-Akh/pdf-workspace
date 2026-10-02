@@ -29,8 +29,8 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { slug: 'reorder-pdf-pages', name: 'Reorder Pages', description: 'Rearrange pages in PDF.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'move' },
   { slug: 'watermark-pdf', name: 'Watermark PDF', description: 'Add a watermark to PDF.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'droplet' },
   { slug: 'add-page-numbers', name: 'Add Page Numbers', description: 'Insert page numbers to PDF.', category: 'organize', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'hash' },
-  { slug: 'password-protect-pdf', name: 'Protect PDF', description: 'Add a password to PDF.', category: 'security', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'lock' },
-  { slug: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password from PDF.', category: 'security', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'unlock' },
+  { slug: 'password-protect-pdf', name: 'Protect PDF', description: 'Add a password to PDF.', category: 'security', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'lock' },
+  { slug: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password from PDF.', category: 'security', processingMode: 'server', available: false, inputFormats: ['pdf'], outputFormats: ['pdf'], icon: 'unlock' },
 
   // Documents to PDF
   { slug: 'word-to-pdf', name: 'Word to PDF', description: 'Convert Word DOCX and DOC to PDF.', category: 'convert', processingMode: 'browser', available: true, inputFormats: ['docx', 'doc'], outputFormats: ['pdf'], icon: 'file-text', featured: true },
@@ -51,24 +51,6 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { slug: 'scanned-pdf-to-text', name: 'Scanned to Text', description: 'Extract text from scanned PDF.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['txt'], icon: 'file-text' },
   { slug: 'scanned-pdf-to-word', name: 'Scanned to Word', description: 'Convert scanned PDF to Word.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['docx'], icon: 'file-word' },
   { slug: 'scanned-pdf-to-excel', name: 'Scanned to Excel', description: 'Convert scanned PDF to Excel.', category: 'ocr', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['xlsx'], icon: 'file-spreadsheet' },
-
-  // Business
-  { slug: 'invoice-to-excel', name: 'Invoice to Excel', description: 'Extract invoice data to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'receipt', featured: true },
-  { slug: 'quotation-to-excel', name: 'Quotation to Excel', description: 'Extract quotation data to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'file-spreadsheet' },
-  { slug: 'receipt-to-excel', name: 'Receipt to Excel', description: 'Extract receipt data to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf', 'jpg', 'png'], outputFormats: ['xlsx', 'csv'], icon: 'receipt' },
-  { slug: 'bank-statement-to-excel', name: 'Bank Statement to Excel', description: 'Extract bank statement data.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'landmark' },
-  { slug: 'boq-pdf-to-excel', name: 'BOQ to Excel', description: 'Extract Bill of Quantities to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'list' },
-  { slug: 'tender-pdf-to-excel', name: 'Tender to Excel', description: 'Extract tender data to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'file-text' },
-  { slug: 'purchase-order-to-excel', name: 'PO to Excel', description: 'Extract purchase order data.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'shopping-cart' },
-  { slug: 'expense-report-to-excel', name: 'Expense Report to Excel', description: 'Extract expense report data.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'pie-chart' },
-  { slug: 'price-list-pdf-to-excel', name: 'Price List to Excel', description: 'Extract price list to Excel.', category: 'business', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'tag' },
-
-  // Construction
-  { slug: 'construction-pdf-to-excel', name: 'Construction PDF to Excel', description: 'Extract construction data.', category: 'construction', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'hard-hat' },
-  { slug: 'quantity-survey-pdf-to-excel', name: 'Quantity Survey to Excel', description: 'Extract QS data to Excel.', category: 'construction', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'clipboard-list' },
-  { slug: 'estimate-pdf-to-excel', name: 'Estimate to Excel', description: 'Extract estimate data.', category: 'construction', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'calculator' },
-  { slug: 'bill-of-quantities-to-excel', name: 'Bill of Quantities to Excel', description: 'Extract BOQ to Excel.', category: 'construction', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv'], icon: 'list-checks' },
-  { slug: 'boq-extractor', name: 'BOQ Extractor', description: 'Dedicated BOQ extraction tool.', category: 'construction', processingMode: 'browser', available: true, inputFormats: ['pdf'], outputFormats: ['xlsx', 'csv', 'json'], icon: 'zap' },
 ];
 
 export function getFeaturedTools(): ToolDefinition[] {

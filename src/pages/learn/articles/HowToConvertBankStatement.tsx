@@ -378,10 +378,10 @@ export default function HowToConvertBankStatement() {
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <Link
-                  to="/bank-statement-to-excel"
+                  to="/pdf-to-excel"
                   className="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition"
                 >
-                  <CreditCard className="w-4 h-4" /> Convert Bank Statement
+                  <CreditCard className="w-4 h-4" /> Convert to Excel
                 </Link>
                 <Link
                   to="/pdf-to-data"

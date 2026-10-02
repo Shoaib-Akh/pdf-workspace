@@ -156,10 +156,10 @@ export default function HowToConvertBoqPdfToExcel() {
               </p>
             </div>
             <Link
-              to="/boq-pdf-to-excel"
+              to="/pdf-to-excel"
               className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs sm:text-sm rounded-xl inline-flex items-center gap-2 shadow-sm transition whitespace-nowrap"
             >
-              Open BOQ to Excel <ArrowRight className="w-4 h-4" />
+              Open PDF to Excel <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -168,7 +168,7 @@ export default function HowToConvertBoqPdfToExcel() {
               3. Step-by-Step Conversion Walkthrough
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-sm">
-              <li>Open our dedicated <Link to="/boq-pdf-to-excel" className="text-brand-600 font-semibold hover:underline">BOQ PDF to Excel Tool</Link>.</li>
+              <li>Open our <Link to="/pdf-to-excel" className="text-brand-600 font-semibold hover:underline">PDF to Excel Tool</Link>.</li>
               <li>Upload your tender schedule PDF (files up to 500MB supported).</li>
               <li>The construction algorithm runs item-anchor detection, identifying hierarchy codes like <code>1.01</code>, <code>Division 03</code>, or <code>Section B</code>.</li>
               <li>Review the extracted table in the browser spreadsheet viewer.</li>

@@ -54,8 +54,8 @@ export const LEARN_ARTICLES: ArticleMetadata[] = [
     category: 'Construction',
     updated: 'Sep 2026',
     toolCta: {
-      name: 'BOQ to Excel Tool',
-      href: '/boq-pdf-to-excel',
+      name: 'PDF to Excel Tool',
+      href: '/pdf-to-excel',
     }
   },
   {
@@ -90,8 +90,8 @@ export const LEARN_ARTICLES: ArticleMetadata[] = [
     category: 'Business',
     updated: 'Sep 2026',
     toolCta: {
-      name: 'Invoice to Excel',
-      href: '/invoice-to-excel',
+      name: 'PDF to Data Extractor',
+      href: '/pdf-to-data',
     }
   },
   {
@@ -102,8 +102,8 @@ export const LEARN_ARTICLES: ArticleMetadata[] = [
     category: 'Finance',
     updated: 'Sep 2026',
     toolCta: {
-      name: 'Bank Statement to Excel',
-      href: '/bank-statement-to-excel',
+      name: 'PDF to Excel Tool',
+      href: '/pdf-to-excel',
     }
   }
 ]

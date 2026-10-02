@@ -330,23 +330,23 @@ export default function PdfToDataPage() {
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Related Specialized Extraction Tools</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <Link
-              to="/boq-pdf-to-excel"
+              to="/pdf-to-excel"
               className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl hover:border-blue-500 hover:shadow-sm transition group"
             >
               <div className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 text-sm">
-                BOQ to Excel &rarr;
+                PDF to Excel &rarr;
               </div>
-              <div className="text-xs text-gray-500 mt-1">Bill of quantities extractor</div>
+              <div className="text-xs text-gray-500 mt-1">Multi-sheet spreadsheet export</div>
             </Link>
 
             <Link
-              to="/invoice-to-excel"
+              to="/pdf-to-txt"
               className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl hover:border-blue-500 hover:shadow-sm transition group"
             >
               <div className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 text-sm">
-                Invoice to Excel &rarr;
+                PDF to Text &rarr;
               </div>
-              <div className="text-xs text-gray-500 mt-1">Accounts payable extractor</div>
+              <div className="text-xs text-gray-500 mt-1">Raw text extraction</div>
             </Link>
 
             <Link

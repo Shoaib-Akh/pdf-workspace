@@ -7,6 +7,31 @@ import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
 import { FileOutput, Download, CheckCircle2 } from 'lucide-react'
+import { extractPages } from '@/services/pdf/pdfOrganizer'
+import { downloadBlob } from '@/lib/utils'
+
+function parsePageNumbers(str: string): number[] {
+  const parts = str.split(/[,;\s]+/).map(s => s.trim()).filter(Boolean);
+  const pages = new Set<number>();
+  for (const part of parts) {
+    if (part.includes('-')) {
+      const [startStr, endStr] = part.split('-');
+      const start = parseInt(startStr, 10);
+      const end = parseInt(endStr, 10);
+      if (!isNaN(start) && !isNaN(end)) {
+        for (let i = Math.min(start, end); i <= Math.max(start, end); i++) {
+          if (i > 0) pages.add(i);
+        }
+      }
+    } else {
+      const num = parseInt(part, 10);
+      if (!isNaN(num) && num > 0) {
+        pages.add(num);
+      }
+    }
+  }
+  return Array.from(pages).sort((a, b) => a - b);
+}
 
 export default function ExtractPdfPagesPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -14,21 +39,43 @@ export default function ExtractPdfPagesPage() {
   const [mode, setMode] = useState<'single' | 'split'>('single')
   const [isProcessing, setIsProcessing] = useState(false)
   const [extracted, setExtracted] = useState(false)
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleFileSelect = (files: File[]) => {
     if (files.length > 0) {
       setFile(files[0])
       setExtracted(false)
+      setResultBlob(null)
+      setErrorMessage('')
     }
   }
 
-  const handleExtract = () => {
+  const handleExtract = async () => {
     if (!file) return
+    const nums = parsePageNumbers(pagesToExtract)
+    if (nums.length === 0) {
+      setErrorMessage('Please specify at least one valid page number to extract.')
+      return
+    }
     setIsProcessing(true)
-    setTimeout(() => {
-      setIsProcessing(false)
+    setErrorMessage('')
+    try {
+      const blob = await extractPages(file, nums)
+      setResultBlob(blob)
       setExtracted(true)
-    }, 750)
+    } catch (err: any) {
+      console.error(err)
+      setErrorMessage('Failed to extract pages. Please verify page numbers exist in the PDF.')
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
+  const handleDownload = () => {
+    if (!resultBlob || !file) return
+    const name = file.name.replace(/\.[^/.]+$/, '') + '-extracted.pdf'
+    downloadBlob(resultBlob, name)
   }
 
   return (
@@ -122,6 +169,12 @@ export default function ExtractPdfPagesPage() {
                 </button>
               </div>
 
+              {errorMessage && (
+                <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-xl text-xs text-red-600 dark:text-red-400">
+                  {errorMessage}
+                </div>
+              )}
+
               {extracted && (
                 <div className="p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-xl space-y-4">
                   <div className="flex items-center gap-2 text-green-800 dark:text-green-300 font-semibold text-sm">
@@ -129,7 +182,7 @@ export default function ExtractPdfPagesPage() {
                     Pages ({pagesToExtract}) extracted successfully!
                   </div>
                   <button
-                    onClick={() => alert('Downloading extracted pages...')}
+                    onClick={handleDownload}
                     className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 shadow-sm transition"
                   >
                     <Download className="w-4 h-4" /> Download Extracted PDF

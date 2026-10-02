@@ -7,6 +7,8 @@ import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
 import { Stamp, Download, CheckCircle2 } from 'lucide-react'
+import { addTextWatermark } from '@/services/pdf/pdfOrganizer'
+import { downloadBlob } from '@/lib/utils'
 
 export default function WatermarkPdfPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -15,21 +17,42 @@ export default function WatermarkPdfPage() {
   const [opacity, setOpacity] = useState(30)
   const [isProcessing, setIsProcessing] = useState(false)
   const [applied, setApplied] = useState(false)
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleFileSelect = (files: File[]) => {
     if (files.length > 0) {
       setFile(files[0])
       setApplied(false)
+      setResultBlob(null)
+      setErrorMessage('')
     }
   }
 
-  const handleApply = () => {
-    if (!file) return
+  const handleApply = async () => {
+    if (!file || !text.trim()) return
     setIsProcessing(true)
-    setTimeout(() => {
-      setIsProcessing(false)
+    setErrorMessage('')
+    try {
+      const rotation = position === 'diagonal' ? 45 : 0
+      const blob = await addTextWatermark(file, text.trim(), {
+        opacity: opacity / 100,
+        rotation,
+      })
+      setResultBlob(blob)
       setApplied(true)
-    }, 750)
+    } catch (err: any) {
+      console.error(err)
+      setErrorMessage('Failed to add watermark to PDF. Please try again.')
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
+  const handleDownload = () => {
+    if (!resultBlob || !file) return
+    const name = file.name.replace(/\.[^/.]+$/, '') + '-watermarked.pdf'
+    downloadBlob(resultBlob, name)
   }
 
   return (
@@ -139,6 +162,12 @@ export default function WatermarkPdfPage() {
                 </button>
               </div>
 
+              {errorMessage && (
+                <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-xl text-xs text-red-600 dark:text-red-400">
+                  {errorMessage}
+                </div>
+              )}
+
               {applied && (
                 <div className="p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-xl space-y-4">
                   <div className="flex items-center gap-2 text-green-800 dark:text-green-300 font-semibold text-sm">
@@ -146,7 +175,7 @@ export default function WatermarkPdfPage() {
                     Watermark "{text}" added to all pages.
                   </div>
                   <button
-                    onClick={() => alert('Downloading watermarked PDF...')}
+                    onClick={handleDownload}
                     className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 shadow-sm transition"
                   >
                     <Download className="w-4 h-4" /> Download Watermarked PDF

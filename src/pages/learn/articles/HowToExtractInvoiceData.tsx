@@ -363,10 +363,10 @@ export default function HowToExtractInvoiceData() {
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <Link
-                  to="/invoice-to-excel"
+                  to="/pdf-to-data"
                   className="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition"
                 >
-                  <Receipt className="w-4 h-4" /> Open Invoice Extractor
+                  <Receipt className="w-4 h-4" /> Open Data Extractor
                 </Link>
                 <Link
                   to="/pdf-to-data"

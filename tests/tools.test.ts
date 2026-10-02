@@ -51,10 +51,10 @@ describe('data/tools (Platform Tools Registry)', () => {
 
   describe('getToolBySlug', () => {
     it('returns correct tool definition for valid slug', () => {
-      const tool = getToolBySlug('invoice-to-excel');
+      const tool = getToolBySlug('pdf-to-excel');
       assert.ok(tool);
-      assert.strictEqual(tool?.slug, 'invoice-to-excel');
-      assert.strictEqual(tool?.category, 'business');
+      assert.strictEqual(tool?.slug, 'pdf-to-excel');
+      assert.strictEqual(tool?.category, 'convert');
       assert.strictEqual(tool?.processingMode, 'browser');
     });
 
@@ -74,8 +74,8 @@ describe('data/tools (Platform Tools Registry)', () => {
     });
 
     it('is case-insensitive and trims whitespace', () => {
-      const lower = getToolsByCategory('construction');
-      const upper = getToolsByCategory('  CONSTRUCTION  ');
+      const lower = getToolsByCategory('images');
+      const upper = getToolsByCategory('  IMAGES  ');
       assert.strictEqual(lower.length, upper.length);
       assert.ok(lower.length > 0);
     });

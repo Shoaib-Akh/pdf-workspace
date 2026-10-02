@@ -14,8 +14,6 @@ export const TOOL_CATEGORIES = [
   { id: 'extract', label: 'Extract Data', icon: 'file-text' },
   { id: 'organize', label: 'Organize PDF', icon: 'layers' },
   { id: 'ocr', label: 'OCR', icon: 'scan-text' },
-  { id: 'business', label: 'Business Documents', icon: 'briefcase' },
-  { id: 'construction', label: 'Construction', icon: 'hammer' },
   { id: 'images', label: 'Images', icon: 'image' },
   { id: 'security', label: 'Security', icon: 'shield' },
 ];

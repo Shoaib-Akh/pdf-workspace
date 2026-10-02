@@ -51,8 +51,6 @@ const CATEGORIES = [
   'Extract',
   'Organize',
   'OCR',
-  'Business',
-  'Construction',
   'Images',
   'Security'
 ]

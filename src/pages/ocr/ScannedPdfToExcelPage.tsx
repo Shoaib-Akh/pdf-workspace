@@ -261,8 +261,8 @@ export default function ScannedPdfToExcelPage() {
               { label: 'Scanned PDF to Word', to: '/scanned-pdf-to-word' },
               { label: 'Scanned PDF to Text', to: '/scanned-pdf-to-text' },
               { label: 'PDF to Excel', to: '/pdf-to-excel' },
-              { label: 'Invoice to Excel', to: '/invoice-to-excel' },
-              { label: 'BOQ to Excel', to: '/boq-pdf-to-excel' },
+              { label: 'PDF to CSV', to: '/pdf-to-csv' },
+              { label: 'PDF to Data', to: '/pdf-to-data' },
             ].map((tag) => (
               <Link
                 key={tag.label}

@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   FileText, ArrowRight, Shield, Zap, BarChart3, FileSpreadsheet,
-  HardHat, Smartphone, ChevronRight, Star, Upload,
+  HardHat, Smartphone, ChevronRight, Star, Upload, Layers,
 } from 'lucide-react'
 import MetaTags from '@/components/seo/MetaTags'
 import { JsonLd, buildWebSiteSchema, buildOrganizationSchema, buildFAQSchema, buildWebApplicationSchema } from '@/components/seo/JsonLd'
@@ -39,10 +39,10 @@ const POPULAR_TOOLS = [
     badge: 'Instant',
   },
   {
-    name: 'BOQ to Excel',
-    description: 'Extract Bill of Quantities from construction PDFs directly into Excel',
-    href: '/boq-pdf-to-excel',
-    icon: '🏗️',
+    name: 'PDF to Word',
+    description: 'Convert PDF documents into editable Microsoft Word (.docx) files',
+    href: '/pdf-to-word',
+    icon: '📝',
     badge: 'Featured',
   },
   {
@@ -60,11 +60,11 @@ const POPULAR_TOOLS = [
     badge: 'Instant',
   },
   {
-    name: 'Invoice to Excel',
-    description: 'Extract invoice line items, totals, and tax data from PDF',
-    href: '/invoice-to-excel',
-    icon: '🧾',
-    badge: null,
+    name: 'PDF to Excel',
+    description: 'Convert PDF tables and spreadsheets into Excel (.xlsx) workbooks',
+    href: '/pdf-to-excel',
+    icon: '📊',
+    badge: 'Instant',
   },
   {
     name: 'PDF to Text',
@@ -92,7 +92,7 @@ const FEATURES = [
     icon: BarChart3,
     title: 'Built for business data',
     description:
-      'Extract tables, BOQ rows, invoice line items, and structured data from complex PDFs — not just raw text.',
+      'Extract tables, financial statements, tabular rows, and structured data from complex PDFs — not just raw text.',
   },
   {
     icon: FileSpreadsheet,
@@ -101,10 +101,10 @@ const FEATURES = [
       'Export to Excel, CSV, JSON, Markdown, HTML, or plain text depending on what you need.',
   },
   {
-    icon: HardHat,
-    title: 'Construction & procurement',
+    icon: Layers,
+    title: 'Document management',
     description:
-      'Specialized tools for BOQ PDFs, tender documents, quotations, and estimates — built for the construction industry.',
+      'Organize, merge, split, compress, and edit PDF pages directly in your browser with zero file limits.',
   },
   {
     icon: Smartphone,
@@ -116,27 +116,27 @@ const FEATURES = [
 
 const USE_CASES = [
   {
-    audience: 'For businesses',
+    audience: 'For business & finance',
     cases: [
-      'Extract invoice data to Excel for reconciliation',
-      'Convert bank statements to Excel for accounting',
-      'Pull BOQ data from contractor PDFs into your spreadsheet',
+      'Convert PDF tables and reports directly into Excel spreadsheets',
+      'Extract tabular records into clean CSV for bookkeeping',
+      'Turn PDF reports into editable Word (.docx) documents',
     ],
   },
   {
-    audience: 'For construction professionals',
+    audience: 'For students & educators',
     cases: [
-      'Convert tender PDFs to Excel for pricing',
-      'Extract quantity survey tables from PDF',
-      'Process multiple BOQ PDFs into structured data',
+      'Extract high-resolution images from lecture slides',
+      'Merge multiple chapter notes into single study guides',
+      'Make scanned textbook pages searchable with browser OCR',
     ],
   },
   {
     audience: 'For researchers & analysts',
     cases: [
-      'Extract tables from research papers and reports',
-      'Convert PDF data to JSON for analysis pipelines',
-      'Export structured data from government PDF reports',
+      'Extract tables from research papers and academic publications',
+      'Convert PDF datasets to JSON for data science pipelines',
+      'Export structured Markdown from technical documentation',
     ],
   },
   {
@@ -303,8 +303,8 @@ export default function HomePage() {
 
             <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">
               Stop copying and pasting from PDFs. Upload your document and convert it to
-              Word, Excel, CSV, or extract structured tables, invoice data, BOQ rows, and
-              more — all in your browser, no account required.
+              Word, Excel, CSV, or extract structured tables, images, and text — all in
+              your browser with zero file uploads and no account required.
             </p>
 
             <HeroDropZone />
@@ -467,26 +467,25 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ─── BUSINESS TOOLS SPOTLIGHT ─────────────────────────── */}
+        {/* ─── REAL HIGH-PERFORMANCE TOOLS SPOTLIGHT ─────────────────────────── */}
         <section className="relative overflow-hidden border-t border-indigo-800/30 bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 px-4 py-16 sm:px-6 lg:px-8">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(168,85,247,0.3),transparent_60%)]" />
           <div className="relative mx-auto max-w-5xl text-center">
             <h2 className="text-2xl font-bold text-white">
-              The strongest PDF → data tools for business documents
+              Private, browser-powered PDF intelligence tools
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-brand-100">
-              BOQs, invoices, quotations, bank statements, and purchase orders — extract
-              the actual data you need, not just raw text.
+              Convert, OCR, organize, and extract tabular data locally in your browser — zero file uploads, zero waitlists.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               {[
-                { label: 'BOQ to Excel', href: '/boq-pdf-to-excel' },
-                { label: 'Invoice to Excel', href: '/invoice-to-excel' },
-                { label: 'Quotation to Excel', href: '/quotation-to-excel' },
-                { label: 'Bank Statement to Excel', href: '/bank-statement-to-excel' },
-                { label: 'Tender to Excel', href: '/tender-pdf-to-excel' },
-                { label: 'Purchase Order to Excel', href: '/purchase-order-to-excel' },
+                { label: 'PDF to Word (.docx)', href: '/pdf-to-word' },
+                { label: 'PDF to Excel (.xlsx)', href: '/pdf-to-excel' },
+                { label: 'Extract Tables to CSV', href: '/pdf-to-csv' },
+                { label: 'OCR Scanned PDF', href: '/ocr-pdf' },
+                { label: 'Merge Multiple PDFs', href: '/merge-pdf' },
+                { label: 'Compress PDF', href: '/compress-pdf' },
               ].map((t) => (
                 <Link
                   key={t.href}

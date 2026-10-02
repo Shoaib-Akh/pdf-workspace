@@ -227,7 +227,7 @@ export default function HowToConvertPdfToExcel() {
               <div className="p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl space-y-1">
                 <h4 className="font-bold text-sm text-zinc-900 dark:text-white">Issue 1: Merged Multi-Line Text Descriptions</h4>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400">
-                  Common in construction BOQs and engineering tenders where an item description spans 3 lines. Solution: Use our <Link to="/boq-pdf-to-excel" className="text-brand-600 hover:underline">BOQ Extractor</Link>, which detects item numbers to concatenate multi-line text into a single cell.
+                  Common in construction BOQs and engineering tenders where an item description spans 3 lines. Solution: Use our <Link to="/pdf-to-data" className="text-brand-600 hover:underline">Data Extractor</Link>, which detects item numbers to concatenate multi-line text into a single cell.
                 </p>
               </div>
 

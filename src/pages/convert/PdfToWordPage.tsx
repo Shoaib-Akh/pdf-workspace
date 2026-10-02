@@ -10,6 +10,7 @@ import { convertPdfToDocx, type PdfToDocxProgress } from '@/services/conversion/
 import { PDF_TO_WORD_KEYWORDS, PDF_TO_WORD_POPULAR_SEARCHES } from '@/data/seoKeywords'
 import JsonLd, { buildWebApplicationSchema, buildFAQSchema } from '@/components/seo/JsonLd'
 import { Progress } from '@/components/ui/progress'
+import { SupportResultCard } from '@/components/support/SupportResultCard'
 
 const PDF_TO_WORD_FAQS = [
   {
@@ -254,6 +255,7 @@ export default function PdfToWordPage() {
                   Convert Another PDF
                 </button>
               </div>
+              <SupportResultCard />
             </div>
           )}
 

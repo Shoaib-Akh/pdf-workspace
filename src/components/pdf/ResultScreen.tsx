@@ -1,6 +1,7 @@
 import { CheckCircle, Download, FileArchive, RefreshCw } from 'lucide-react'
 import { ToolDefinition } from '@/types'
 import { Link } from 'react-router-dom'
+import { SupportResultCard } from '@/components/support/SupportResultCard'
 
 interface ResultScreenProps {
   title: string
@@ -81,6 +82,8 @@ export function ResultScreen({
             Convert another
           </button>
         </div>
+
+        <SupportResultCard />
       </div>
 
       {relatedTools && relatedTools.length > 0 && (

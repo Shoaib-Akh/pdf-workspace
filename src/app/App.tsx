@@ -7,7 +7,7 @@ import ToolsPage from '@/pages/tools/ToolsPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 
 // Lazy-loaded: secondary and hub pages
-const PricingPage = lazy(() => import('@/pages/pricing/PricingPage'))
+const SupportPage = lazy(() => import('@/pages/support/SupportPage'))
 const ContactPage = lazy(() => import('@/pages/contact/ContactPage'))
 const AuthPage = lazy(() => import('@/pages/auth/AuthPage'))
 
@@ -107,8 +107,8 @@ export default function App() {
         <Route path="/images" element={<ToolsPage initialCategory="Images" />} />
         <Route path="/security" element={<ToolsPage initialCategory="Security" />} />
 
-        {/* Pricing, Contact, Auth, Admin & Status */}
-        <Route path="/pricing" element={<PricingPage />} />
+        {/* Support, Contact, Auth, Admin & Status */}
+        <Route path="/support" element={<SupportPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/signin" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />

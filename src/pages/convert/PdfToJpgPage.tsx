@@ -9,6 +9,7 @@ import { loadPDF, detectContentType, PdfEngineError } from '@/services/pdf/pdfEn
 import { exportPdfToImages, ImageExportResult } from '@/services/pdf/imageExport'
 import { downloadBlob, formatFileSize } from '@/lib/utils'
 import { APP_CONFIG } from '@/lib/config'
+import { SupportResultCard } from '@/components/support/SupportResultCard'
 import { 
   FileText, 
   Download, 
@@ -334,6 +335,8 @@ export default function PdfToJpgPage() {
                   </div>
                 ))}
               </div>
+
+              <SupportResultCard />
             </div>
           )}
 

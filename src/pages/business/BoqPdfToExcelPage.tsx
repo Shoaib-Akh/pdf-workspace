@@ -8,6 +8,7 @@ import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
 import { Building2, Download, CheckCircle2, Info, FileSpreadsheet, ShieldCheck, Shield, Check, Sparkles, ArrowRight } from 'lucide-react'
+import { SupportResultCard } from '@/components/support/SupportResultCard'
 
 const BOQ_FAQS = [
   {
@@ -188,6 +189,7 @@ export default function BoqPdfToExcelPage() {
                   >
                     <Download className="w-4 h-4" /> Download .xlsx BOQ Workbook
                   </button>
+                  <SupportResultCard />
                 </div>
               )}
             </div>

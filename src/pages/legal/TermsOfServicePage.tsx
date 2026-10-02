@@ -25,14 +25,14 @@ export function TermsOfServicePage() {
             We provide a suite of tools for processing, converting, extracting data from, and organizing PDF documents. The services are provided "as is" and "as available" without any warranties of any kind.
           </p>
 
-          <h2>3. Free vs premium use & subscriptions</h2>
+          <h2>3. Free service & voluntary donations</h2>
           <p>
-            Many of our tools are available for free. We also offer premium tiers (such as Cloud Pro) through subscription plans or one-time payments. Subscriptions are billed automatically on a recurring monthly or annual basis until canceled. You can cancel your subscription at any time via your customer billing portal.
+            All tools on our platform are 100% free to use. There are no paid subscriptions, recurring memberships, or premium locked features. Users may optionally make voluntary contributions or donations to support our server infrastructure and ongoing development.
           </p>
 
-          <h2>4. Refund and Cancellation Policy</h2>
+          <h2>4. Third-party donation handling & refund terms</h2>
           <p>
-            We want you to be completely satisfied with our service. We offer a <strong>14-day money-back guarantee</strong> on all subscription plans and digital purchases. If you are not satisfied with your purchase, you may request a full refund within 14 days of your initial transaction by contacting our support team at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>. Upon cancellation, your subscription will remain active until the end of the current billing cycle and will not renew.
+            Donations are completely optional and processed securely by external third-party payment platforms. We do not collect, process, or store any payment or credit card information on this site. Because donations are voluntary gifts made to support free open-source infrastructure and operational costs, they are not refundable by us unless the third-party processing platform explicitly permits or issues a refund under its own terms.
           </p>
 
           <h2>5. Acceptable use</h2>

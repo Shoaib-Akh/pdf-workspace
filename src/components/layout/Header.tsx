@@ -65,7 +65,6 @@ export function Header() {
                 </div>
               </div>
             </div>
-            <Link to="/pricing" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium focus-visible-ring rounded-lg px-2 py-1 transition-colors">Pricing</Link>
             <Link to="/learn" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium focus-visible-ring rounded-lg px-2 py-1 transition-colors">Learn</Link>
           </nav>
 
@@ -125,7 +124,6 @@ export function Header() {
             </div>
             
             <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-3 space-y-1">
-              <Link onClick={() => setIsMobileMenuOpen(false)} to="/pricing" className="flex items-center px-3 py-2.5 min-h-[44px] rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">Pricing</Link>
               <Link onClick={() => setIsMobileMenuOpen(false)} to="/learn" className="flex items-center px-3 py-2.5 min-h-[44px] rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">Learn & Guides</Link>
             </div>
             

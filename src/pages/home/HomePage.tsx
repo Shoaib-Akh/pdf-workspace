@@ -160,7 +160,7 @@ const FAQS = [
   },
   {
     q: 'Do I need an account?',
-    a: 'No account is required for basic tools. Create an account to access premium features, conversion history, and higher file limits.',
+    a: 'No account is required. All tools are free to use directly in your browser without registration or sign-in.',
   },
   {
     q: 'What formats can I export to?',

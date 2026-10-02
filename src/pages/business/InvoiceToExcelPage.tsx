@@ -8,6 +8,7 @@ import ProcessingModeTag from '@/components/pdf/ProcessingModeTag'
 import ServerRequiredState from '@/components/pdf/ServerRequiredState'
 import { Link } from 'react-router-dom'
 import { Receipt, Download, FileSpreadsheet, CheckCircle2, ShieldCheck, ArrowRight, Shield, Check } from 'lucide-react'
+import { SupportResultCard } from '@/components/support/SupportResultCard'
 
 const INVOICE_FAQS = [
   {
@@ -190,6 +191,7 @@ export default function InvoiceToExcelPage() {
                       <Download className="w-4 h-4" /> Download .xlsx Invoice Workbook
                     </button>
                   </div>
+                  <SupportResultCard />
                 </div>
               )}
             </div>

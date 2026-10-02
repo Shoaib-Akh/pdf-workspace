@@ -41,12 +41,17 @@ export function PrivacyPolicyPage() {
             We use strictly necessary cookies to maintain session state and basic functionality. We do not use third-party tracking cookies or sell your browsing data to advertisers.
           </p>
 
-          <h2>5. Third-party services</h2>
+          <h2>5. Optional donations & payment data</h2>
           <p>
-            By default, we do not share your information or documents with third-party services. If a specific tool requires a third-party API (for instance, an external AI model), we will explicitly state this on the tool's page so you can make an informed decision before proceeding.
+            Donations to support PDF Guru are entirely optional. All payment transactions are handled exclusively by secure third-party payment processors. We do not collect, process, or store credit card numbers, bank account details, or payment credentials on our servers.
           </p>
 
-          <h2>6. Contact</h2>
+          <h2>6. Third-party services</h2>
+          <p>
+            By default, we do not share your personal information or documents with third-party services. If a specific tool requires a third-party API (for instance, an external AI model), we will explicitly state this on the tool's page so you can make an informed decision before proceeding.
+          </p>
+
+          <h2>7. Contact</h2>
           <p>
             If you have any questions or concerns about this privacy policy or our data practices, please contact us at <a href="mailto:developershoaibakhtar@gmail.com">developershoaibakhtar@gmail.com</a>.
           </p>

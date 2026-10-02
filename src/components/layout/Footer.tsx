@@ -1,7 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { ShieldCheck, Cpu, ArrowRight, Lock } from "lucide-react"
+import { ShieldCheck, Cpu, ArrowRight, Lock, Heart } from "lucide-react"
 import { Logo } from "@/components/shared/Logo"
+import { DONATE_URL } from "@/lib/config"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -186,8 +187,20 @@ export function Footer() {
             <ul className="space-y-2 text-xs">
               <li><Link to="/tools" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tools Directory (49)</Link></li>
               <li><Link to="/workspace" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Live Workspace</Link></li>
-              <li><Link to="/pricing" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Pricing & Plans</Link></li>
-              <li><a href="https://nexaforce1.lemonsqueezy.com/checkout/buy/29cd3d29-e2a3-451e-9023-9b984da237fd" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-indigo-400 font-semibold hover:underline transition-colors flex items-center gap-1">Support PDF Guru ☕</a></li>
+              <li><Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Support PDF Guru</Link></li>
+              {DONATE_URL && (
+                <li className="pt-1">
+                  <a
+                    href={DONATE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/40 border border-amber-200 dark:border-amber-800/60 transition-colors focus-visible-ring"
+                  >
+                    <Heart className="w-3.5 h-3.5 fill-amber-500/20 text-amber-600" />
+                    Support PDF Guru
+                  </a>
+                </li>
+              )}
               <li><Link to="/contact" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Contact Support</Link></li>
               <li><Link to="/signin" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Sign In</Link></li>
               <li><Link to="/signup" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Create Account</Link></li>
@@ -217,8 +230,8 @@ export function Footer() {
               Privacy Architecture
             </Link>
             <span className="text-slate-300 dark:text-zinc-700">•</span>
-            <Link to="/pricing" className="text-slate-600 hover:text-slate-900 dark:text-zinc-300 dark:hover:text-white underline underline-offset-2 transition-colors">
-              Free vs Cloud
+            <Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-300 dark:hover:text-white underline underline-offset-2 transition-colors">
+              Support Us
             </Link>
           </div>
         </div>

@@ -57,11 +57,8 @@ const WorkspacePage = lazy(() => import('@/pages/workspace/WorkspacePage'))
 const LearnIndexPage = lazy(() => import('@/pages/learn/LearnIndexPage'))
 const LearnPdfToExcelPage = lazy(() => import('@/pages/learn/articles/HowToConvertPdfToExcel'))
 const LearnExtractTablesPage = lazy(() => import('@/pages/learn/articles/HowToExtractTablesFromPdf'))
-const LearnBoqToExcelPage = lazy(() => import('@/pages/learn/articles/HowToConvertBoqPdfToExcel'))
 const LearnPdfVsScannedPage = lazy(() => import('@/pages/learn/articles/PdfVsScannedPdf'))
 const LearnHowOcrWorksPage = lazy(() => import('@/pages/learn/articles/HowOcrWorks'))
-const LearnInvoiceDataPage = lazy(() => import('@/pages/learn/articles/HowToExtractInvoiceData'))
-const LearnBankStatementPage = lazy(() => import('@/pages/learn/articles/HowToConvertBankStatement'))
 
 const PrivacyPolicyPage = lazy(() => import('@/pages/legal/PrivacyPolicyPage'))
 const TermsOfServicePage = lazy(() => import('@/pages/legal/TermsOfServicePage'))
@@ -161,13 +158,8 @@ export default function App() {
         <Route path="/learn" element={<LearnIndexPage />} />
         <Route path="/learn/how-to-convert-pdf-to-excel" element={<LearnPdfToExcelPage />} />
         <Route path="/learn/how-to-extract-tables-from-pdf" element={<LearnExtractTablesPage />} />
-        <Route path="/learn/how-to-convert-boq-pdf-to-excel" element={<LearnBoqToExcelPage />} />
         <Route path="/learn/pdf-vs-scanned-pdf" element={<LearnPdfVsScannedPage />} />
         <Route path="/learn/how-ocr-works" element={<LearnHowOcrWorksPage />} />
-        <Route path="/learn/how-to-extract-invoice-data-from-pdf" element={<LearnInvoiceDataPage />} />
-        <Route path="/learn/how-to-extract-invoice-data" element={<LearnInvoiceDataPage />} />
-        <Route path="/learn/how-to-convert-bank-statement-pdf-to-excel" element={<LearnBankStatementPage />} />
-        <Route path="/learn/how-to-convert-bank-statement" element={<LearnBankStatementPage />} />
 
         {/* Legal */}
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

@@ -497,18 +497,6 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-
-            <div className="mt-8">
-              <Link to="/business-pdf-tools">
-                <Button
-                  variant="outline"
-                  className="border-white bg-transparent text-white hover:bg-white hover:text-brand-700"
-                  size="lg"
-                >
-                  Explore business tools <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
           </div>
         </section>
 

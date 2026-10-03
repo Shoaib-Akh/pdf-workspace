@@ -313,25 +313,6 @@ export default function HowToExtractTablesFromPdf() {
               </h4>
             </Link>
 
-            <Link
-              to="/learn/how-to-extract-invoice-data-from-pdf"
-              className="p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:border-brand-500 transition group space-y-1.5"
-            >
-              <span className="text-[10px] font-bold text-brand-600 uppercase">Accounting</span>
-              <h4 className="font-bold text-xs text-zinc-900 dark:text-white group-hover:text-brand-600 transition line-clamp-2">
-                How to Extract Invoice Data from PDF to Excel
-              </h4>
-            </Link>
-
-            <Link
-              to="/learn/how-to-convert-boq-pdf-to-excel"
-              className="p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:border-brand-500 transition group space-y-1.5"
-            >
-              <span className="text-[10px] font-bold text-brand-600 uppercase">Construction</span>
-              <h4 className="font-bold text-xs text-zinc-900 dark:text-white group-hover:text-brand-600 transition line-clamp-2">
-                How to Convert BOQ PDF to Excel for Bidding
-              </h4>
-            </Link>
           </div>
         </div>
       </article>

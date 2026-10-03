@@ -48,18 +48,6 @@ export const LEARN_ARTICLES: ArticleMetadata[] = [
     }
   },
   {
-    title: 'How to Convert a BOQ PDF to Excel for Construction Estimating',
-    slug: '/learn/how-to-convert-boq-pdf-to-excel',
-    desc: 'Step-by-step walkthrough for commercial estimators and quantity surveyors converting Bill of Quantities tenders into priced Excel takeoff models.',
-    readTime: '10 min read',
-    category: 'Construction',
-    updated: 'Sep 2026',
-    toolCta: {
-      name: 'PDF to Excel Tool',
-      href: '/pdf-to-excel',
-    }
-  },
-  {
     title: 'PDF vs Scanned PDF — What is the Difference and Why Does it Matter?',
     slug: '/learn/pdf-vs-scanned-pdf',
     desc: 'The fundamental difference between glyph vector streams and raster images, the 30-second test, and why converters output blank documents on scans.',
@@ -83,33 +71,9 @@ export const LEARN_ARTICLES: ArticleMetadata[] = [
       href: '/ocr-pdf',
     }
   },
-  {
-    title: 'How to Extract Invoice Data from PDF to Excel or Accounting Software',
-    slug: '/learn/how-to-extract-invoice-data-from-pdf',
-    desc: 'Automate accounts payable data entry. Extract invoice numbers, dates, line items, and tax amounts into structured spreadsheets without manual entry.',
-    readTime: '6 min read',
-    category: 'Business',
-    updated: 'Sep 2026',
-    toolCta: {
-      name: 'PDF to Data Extractor',
-      href: '/pdf-to-data',
-    }
-  },
-  {
-    title: 'How to Convert Bank Statements from PDF to Excel or CSV',
-    slug: '/learn/how-to-convert-bank-statement-pdf-to-excel',
-    desc: 'Reconcile ledgers faster. Securely convert banking and credit card transaction histories into spreadsheets with the running balance verification check.',
-    readTime: '6 min read',
-    category: 'Finance',
-    updated: 'Sep 2026',
-    toolCta: {
-      name: 'PDF to Excel Tool',
-      href: '/pdf-to-excel',
-    }
-  }
 ]
 
-const CATEGORIES = ['All', 'Conversion', 'Extraction', 'Construction', 'Core Concepts', 'OCR Technology', 'Business', 'Finance']
+const CATEGORIES = ['All', 'Conversion', 'Extraction', 'Core Concepts', 'OCR Technology']
 
 export default function LearnIndexPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')

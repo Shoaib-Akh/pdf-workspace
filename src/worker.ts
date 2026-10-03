@@ -230,10 +230,6 @@ const SEO_ROUTES: Record<string, { title: string; description: string }> = {
     title: 'How to Extract Tables from PDF — PDF Guru Guide',
     description: 'Learn how to detect and extract tables from PDF documents into Excel and CSV. Complete guide with free browser tools.',
   },
-  '/learn/how-to-convert-boq-pdf-to-excel': {
-    title: 'How to Convert BOQ PDF to Excel — PDF Guru Guide',
-    description: 'Step-by-step guide to extracting Bill of Quantities from construction PDFs into Excel. Learn the best methods for BOQ conversion.',
-  },
   '/learn/pdf-vs-scanned-pdf': {
     title: 'PDF vs Scanned PDF: What\'s the Difference? — PDF Guru',
     description: 'Understand the difference between text PDFs and scanned image PDFs. Learn how OCR works and when you need it.',
@@ -241,14 +237,6 @@ const SEO_ROUTES: Record<string, { title: string; description: string }> = {
   '/learn/how-ocr-works': {
     title: 'How OCR Works — PDF Text Recognition Explained — PDF Guru',
     description: 'Learn how Optical Character Recognition converts scanned images to text. Understand Tesseract, accuracy factors, and best practices.',
-  },
-  '/learn/how-to-extract-invoice-data': {
-    title: 'How to Extract Invoice Data from PDF — PDF Guru Guide',
-    description: 'Learn how to automatically extract invoice line items, totals, and tax data from PDF files to Excel.',
-  },
-  '/learn/how-to-convert-bank-statement': {
-    title: 'How to Convert Bank Statement PDF to Excel — PDF Guru',
-    description: 'Step-by-step guide to extracting transactions from PDF bank statements into Excel for analysis.',
   },
 
   // ── Legal & other ──
@@ -291,8 +279,11 @@ const CANONICAL_ALIASES: Record<string, string> = {
   '/privacy-policy': '/privacy',
   '/terms-of-service': '/terms',
   '/boq-to-excel': '/pdf-to-excel',
-  '/learn/how-to-extract-invoice-data-from-pdf': '/learn/how-to-extract-invoice-data',
-  '/learn/how-to-convert-bank-statement-pdf-to-excel': '/learn/how-to-convert-bank-statement',
+  '/learn/how-to-convert-boq-pdf-to-excel': '/learn',
+  '/learn/how-to-extract-invoice-data-from-pdf': '/learn',
+  '/learn/how-to-extract-invoice-data': '/learn',
+  '/learn/how-to-convert-bank-statement-pdf-to-excel': '/learn',
+  '/learn/how-to-convert-bank-statement': '/learn',
 };
 
 // Routes that must NOT be indexed

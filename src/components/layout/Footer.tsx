@@ -156,11 +156,8 @@ export function Footer() {
               <li><Link to="/learn" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">All PDF Guides</Link></li>
               <li><Link to="/learn/how-to-convert-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Convert PDF to Excel</Link></li>
               <li><Link to="/learn/how-to-extract-tables-from-pdf" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Extract PDF Tables</Link></li>
-              <li><Link to="/learn/how-to-convert-boq-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">BOQ to Excel Guide</Link></li>
               <li><Link to="/learn/pdf-vs-scanned-pdf" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Text vs Scanned PDF</Link></li>
               <li><Link to="/learn/how-ocr-works" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">How Browser OCR Works</Link></li>
-              <li><Link to="/learn/how-to-extract-invoice-data-from-pdf" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Extract Invoice Data</Link></li>
-              <li><Link to="/learn/how-to-convert-bank-statement-pdf-to-excel" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Bank Statement Guide</Link></li>
             </ul>
           </div>
 
@@ -174,19 +171,17 @@ export function Footer() {
               <li><Link to="/tools" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Tools Directory (41)</Link></li>
               <li><Link to="/workspace" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Live Workspace</Link></li>
               <li><Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Support PDF Guru</Link></li>
-              {DONATE_URL && (
-                <li className="pt-1">
-                  <a
-                    href={DONATE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/40 border border-amber-200 dark:border-amber-800/60 transition-colors focus-visible-ring"
-                  >
-                    <Heart className="w-3.5 h-3.5 fill-amber-500/20 text-amber-600" />
-                    Support PDF Guru
-                  </a>
-                </li>
-              )}
+              <li className="pt-1">
+                <a
+                  href={DONATE_URL || "/support"}
+                  target={DONATE_URL ? "_blank" : undefined}
+                  rel={DONATE_URL ? "noopener noreferrer" : undefined}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-900 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/70 hover:bg-amber-200 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors focus-visible-ring"
+                >
+                  <Heart className="w-3.5 h-3.5 fill-amber-500 text-amber-600 dark:text-amber-400" />
+                  Donate
+                </a>
+              </li>
               <li><Link to="/contact" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Contact Support</Link></li>
               <li><Link to="/signin" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Sign In</Link></li>
               <li><Link to="/signup" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Create Account</Link></li>
@@ -216,9 +211,15 @@ export function Footer() {
               Privacy Architecture
             </Link>
             <span className="text-slate-300 dark:text-zinc-700">•</span>
-            <Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-300 dark:hover:text-white underline underline-offset-2 transition-colors">
-              Support Us
-            </Link>
+            <a
+              href={DONATE_URL || "/support"}
+              target={DONATE_URL ? "_blank" : undefined}
+              rel={DONATE_URL ? "noopener noreferrer" : undefined}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-900 dark:text-amber-200 bg-amber-100 hover:bg-amber-200 dark:bg-amber-950/70 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors focus-visible-ring"
+            >
+              <Heart className="w-3.5 h-3.5 fill-amber-500 text-amber-600 dark:text-amber-400" />
+              Support PDF Guru
+            </a>
           </div>
         </div>
 
@@ -229,6 +230,15 @@ export function Footer() {
             <Link to="/privacy" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Privacy</Link>
             <Link to="/terms" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Terms</Link>
             <Link to="/contact" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Contact</Link>
+            <a
+              href={DONATE_URL || "/support"}
+              target={DONATE_URL ? "_blank" : undefined}
+              rel={DONATE_URL ? "noopener noreferrer" : undefined}
+              className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors"
+            >
+              <Heart className="w-3 h-3 fill-amber-500" />
+              Donate
+            </a>
             <Link to="/tools" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Sitemap</Link>
           </div>
         </div>

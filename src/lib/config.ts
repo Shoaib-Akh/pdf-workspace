@@ -22,6 +22,10 @@ const tagline = import.meta.env.VITE_APP_TAGLINE || 'Your Expert PDF Toolkit.'
 // Cloudflare Turnstile Site Key
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
 
+export const DONATE_URL: string =
+  import.meta.env.VITE_DONATE_URL ||
+  'https://nexaforce1.lemonsqueezy.com/checkout/buy/29cd3d29-e2a3-451e-9023-9b984da237fd'
+
 export const APP_CONFIG: AppConfig = {
   appName: name,
   name,
@@ -36,8 +40,6 @@ export const APP_CONFIG: AppConfig = {
   supportEmail: import.meta.env.VITE_SUPPORT_EMAIL || 'developershoaibakhtar@gmail.com',
   defaultOgImage: `${url}/og/home.jpg`,
   turnstileSiteKey,
-  donateUrl: import.meta.env.VITE_DONATE_URL || '',
+  donateUrl: DONATE_URL,
 }
-
-export const DONATE_URL: string = import.meta.env.VITE_DONATE_URL || ''
 

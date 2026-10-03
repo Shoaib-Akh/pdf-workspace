@@ -28,6 +28,7 @@ export default function SupportPage() {
   return (
     <PageLayout
       breadcrumbs={[
+        { label: 'Home', href: '/' },
         { label: 'Support' }
       ]}
     >

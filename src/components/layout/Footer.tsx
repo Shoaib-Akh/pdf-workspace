@@ -173,9 +173,9 @@ export function Footer() {
               <li><Link to="/support" className="text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Support PDF Guru</Link></li>
               <li className="pt-1">
                 <a
-                  href={DONATE_URL || "/support"}
-                  target={DONATE_URL ? "_blank" : undefined}
-                  rel={DONATE_URL ? "noopener noreferrer" : undefined}
+                  href={DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-900 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/70 hover:bg-amber-200 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors focus-visible-ring"
                 >
                   <Heart className="w-3.5 h-3.5 fill-amber-500 text-amber-600 dark:text-amber-400" />
@@ -212,9 +212,9 @@ export function Footer() {
             </Link>
             <span className="text-slate-300 dark:text-zinc-700">•</span>
             <a
-              href={DONATE_URL || "/support"}
-              target={DONATE_URL ? "_blank" : undefined}
-              rel={DONATE_URL ? "noopener noreferrer" : undefined}
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-900 dark:text-amber-200 bg-amber-100 hover:bg-amber-200 dark:bg-amber-950/70 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors focus-visible-ring"
             >
               <Heart className="w-3.5 h-3.5 fill-amber-500 text-amber-600 dark:text-amber-400" />
@@ -231,9 +231,9 @@ export function Footer() {
             <Link to="/terms" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Terms</Link>
             <Link to="/contact" className="text-slate-500 hover:text-slate-800 dark:hover:text-zinc-300 transition-colors">Contact</Link>
             <a
-              href={DONATE_URL || "/support"}
-              target={DONATE_URL ? "_blank" : undefined}
-              rel={DONATE_URL ? "noopener noreferrer" : undefined}
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors"
             >
               <Heart className="w-3 h-3 fill-amber-500" />

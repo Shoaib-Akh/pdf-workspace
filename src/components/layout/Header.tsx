@@ -72,11 +72,11 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-3">
             {/* Donation Button */}
             <a
-              href={DONATE_URL || "/support"}
-              target={DONATE_URL ? "_blank" : undefined}
-              rel={DONATE_URL ? "noopener noreferrer" : undefined}
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-900 bg-amber-100 hover:bg-amber-200 dark:text-amber-200 dark:bg-amber-950/70 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors shadow-xs focus-visible-ring"
-              title="Support PDF Guru"
+              title="Support PDF Guru on Lemon Squeezy"
             >
               <Heart className="w-3.5 h-3.5 fill-amber-500 text-amber-600 dark:text-amber-400" />
               <span>Donate</span>
@@ -137,9 +137,9 @@ export function Header() {
             <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-3 space-y-2">
               <a
                 onClick={() => setIsMobileMenuOpen(false)}
-                href={DONATE_URL || "/support"}
-                target={DONATE_URL ? "_blank" : undefined}
-                rel={DONATE_URL ? "noopener noreferrer" : undefined}
+                href={DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-3 py-2.5 min-h-[44px] rounded-lg text-sm font-semibold text-amber-900 bg-amber-100 hover:bg-amber-200 dark:text-amber-200 dark:bg-amber-950/70 dark:hover:bg-amber-900/70 border border-amber-300 dark:border-amber-800/80 transition-colors"
               >
                 <Heart className="w-4 h-4 fill-amber-500 text-amber-600 dark:text-amber-400" />
